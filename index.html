@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الحسين مطير - مهندس معدات طبية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4A6CF7;
+            --primary-light: #6B8AFF;
+            --secondary: #FF6B6B;
+            --background: #F8FAFF;
+            --card: #FFFFFF;
+            --text: #2D3748;
+            --text-light: #718096;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --blur: 10px;
+            --glass-opacity: 0.7;
+        }
+
+        .dark-mode {
+            --primary: #5D7AFF;
+            --primary-light: #7D9AFF;
+            --secondary: #FF7D7D;
+            --background: #1A202C;
+            --card: #2D3748;
+            --text: #F7FAFC;
+            --text-light: #CBD5E0;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            --blur: 15px;
+            --glass-opacity: 0.5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: var(--transition);
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: url('https://images.unsplash.com/photo-1518655048521-f130df041f66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.85);
+            z-index: -1;
+        }
+
+        .dark-mode body::before {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        /* Glass Effect */
+        .glass-effect {
+            backdrop-filter: blur(var(--blur));
+            -webkit-backdrop-filter: blur(var(--blur));
+            background-color: rgba(255, 255, 255, var(--glass-opacity));
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dark-mode .glass-effect {
+            background-color: rgba(45, 55, 72, var(--glass-opacity));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* App Bar */
+        .app-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 72px;
+            background-color: rgba(74, 108, 247, 0.9);
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .app-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            flex-grow: 1;
+        }
+
+        .app-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        /* Menu Button */
+        .menu-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+        }
+
+        /* Side Menu */
+        .side-menu {
+            position: fixed;
+            top: 72px;
+            right: -300px;
+            width: 300px;
+            height: calc(100vh - 72px);
+            background-color: var(--card);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            transition: right 0.3s ease;
+            padding: 20px;
+            backdrop-filter: blur(var(--blur));
+            -webkit-backdrop-filter: blur(var(--blur));
+            background-color: rgba(255, 255, 255, var(--glass-opacity));
+        }
+
+        .dark-mode .side-menu {
+            background-color: rgba(45, 55, 72, var(--glass-opacity));
+        }
+
+        .side-menu.open {
+            right: 0;
+        }
+
+        .menu-item {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .dark-mode .menu-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-item i {
+            margin-left: 10px;
+        }
+
+        /* Dark Mode Switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(30px);
+        }
+
+        .dark-icon, .light-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 14px;
+        }
+
+        .dark-icon {
+            right: 8px;
+        }
+
+        .light-icon {
+            left: 8px;
+        }
+
+        /* Profile Header */
+        .profile-header {
+            margin-top: 72px;
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(74, 108, 247, 0.9), rgba(107, 138, 255, 0.9));
+            color: white;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .profile-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon fill="rgba(255,255,255,0.05)" points="0,100 100,0 100,100"/></svg>');
+            background-size: cover;
+            opacity: 0.3;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .profile-title {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            z-index: 2;
+        }
+
+        /* Content Container */
+        .container {
+            padding: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Card Design */
+        .card {
+            background-color: rgba(255, 255, 255, var(--glass-opacity));
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(var(--blur));
+            -webkit-backdrop-filter: blur(var(--blur));
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dark-mode .card {
+            background-color: rgba(45, 55, 72, var(--glass-opacity));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background-color: rgba(74, 108, 247, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 16px;
+            color: var(--primary);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        /* Section Content */
+        .section-content {
+            margin-top: 16px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10px;
+            height: 100%;
+            width: 2px;
+            background-color: var(--primary);
+            opacity: 0.3;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px dashed rgba(74, 108, 247, 0.2);
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: -26px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            border: 3px solid var(--card);
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .timeline-title {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .timeline-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Skills */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-chip {
+            background-color: rgba(74, 108, 247, 0.1);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .skill-chip:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Contact Info */
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            justify-content: flex-end;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(74, 108, 247, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 16px;
+            color: var(--primary);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .animate-up {
+            animation: slideUp 0.5s ease-out forwards;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 24px;
+                padding: 32px;
+            }
+
+            .card {
+                margin-bottom: 0;
+            }
+
+            .profile-header {
+                padding: 48px 24px;
+            }
+
+            .profile-image {
+                width: 140px;
+                height: 140px;
+            }
+
+            .profile-name {
+                font-size: 2rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-btn {
+                display: block;
+            }
+            
+            .app-actions > .dropdown,
+            .app-actions > .switch {
+                display: none;
+            }
+            
+            .side-menu {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- App Bar -->
+    <div class="app-bar glass-effect">
+        <div class="app-title">السيرة الذاتية</div>
+        <div class="app-actions">
+            <!-- Menu Button for Mobile -->
+            <button class="menu-btn" id="menuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <!-- Language Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    <i class="fas fa-globe"></i>
+                </button>
+                <div class="dropdown-content glass-effect">
+                    <div class="dropdown-item" onclick="changeLanguage('ar')">
+                        <i class="fas fa-language"></i> العربية
+                    </div>
+                    <div class="dropdown-item" onclick="changeLanguage('en')">
+                        <i class="fas fa-language"></i> English
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dark Mode Toggle -->
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider round"></span>
+                <i class="fas fa-moon dark-icon"></i>
+                <i class="fas fa-sun light-icon"></i>
+            </label>
+        </div>
+    </div>
+    
+    <!-- Side Menu -->
+    <div class="side-menu glass-effect" id="sideMenu">
+        <div class="menu-item" onclick="changeLanguage('ar')">
+            <i class="fas fa-language"></i>
+            <span>العربية</span>
+        </div>
+        <div class="menu-item" onclick="changeLanguage('en')">
+            <i class="fas fa-language"></i>
+            <span>English</span>
+        </div>
+        <div class="menu-item">
+            <label for="darkModeToggleMobile" style="display: flex; align-items: center; width: 100%;">
+                <i class="fas fa-moon"></i>
+                <span style="flex-grow: 1;">الوضع المظلم</span>
+                <input type="checkbox" id="darkModeToggleMobile" style="opacity: 0; position: absolute;">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+
+    <!-- Profile Header -->
+    <div class="profile-header">
+        <img src="https://via.placeholder.com/150" alt="صورة الحسين مطير" class="profile-image" id="profileImage">
+        <h1 class="profile-name" id="name-title">الحسين عبدالرحمن محمد مطير<br><span style="font-size: 0.8em;">Al Hussein Abdulrahman Mohammad Mutair</span></h1>
+        <p class="profile-title" id="job-title">مهندس معدات طبية</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- About Section -->
+        <div class="card animate" style="animation-delay: 0.1s;">
+            <div class="card-header">
+                <div class="card-icon"><i class="fas fa-user"></i></div>
+                <h2 class="card-title" id="about-title">الهدف الوظيفي</h2>
+            </div>
+            <div class="section-content">
+                <p id="about-text">خريج بكالوريوس هندسة معدات طبية أبحث عن فرصة وظيفية أسهم من خلالها بتطبيق مهاراتي الفنية والمعرفية في صيانة ومعايرة الأجهزة الطبية، واكتساب خبرة عملية تمكنني من التطور المهني، والمشاركة الفاعلة في تحقيق أهداف المنشأة من خلال ضمان جاهزية الأجهزة وسلامة استخدامها وفقاً للمعايير الدولية.</p>
+            </div>
+        </div>
+
+        <!-- Education Section -->
+        <div class="card animate" style="animation-delay: 0.2s;">
+            <div class="card-header">
+                <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
+                <h2 class="card-title" id="education-title">التعليم</h2>
+            </div>
+            <div class="section-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2024 - 2025</div>
+                        <h3 class="timeline-title" id="degree-title">بكالوريوس هندسة المعدات الطبية</h3>
+                        <p class="timeline-description" id="university-text">الجامعة التخصصية الحديثة</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2021 - 2020</div>
+                        <h3 class="timeline-title" id="highschool-title">ثانوية عامة</h3>
+                        <p class="timeline-description" id="school-text">مدرسة النجاح بالحضن</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Experience Section -->
+        <div class="card animate" style="animation-delay: 0.3s;">
+            <div class="card-header">
+                <div class="card-icon"><i class="fas fa-briefcase"></i></div>
+                <h2 class="card-title" id="experience-title">الخبرات العلمية</h2>
+            </div>
+            <div class="section-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3 class="timeline-title" id="experience-org">المركز الوطني لمختبرات الصحة العامة المركزية</h3>
+                        <p class="timeline-description" id="experience-desc">تدريب عملي في صيانة الأجهزة الطبية</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="card animate" style="animation-delay: 0.4s;">
+            <div class="card-header">
+                <div class="card-icon"><i class="fas fa-tools"></i></div>
+                <h2 class="card-title" id="skills-title">المهارات</h2>
+            </div>
+            <div class="section-content">
+                <div class="skills-container">
+                    <div class="skill-chip" id="skill-1">إدارة الوقت</div>
+                    <div class="skill-chip" id="skill-2">تنظيم الأولويات</div>
+                    <div class="skill-chip" id="skill-3">المتال التنظيمي</div>
+                    <div class="skill-chip" id="skill-4">استكشاف الأخطاء</div>
+                    <div class="skill-chip" id="skill-5">إصلاح المعدات</div>
+                    <div class="skill-chip" id="skill-6">معايرة الأجهزة الطبية</div>
+                    <div class="skill-chip" id="skill-7">التعلم والتطوير الذاتي</div>
+                    <div class="skill-chip" id="skill-8">الهندسة السريرية</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Languages Section -->
+        <div class="card animate" style="animation-delay: 0.5s;">
+            <div class="card-header">
+                <div class="card-icon"><i class="fas fa-language"></i></div>
+                <h2 class="card-title" id="languages-title">اللغات</h2>
+            </div>
+            <div class="section-content">
+                <div class="skills-container">
+                    <div class="skill-chip" id="lang-1">العربية (ممتاز)</div>
+                    <div class="skill-chip" id="lang-2">الإنجليزية (جيد جداً)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="card animate" style="animation-delay: 0.6s;">
+            <div class="card-header">
+                <div class="card-icon"><i class="fas fa-envelope"></i></div>
+                <h2 class="card-title" id="contact-title">التواصل</h2>
+            </div>
+            <div class="section-content">
+                <div class="contact-item">
+                    <span id="email-text">HusseinMutair690@gmail.com</span>
+                    <div class="contact-icon"><i class="fas fa-at"></i></div>
+                </div>
+                <div class="contact-item">
+                    <span id="phone-text">772918690</span>
+                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                </div>
+                <div class="contact-item">
+                    <span id="address-text">صنعاء - الجراف - جسر الشايف</span>
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const darkModeToggleMobile = document.getElementById('darkModeToggleMobile');
+        
+        // Check for saved user preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+            darkModeToggleMobile.checked = true;
+        }
+        
+        // Toggle dark mode for desktop
+        darkModeToggle.addEventListener('change', function() {
+            toggleDarkMode(this.checked);
+        });
+        
+        // Toggle dark mode for mobile
+        darkModeToggleMobile.addEventListener('change', function() {
+            toggleDarkMode(this.checked);
+            darkModeToggle.checked = this.checked;
+        });
+        
+        function toggleDarkMode(enable) {
+            if (enable) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+        
+        // Profile Image Upload
+        const profileImage = document.getElementById('profileImage');
+        profileImage.addEventListener('click', function() {
+            const newImageUrl = prompt('أدخل رابط الصورة الشخصية:', 'https://via.placeholder.com/150');
+            if (newImageUrl) {
+                profileImage.src = newImageUrl;
+                localStorage.setItem('profileImage', newImageUrl);
+            }
+        });
+        
+        // Load saved profile image
+        if (localStorage.getItem('profileImage')) {
+            profileImage.src = localStorage.getItem('profileImage');
+        }
+        
+        // Animate elements on scroll
+        const animateElements = document.querySelectorAll('.animate, .animate-up');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        animateElements.forEach(el => {
+            observer.observe(el);
+        });
+
+        // Language Switching
+        const translations = {
+            en: {
+                "name-title": "Hussein Abdulrahman Mohammed Mutair",
+                "job-title": "Biomedical Equipment Engineer",
+                "about-title": "Career Objective",
+                "about-text": "Graduate with a Bachelor's degree in Biomedical Equipment Engineering seeking a career opportunity to apply my technical and cognitive skills in maintaining and calibrating medical devices, gaining practical experience that enables professional development, and actively contributing to achieving the organization's goals by ensuring equipment readiness and safe usage according to international standards.",
+                "education-title": "Education",
+                "degree-title": "Bachelor in Biomedical Equipment Engineering",
+                "university-text": "Modern Specialized University",
+                "highschool-title": "High School Diploma",
+                "school-text": "Al-Najah School in Hadhn",
+                "experience-title": "Practical Experience",
+                "experience-org": "National Center for Public Health Laboratories",
+                "experience-desc": "Practical training in medical equipment maintenance",
+                "skills-title": "Skills",
+                "skill-1": "Time Management",
+                "skill-2": "Priority Organization",
+                "skill-3": "Regulatory Compliance",
+                "skill-4": "Troubleshooting",
+                "skill-5": "Equipment Repair",
+                "skill-6": "Medical Equipment Calibration",
+                "skill-7": "Self-Learning and Development",
+                "skill-8": "Clinical Engineering",
+                "languages-title": "Languages",
+                "lang-1": "Arabic (Native)",
+                "lang-2": "English (Very Good)",
+                "contact-title": "Contact",
+                "email-text": "HusseinMutair690@gmail.com",
+                "phone-text": "772918690",
+                "address-text": "Sana'a - Al-Ghuraf - Al-Shaif Bridge"
+            },
+            ar: {
+                "name-title": "الحسين عبدالرحمن محمد مطير",
+                "job-title": "مهندس معدات طبية",
+                "about-title": "الهدف الوظيفي",
+                "about-text": "خريج بكالوريوس هندسة معدات طبية أبحث عن فرصة وظيفية أسهم من خلالها بتطبيق مهاراتي الفنية والمعرفية في صيانة ومعايرة الأجهزة الطبية، واكتساب خبرة عملية تمكنني من التطور المهني، والمشاركة الفاعلة في تحقيق أهداف المنشأة من خلال ضمان جاهزية الأجهزة وسلامة استخدامها وفقاً للمعايير الدولية.",
+                "education-title": "التعليم",
+                "degree-title": "بكالوريوس هندسة المعدات الطبية",
+                "university-text": "الجامعة التخصصية الحديثة",
+                "highschool-title": "ثانوية عامة",
+                "school-text": "مدرسة النجاح بالحضن",
+                "experience-title": "الخبرات العلمية",
+                "experience-org": "المركز الوطني لمختبرات الصحة العامة المركزية",
+                "experience-desc": "تدريب عملي في صيانة الأجهزة الطبية",
+                "skills-title": "المهارات",
+                "skill-1": "إدارة الوقت",
+                "skill-2": "تنظيم الأولويات",
+                "skill-3": "المتال التنظيمي",
+                "skill-4": "استكشاف الأخطاء",
+                "skill-5": "إصلاح المعدات",
+                "skill-6": "معايرة الأجهزة الطبية",
+                "skill-7": "التعلم والتطوير الذاتي",
+                "skill-8": "الهندسة السريرية",
+                "languages-title": "اللغات",
+                "lang-1": "العربية (ممتاز)",
+                "lang-2": "الإنجليزية (جيد جداً)",
+                "contact-title": "التواصل",
+                "email-text": "HusseinMutair690@gmail.com",
+                "phone-text": "772918690",
+                "address-text": "صنعاء - الجراف - جسر الشايف"
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            
+            const elements = document.querySelectorAll('[id]');
+            elements.forEach(el => {
+                if (translations[lang] && translations[lang][el.id]) {
+                    el.textContent = translations[lang][el.id];
+                }
+            });
+            
+            localStorage.setItem('language', lang);
+            
+            // Close menu after selection on mobile
+            if (window.innerWidth <= 768) {
+                toggleMenu();
+            }
+        }
+
+        // Check for saved language preference
+        if (localStorage.getItem('language')) {
+            changeLanguage(localStorage.getItem('language'));
+        }
+        
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const sideMenu = document.getElementById('sideMenu');
+        
+        function toggleMenu() {
+            sideMenu.classList.toggle('open');
+        }
+        
+        menuBtn.addEventListener('click', toggleMenu);
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!sideMenu.contains(event.target) && !menuBtn.contains(event.target)) {
+                sideMenu.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>
