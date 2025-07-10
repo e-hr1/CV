@@ -10,6 +10,7 @@
     <style>
         :root {
           -webkit-tap-highlight-color: transparent;
+          --TextColor:000000;
             --primary: #4A6CF7;
             --primary-light: #6B8AFF;
             --secondary: #FF6B6B;
@@ -28,7 +29,7 @@
         }
 
         .dark-mode {
-          
+          --TextColor:fff;
             --primary: #6B8AFF;
             --primary-light: #8BA4FF;
             --secondary: #FF8B8B;
@@ -249,7 +250,7 @@
     flex-direction: column;
     align-items: center;
     background: var(--background2);
-    color: var(--profile-header-text);
+    color: var(--TextColor);
     position: relative;
     overflow: hidden;
     backdrop-filter: blur(8px);
@@ -648,18 +649,17 @@
         <div class="card animate" style="animation-delay: 0.4s;">
             <div class="card-header">
                 <div class="card-icon"><i class="fas fa-tools"></i></div>
-                <h2 class="card-title" id="skills-title">المهارات</h2>
+                <h2 class="card-title" id="skills-title">المهارات والقدرات</h2>
             </div>
             <div class="section-content">
                 <div class="skills-container">
-                    <div class="skill-chip" id="skill-1">إدارة الوقت</div>
-                    <div class="skill-chip" id="skill-2">تنظيم الأولويات</div>
-                    <div class="skill-chip" id="skill-3">المتال التنظيمي</div>
-                    <div class="skill-chip" id="skill-4">استكشاف الأخطاء</div>
-                    <div class="skill-chip" id="skill-5">إصلاح المعدات</div>
-                    <div class="skill-chip" id="skill-6">معايرة الأجهزة الطبية</div>
-                    <div class="skill-chip" id="skill-7">التعلم والتطوير الذاتي</div>
-                    <div class="skill-chip" id="skill-8">الهندسة السريرية</div>
+                    <div class="skill-chip" id="skill-1">استكشاف الأخطاء وإصالحها</div>
+                    <div class="skill-chip" id="skill-3">معايرة الأجهزة الطبية</div>
+                    <div class="skill-chip" id="skill-4">الهندسة السريرية</div>
+                    <div class="skill-chip" id="skill-5">التعلم وتطوير الذات</div>
+                    <div class="skill-chip" id="skill-6">إدارة الوقت وتنظيم الأولويات</div>
+                    <div class="skill-chip" id="skill-7">الامتثال التنظيمي</div>
+                    
                 </div>
             </div>
         </div>
@@ -793,15 +793,13 @@ profileImage.src = localStorage.getItem('profileImage');
 "experience-org2": "Arab International Hospital",
 "experience-org3": "Kuwait University Teaching Hospital"
               ,
-                "skills-title": "Skills",
-                "skill-1": "Time Management",
-                "skill-2": "Priority Organization",
-                "skill-3": "Regulatory Compliance",
-                "skill-4": "Troubleshooting",
-                "skill-5": "Equipment Repair",
-                "skill-6": "Medical Equipment Calibration",
-                "skill-7": "Self-Learning and Development",
-                "skill-8": "Clinical Engineering",
+                "skills-title": "Skills and Abilities",
+                "skill-1": "Troubleshooting",
+"skill-3": "Medical Equipment Calibration",
+"skill-4": "Clinical Engineering",
+"skill-5": "Self-Learning and Development",
+"skill-6": "Time Management and Prioritization",
+"skill-7": "Regulatory Compliance",
                 "languages-title": "Languages",
                 "lang-1": "Arabic (Native)",
                 "lang-2": "English (Very Good)",
@@ -830,15 +828,15 @@ profileImage.src = localStorage.getItem('profileImage');
               
 "experience-org3": "مستشفى الكويت الجامعي",              
 
-                "skills-title": "المهارات",
-                "skill-1": "إدارة الوقت",
-                "skill-2": "تنظيم الأولويات",
-                "skill-3": "المتال التنظيمي",
-                "skill-4": "استكشاف الأخطاء",
-                "skill-5": "إصلاح المعدات",
-                "skill-6": "معايرة الأجهزة الطبية",
-                "skill-7": "التعلم والتطوير الذاتي",
-                "skill-8": "الهندسة السريرية",
+                "skills-title": "المهارات والقدرات",
+                "skill-1": "استكشاف األخطاء وإصالحها",
+                
+                "skill-3": "معايرة الأجهزة الطبية",
+                "skill-4": "الهندسة السريرية",
+                "skill-5": "التعلم وتطوير الذات",
+                "skill-6": "إدارة الوقت وتنظيم الأولويات",
+                "skill-7": "الامتثال التنظيمي",
+                
                 "languages-title": "اللغات",
                 "lang-1": "العربية (ممتاز)",
                 "lang-2": "الإنجليزية (جيد جداً)",
