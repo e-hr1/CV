@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>إضافة منشور جديد</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
+
+  <style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: #f1f5f9;
+      padding: 40px;
+      color: #1e293b;
+      direction: rtl;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    form {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #4A6CF7;
+      color: white;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #6B8AFF;
+    }
+
+    .success {
+      color: green;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .image-upload-container {
+      margin-top: 15px;
+    }
+
+    .image-preview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .image-preview-item {
+      position: relative;
+      width: 100px;
+      height: 100px;
+    }
+
+    .image-preview-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .remove-image {
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      background: red;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>إضافة منشور جديد</h2>
+
+  <form id="postForm">
+    <!-- بيانات عربية -->
+    <label>العنوان (عربي)</label>
+    <input type="text" id="title_ar" required>
+
+    <label>الوصف (عربي)</label>
+    <textarea id="desc_ar" required></textarea>
+
+    <!-- بيانات إنجليزية -->
+    <label>Title (English)</label>
+    <input type="text" id="title_en" required>
+
+    <label>Description (English)</label>
+    <textarea id="desc_en" required></textarea>
+
+    <!-- صور -->
+    <label>الصور (يمكن رفع من 1 إلى 4 صور)</label>
+    <div class="image-upload-container">
+      <input type="file" id="imageFiles" accept="image/*" multiple required>
+      <div class="image-preview" id="imagePreview"></div>
+    </div>
+
+    <button type="submit">نشر المنشور</button>
+
+    <div class="success" id="successMessage"></div>
+    <div class="error" id="errorMessage"></div>
+  </form>
+
+  <script>
+    // إعداد Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyD_E8KZWNpX0fVyeF5fgHEsD9nfe5a-9WI",
+      authDomain: "ko-fb-620c9.firebaseapp.com",
+      databaseURL: "https://ko-fb-620c9-default-rtdb.firebaseio.com",
+      projectId: "ko-fb-620c9",
+      storageBucket: "ko-fb-620c9.appspot.com",
+      messagingSenderId: "134906410814",
+      appId: "1:134906410814:android:833ac85049d0c71a055e6f"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    const storage = firebase.storage();
+
+    // عرض معاينة الصور
+    const imageFilesInput = document.getElementById('imageFiles');
+    const imagePreview = document.getElementById('imagePreview');
+    
+    imageFilesInput.addEventListener('change', function() {
+      imagePreview.innerHTML = '';
+      const files = this.files;
+      
+      if (files.length > 4) {
+        document.getElementById('errorMessage').textContent = "يمكنك رفع 4 صور كحد أقصى!";
+        this.value = '';
+        return;
+      }
+      
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+          const previewItem = document.createElement('div');
+          previewItem.className = 'image-preview-item';
+          previewItem.innerHTML = `
+            <img src="${e.target.result}" alt="Preview">
+            <div class="remove-image" onclick="removeImage(${i})">×</div>
+          `;
+          imagePreview.appendChild(previewItem);
+        }
+        
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // دالة إزالة الصورة من المعاينة
+    function removeImage(index) {
+      const files = imageFilesInput.files;
+      const newFiles = Array.from(files).filter((_, i) => i !== index);
+      
+      // إنشاء DataTransfer جديد وتعيين الملفات المتبقية
+      const dataTransfer = new DataTransfer();
+      newFiles.forEach(file => dataTransfer.items.add(file));
+      imageFilesInput.files = dataTransfer.files;
+      
+      // إعادة عرض المعاينة
+      const event = new Event('change');
+      imageFilesInput.dispatchEvent(event);
+    }
+
+    document.getElementById('postForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const title_ar = document.getElementById('title_ar').value;
+      const desc_ar = document.getElementById('desc_ar').value;
+      const title_en = document.getElementById('title_en').value;
+      const desc_en = document.getElementById('desc_en').value;
+      const imageFiles = document.getElementById('imageFiles').files;
+
+      if (!imageFiles || imageFiles.length === 0) {
+        document.getElementById('errorMessage').textContent = "يرجى اختيار صورة واحدة على الأقل!";
+        return;
+      }
+
+      if (imageFiles.length > 4) {
+        document.getElementById('errorMessage').textContent = "يمكنك رفع 4 صور كحد أقصى!";
+        return;
+      }
+
+      document.getElementById('errorMessage').textContent = "";
+      document.getElementById('successMessage').textContent = "جاري رفع الصور...";
+
+      // رفع الصور إلى التخزين
+      const uploadPromises = [];
+      const imageUrls = [];
+
+      for (let i = 0; i < imageFiles.length; i++) {
+        const file = imageFiles[i];
+        const storageRef = storage.ref('works/' + Date.now() + '_' + file.name);
+        uploadPromises.push(
+          storageRef.put(file).then(snapshot => snapshot.ref.getDownloadURL())
+          .then(url => imageUrls.push(url))
+        );
+      }
+
+      // بعد رفع جميع الصور، حفظ البيانات في قاعدة البيانات
+      Promise.all(uploadPromises)
+        .then(() => {
+          const newPostRef = db.ref('works').push();
+          return newPostRef.set({
+            title_ar,
+            desc_ar,
+            title_en,
+            desc_en,
+            images: imageUrls
+          });
+        })
+        .then(() => {
+          document.getElementById('successMessage').textContent = "✅ تم نشر المنشور بنجاح!";
+          document.getElementById('errorMessage').textContent = "";
+          document.getElementById('postForm').reset();
+          imagePreview.innerHTML = '';
+        })
+        .catch(error => {
+          document.getElementById('errorMessage').textContent = "❌ خطأ أثناء النشر: " + error.message;
+          document.getElementById('successMessage').textContent = "";
+        });
+    });
+  </script>
+</body>
+</html>
