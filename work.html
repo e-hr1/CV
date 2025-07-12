@@ -280,6 +280,45 @@
       font-weight: 400;
     }
 
+    /* شريط التقدم */
+    .progress-container {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: transparent;
+      z-index: 1000;
+      overflow: hidden;
+    }
+
+.progress-bar {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #e53935, #ef5350); /* تدرج أحمر */
+  transition: width 0.4s ease;
+  position: relative;
+  border-radius: 8px; /* حواف مستديرة */
+}
+    .progress-bar::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.5) 50%, 
+        transparent 100%);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
     /* محتوى الأعمال */
     .works-container {
       padding: 30px;
@@ -330,156 +369,155 @@
     }
 
     /* Layouts for different number of images */
-   .work-images-grid {
-  display: grid;
-  gap: 1px;
-}
+    .work-images-grid {
+      display: grid;
+      gap: 1px;
+    }
 
-.work-images-grid[data-count="1"] {
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-}
+    .work-images-grid[data-count="1"] {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+    }
 
-.work-images-grid[data-count="2"] {
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: auto;
-}
+    .work-images-grid[data-count="2"] {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto;
+    }
 
-.work-images-grid[data-count="3"] {
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: auto auto;
-  grid-template-areas: 
-    "a b"
-    "c c";
-}
+    .work-images-grid[data-count="3"] {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto auto;
+      grid-template-areas: 
+        "a b"
+        "c c";
+    }
 
+    .work-images-grid[data-count="4"] {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, auto);
+      grid-template-areas: 
+        "a b"
+        "c d";
+    }
+    
+    .work-images-grid[data-count="3"] .work-image:nth-child(1) {
+      grid-area: a;
+    }
+    .work-images-grid[data-count="3"] .work-image:nth-child(2) {
+      grid-area: b;
+    }
+    
+    .work-images-grid[data-count="3"] .work-image:nth-child(3) {
+      grid-area: c;
+    }
 
-.work-images-grid[data-count="4"] {
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, auto);
-  grid-template-areas: 
-    "a b"
-    "c d";
-}
-  
-.work-images-grid[data-count="3"] .work-image:nth-child(1) {
-  grid-area: a;
-}
-.work-images-grid[data-count="3"] .work-image:nth-child(2) {
-  grid-area: b;
-}
-  
-.work-images-grid[data-count="3"] .work-image:nth-child(3) {
-  grid-area: c;
-}
+    .work-images-grid[data-count="4"] .work-image:nth-child(1) {
+      grid-area: a;
+    }
+    .work-images-grid[data-count="4"] .work-image:nth-child(2) {
+      grid-area: b;
+    }
+    .work-images-grid[data-count="4"] .work-image:nth-child(3) {
+      grid-area: c;
+    }
+    .work-images-grid[data-count="4"] .work-image:nth-child(4) {
+      grid-area: d;
+    }
 
-.work-images-grid[data-count="4"] .work-image:nth-child(1) {
-  grid-area: a;
-}
-.work-images-grid[data-count="4"] .work-image:nth-child(2) {
-  grid-area: b;
-}
-.work-images-grid[data-count="4"] .work-image:nth-child(3) {
-  grid-area: c;
-}
-.work-images-grid[data-count="4"] .work-image:nth-child(4) {
-  grid-area: d;
-}
+    .work-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      border-radius: 8px;
+    }
 
-.work-image {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  border-radius: 8px;
-}
+    .work-image:hover {
+      transform: scale(1.03);
+    }
 
-.work-image:hover {
-  transform: scale(1.03);
-}
+    .dark-mode .work-image {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-.dark-mode .work-image {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
+    .work-content {
+      padding: 20px;
+      white-space: pre-line;
+    }
 
-.work-content {
-  padding: 20px;
-  white-space: pre-line;
-}
+    .work-title {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      color: var(--primary);
+      font-weight: 500;
+    }
 
-.work-title {
-  font-size: 1.2rem;
-  margin-bottom: 12px;
-  color: var(--primary);
-  font-weight: 500;
-}
+    .work-description {
+      color: var(--text-light);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      overflow: hidden;
+      max-height: 6.8em;
+    }
 
-.work-description {
-  color: var(--text-light);
-  font-size: 1rem;
-  line-height: 1.7;
-  margin-bottom: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  overflow: hidden;
-  max-height: 6.8em;
-}
+    .work-description.expanded {
+      max-height: none;
+    }
 
-.work-description.expanded {
-  max-height: none;
-}
+    /* تنسيقات Markdown */
+    .work-description p {
+      margin-bottom: 1em;
+    }
 
-/* تنسيقات Markdown */
-.work-description p {
-  margin-bottom: 1em;
-}
+    .work-description ul,
+    .work-description ol {
+      padding-right: 1.5em;
+      margin-bottom: 1em;
+    }
 
-.work-description ul,
-.work-description ol {
-  padding-right: 1.5em;
-  margin-bottom: 1em;
-}
+    .work-description li {
+      margin-bottom: 0.5em;
+    }
 
-.work-description li {
-  margin-bottom: 0.5em;
-}
+    .work-description strong {
+      font-weight: bold;
+    }
 
-.work-description strong {
-  font-weight: bold;
-}
+    .work-description em {
+      font-style: italic;
+    }
 
-.work-description em {
-  font-style: italic;
-}
+    .work-description a {
+      color: var(--primary);
+      text-decoration: none;
+    }
 
-.work-description a {
-  color: var(--primary);
-  text-decoration: none;
-}
+    .work-description a:hover {
+      text-decoration: underline;
+    }
 
-.work-description a:hover {
-  text-decoration: underline;
-}
+    .work-description code {
+      background-color: rgba(0,0,0,0.1);
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      font-family: monospace;
+    }
 
-.work-description code {
-  background-color: rgba(0,0,0,0.1);
-  padding: 0.2em 0.4em;
-  border-radius: 3px;
-  font-family: monospace;
-}
+    .dark-mode .work-description code {
+      background-color: rgba(255,255,255,0.1);
+    }
 
-.dark-mode .work-description code {
-  background-color: rgba(255,255,255,0.1);
-}
-
-.read-more {
-  color: var(--primary);
-  font-weight: 500;
-  cursor: pointer;
-  display: inline-block;
-  margin-top: 8px;
-}
+    .read-more {
+      color: var(--primary);
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 8px;
+    }
 
     .back-button {
       display: inline-flex;
@@ -627,6 +665,11 @@
     </div>
   </div>
 
+  <!-- شريط التقدم -->
+  <div class="progress-container" id="progressContainer">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
   <!-- رأس الصفحة -->
   <div class="page-header">
     <h1 class="page-title" id="page-title">معرض أعمالي</h1>
@@ -671,10 +714,38 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
+    // عناصر شريط التقدم
+    const progressContainer = document.getElementById('progressContainer');
+    const progressBar = document.getElementById('progressBar');
+
+    // عرض شريط التقدم
+    function showProgressBar() {
+      progressContainer.style.display = 'block';
+      progressBar.style.width = '30%';
+    }
+
+    // تحديث شريط التقدم
+    function updateProgressBar(percent) {
+      progressBar.style.width = `${percent}%`;
+    }
+
+    // إخفاء شريط التقدم
+    function hideProgressBar() {
+      progressBar.style.width = '100%';
+      setTimeout(() => {
+        progressContainer.style.display = 'none';
+        progressBar.style.width = '0';
+      }, 500);
+    }
+
     // تحميل الأعمال من Firebase مع ترتيب من الأحدث إلى الأقدم
     function loadWorks(lang = 'ar') {
       const container = document.getElementById("works-grid");
       container.innerHTML = '';
+
+      // عرض شريط التقدم
+      showProgressBar();
+      updateProgressBar(30);
 
       db.ref("works").orderByChild("timestamp").once("value", (snapshot) => {
         const works = [];
@@ -687,8 +758,11 @@
           });
         });
 
+        // تحديث شريط التقدم
+        updateProgressBar(60);
+
         // ترتيب العناصر من الأحدث إلى الأقدم
-        works.reverse().forEach((work) => {
+        works.reverse().forEach((work, index) => {
           const title = lang === 'ar' ? work.title_ar : work.title_en;
           const desc = lang === 'ar' ? work.desc_ar : work.desc_en;
           const readMoreText = lang === 'ar' ? 'قراءة المزيد' : 'Read more';
@@ -726,13 +800,25 @@
           `;
           container.appendChild(card);
           delay += 0.1;
+
+          // تحديث شريط التقدم تدريجياً
+          updateProgressBar(60 + (index / works.length * 30));
         });
 
-        // إعداد أزرار قراءة المزيد/أقل
-        setupReadMoreButtons(lang);
-        
-        // إعداد معرض الصور
-        setupImageGallery();
+        // إخفاء شريط التقدم بعد الانتهاء
+        setTimeout(() => {
+          hideProgressBar();
+          
+          // إعداد أزرار قراءة المزيد/أقل
+          setupReadMoreButtons(lang);
+          
+          // إعداد معرض الصور
+          setupImageGallery();
+        }, 500);
+
+      }, (error) => {
+        console.error("Error loading works:", error);
+        hideProgressBar();
       });
     }
 
