@@ -16,6 +16,9 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 
+  <!-- Markdown support -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  
   <style>
     :root {
       -webkit-tap-highlight-color: transparent;
@@ -316,7 +319,7 @@
 
     .work-images {
       width: 100%;
-      height: 200px;
+      height: auto;
       position: relative;
       overflow: hidden;
     }
@@ -327,80 +330,156 @@
     }
 
     /* Layouts for different number of images */
-    .work-images-grid[data-count="1"] {
-      grid-template: 1fr / 1fr;
-    }
+   .work-images-grid {
+  display: grid;
+  gap: 1px;
+}
 
-    .work-images-grid[data-count="2"] {
-      grid-template: 1fr / repeat(2, 1fr);
-    }
+.work-images-grid[data-count="1"] {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+}
 
-    .work-images-grid[data-count="3"] {
-      grid-template: 1fr / repeat(2, 1fr);
-      grid-template-areas: 
-        "a a"
-        "b c";
-    }
+.work-images-grid[data-count="2"] {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+}
 
-    .work-images-grid[data-count="4"] {
-      grid-template: 1fr / repeat(2, 1fr);
-      grid-template-areas: 
-        "a b"
-        "c d";
-    }
+.work-images-grid[data-count="3"] {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto auto;
+  grid-template-areas: 
+    "a b"
+    "c c";
+}
 
-    .work-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
 
-    .work-image:hover {
-      transform: scale(1.03);
-    }
+.work-images-grid[data-count="4"] {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
+  grid-template-areas: 
+    "a b"
+    "c d";
+}
+  
+.work-images-grid[data-count="3"] .work-image:nth-child(1) {
+  grid-area: a;
+}
+.work-images-grid[data-count="3"] .work-image:nth-child(2) {
+  grid-area: b;
+}
+  
+.work-images-grid[data-count="3"] .work-image:nth-child(3) {
+  grid-area: c;
+}
 
-    .dark-mode .work-image {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
+.work-images-grid[data-count="4"] .work-image:nth-child(1) {
+  grid-area: a;
+}
+.work-images-grid[data-count="4"] .work-image:nth-child(2) {
+  grid-area: b;
+}
+.work-images-grid[data-count="4"] .work-image:nth-child(3) {
+  grid-area: c;
+}
+.work-images-grid[data-count="4"] .work-image:nth-child(4) {
+  grid-area: d;
+}
 
-    .work-content {
-      padding: 20px;
-    }
+.work-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  border-radius: 8px;
+}
 
-    .work-title {
-      font-size: 1.2rem;
-      margin-bottom: 12px;
-      color: var(--primary);
-      font-weight: 500;
-    }
+.work-image:hover {
+  transform: scale(1.03);
+}
 
-    .work-description {
-      color: var(--text-light);
-      font-size: 1rem;
-      line-height: 1.7;
-      margin-bottom: 16px;
-      display: -webkit-box;
-      -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
+.dark-mode .work-image {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-    .work-description.expanded {
-      -webkit-line-clamp: unset;
-      display: block;
-    }
+.work-content {
+  padding: 20px;
+  white-space: pre-line;
+}
 
-    .read-more {
-      color: var(--primary);
-      font-weight: 500;
-      cursor: pointer;
-      display: inline-block;
-      margin-top: 8px;
-    }
+.work-title {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.work-description {
+  color: var(--text-light);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  max-height: 6.8em;
+}
+
+.work-description.expanded {
+  max-height: none;
+}
+
+/* تنسيقات Markdown */
+.work-description p {
+  margin-bottom: 1em;
+}
+
+.work-description ul,
+.work-description ol {
+  padding-right: 1.5em;
+  margin-bottom: 1em;
+}
+
+.work-description li {
+  margin-bottom: 0.5em;
+}
+
+.work-description strong {
+  font-weight: bold;
+}
+
+.work-description em {
+  font-style: italic;
+}
+
+.work-description a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.work-description a:hover {
+  text-decoration: underline;
+}
+
+.work-description code {
+  background-color: rgba(0,0,0,0.1);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+.dark-mode .work-description code {
+  background-color: rgba(255,255,255,0.1);
+}
+
+.read-more {
+  color: var(--primary);
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 8px;
+}
 
     .back-button {
       display: inline-flex;
@@ -616,6 +695,9 @@
           const readLessText = lang === 'ar' ? 'قراءة أقل' : 'Read less';
           const images = work.images || ["https://via.placeholder.com/800x500"];
 
+          // تحويل Markdown إلى HTML
+          const descHtml = marked.parse(desc || '');
+
           const card = document.createElement('div');
           card.className = 'work-card animate';
           card.style.animationDelay = `${delay}s`;
@@ -638,7 +720,7 @@
             </div>
             <div class="work-content">
               <h3 class="work-title">${title}</h3>
-              <p class="work-description">${desc}</p>
+              <div class="work-description">${descHtml}</div>
               <span class="read-more">${readMoreText}</span>
             </div>
           `;

@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>إضافة منشور جديد</title>
+  <title>إدارة المنشورات</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Firebase SDK -->
@@ -22,6 +22,27 @@
     h2 {
       text-align: center;
       margin-bottom: 30px;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      padding: 10px 20px;
+      background: #e2e8f0;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      border-radius: 6px 6px 0 0;
+      margin: 0 5px;
+    }
+
+    .tab.active {
+      background: #4A6CF7;
+      color: white;
     }
 
     form {
@@ -115,39 +136,134 @@
       cursor: pointer;
       font-size: 12px;
     }
+
+    .posts-list {
+      max-width: 800px;
+      margin: 30px auto;
+    }
+
+    .post-item {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .post-item h3 {
+      margin-top: 0;
+      color: #4A6CF7;
+    }
+
+    .post-actions {
+      margin-top: 15px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .post-actions button {
+      padding: 8px 15px;
+      width: auto;
+      font-size: 0.9rem;
+    }
+
+    .edit-btn {
+      background: #4CAF50;
+    }
+
+    .delete-btn {
+      background: #F44336;
+    }
+
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
 
-  <h2>إضافة منشور جديد</h2>
+  <h2>إدارة المنشورات</h2>
 
-  <form id="postForm">
-    <!-- بيانات عربية -->
-    <label>العنوان (عربي)</label>
-    <input type="text" id="title_ar" required>
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('addTab')">إضافة منشور جديد</button>
+    <button class="tab" onclick="showTab('editTab')">تعديل المنشورات</button>
+  </div>
 
-    <label>الوصف (عربي)</label>
-    <textarea id="desc_ar" required></textarea>
+  <!-- نموذج إضافة منشور جديد -->
+  <div id="addTab">
+    <form id="postForm">
+      <!-- بيانات عربية -->
+      <label>العنوان (عربي)</label>
+      <input type="text" id="title_ar" required>
 
-    <!-- بيانات إنجليزية -->
-    <label>Title (English)</label>
-    <input type="text" id="title_en" required>
+      <label>الوصف (عربي)</label>
+      <textarea id="desc_ar" required></textarea>
 
-    <label>Description (English)</label>
-    <textarea id="desc_en" required></textarea>
+      <!-- بيانات إنجليزية -->
+      <label>Title (English)</label>
+      <input type="text" id="title_en" required>
 
-    <!-- صور -->
-    <label>الصور (يمكن رفع من 1 إلى 4 صور)</label>
-    <div class="image-upload-container">
-      <input type="file" id="imageFiles" accept="image/*" multiple required>
-      <div class="image-preview" id="imagePreview"></div>
+      <label>Description (English)</label>
+      <textarea id="desc_en" required></textarea>
+
+      <!-- صور -->
+      <label>الصور (يمكن رفع من 1 إلى 4 صور)</label>
+      <div class="image-upload-container">
+        <input type="file" id="imageFiles" accept="image/*" multiple required>
+        <div class="image-preview" id="imagePreview"></div>
+      </div>
+
+      <button type="submit">نشر المنشور</button>
+
+      <div class="success" id="successMessage"></div>
+      <div class="error" id="errorMessage"></div>
+    </form>
+  </div>
+
+  <!-- قسم تعديل المنشورات -->
+  <div id="editTab" class="hidden">
+    <div class="posts-list" id="postsList">
+      <!-- سيتم ملؤه ديناميكيًا -->
     </div>
+  </div>
 
-    <button type="submit">نشر المنشور</button>
+  <!-- نموذج تعديل المنشور (يظهر عند النقر على تعديل) -->
+  <div id="editFormContainer" class="hidden">
+    <form id="editPostForm">
+      <input type="hidden" id="editPostId">
+      
+      <!-- بيانات عربية -->
+      <label>العنوان (عربي)</label>
+      <input type="text" id="edit_title_ar" required>
 
-    <div class="success" id="successMessage"></div>
-    <div class="error" id="errorMessage"></div>
-  </form>
+      <label>الوصف (عربي)</label>
+      <textarea id="edit_desc_ar" required></textarea>
+
+      <!-- بيانات إنجليزية -->
+      <label>Title (English)</label>
+      <input type="text" id="edit_title_en" required>
+
+      <label>Description (English)</label>
+      <textarea id="edit_desc_en" required></textarea>
+
+      <!-- صور موجودة -->
+      <label>الصور الحالية</label>
+      <div class="image-preview" id="editExistingImages"></div>
+
+      <!-- صور جديدة -->
+      <label>إضافة صور جديدة (اختياري)</label>
+      <div class="image-upload-container">
+        <input type="file" id="editImageFiles" accept="image/*" multiple>
+        <div class="image-preview" id="editImagePreview"></div>
+      </div>
+
+      <button type="submit">حفظ التعديلات</button>
+      <button type="button" onclick="cancelEdit()" style="background: #F44336; margin-top: 10px;">إلغاء</button>
+
+      <div class="success" id="editSuccessMessage"></div>
+      <div class="error" id="editErrorMessage"></div>
+    </form>
+  </div>
 
   <script>
     // إعداد Firebase
@@ -165,7 +281,11 @@
     const db = firebase.database();
     const storage = firebase.storage();
 
-    // عرض معاينة الصور
+    // متغيرات عامة
+    let currentPostId = null;
+    let existingImages = [];
+
+    // عرض معاينة الصور للنموذج الرئيسي
     const imageFilesInput = document.getElementById('imageFiles');
     const imagePreview = document.getElementById('imagePreview');
     
@@ -197,21 +317,87 @@
       }
     });
 
-    // دالة إزالة الصورة من المعاينة
+    // عرض معاينة الصور لنموذج التعديل
+    const editImageFilesInput = document.getElementById('editImageFiles');
+    const editImagePreview = document.getElementById('editImagePreview');
+    
+    editImageFilesInput.addEventListener('change', function() {
+      editImagePreview.innerHTML = '';
+      const files = this.files;
+      
+      if (files.length > 4) {
+        document.getElementById('editErrorMessage').textContent = "يمكنك رفع 4 صور كحد أقصى!";
+        this.value = '';
+        return;
+      }
+      
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+          const previewItem = document.createElement('div');
+          previewItem.className = 'image-preview-item';
+          previewItem.innerHTML = `
+            <img src="${e.target.result}" alt="Preview">
+            <div class="remove-image" onclick="removeEditImage(${i})">×</div>
+          `;
+          editImagePreview.appendChild(previewItem);
+        }
+        
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // دالة إزالة الصورة من المعاينة للنموذج الرئيسي
     function removeImage(index) {
       const files = imageFilesInput.files;
       const newFiles = Array.from(files).filter((_, i) => i !== index);
       
-      // إنشاء DataTransfer جديد وتعيين الملفات المتبقية
       const dataTransfer = new DataTransfer();
       newFiles.forEach(file => dataTransfer.items.add(file));
       imageFilesInput.files = dataTransfer.files;
       
-      // إعادة عرض المعاينة
       const event = new Event('change');
       imageFilesInput.dispatchEvent(event);
     }
 
+    // دالة إزالة الصورة من المعاينة لنموذج التعديل
+    function removeEditImage(index) {
+      const files = editImageFilesInput.files;
+      const newFiles = Array.from(files).filter((_, i) => i !== index);
+      
+      const dataTransfer = new DataTransfer();
+      newFiles.forEach(file => dataTransfer.items.add(file));
+      editImageFilesInput.files = dataTransfer.files;
+      
+      const event = new Event('change');
+      editImageFilesInput.dispatchEvent(event);
+    }
+
+    // دالة إزالة صورة موجودة
+    function removeExistingImage(index) {
+      existingImages.splice(index, 1);
+      renderExistingImages();
+    }
+
+    // عرض الصور الموجودة في نموذج التعديل
+    function renderExistingImages() {
+      const container = document.getElementById('editExistingImages');
+      container.innerHTML = '';
+      
+      existingImages.forEach((img, index) => {
+        const previewItem = document.createElement('div');
+        previewItem.className = 'image-preview-item';
+        previewItem.innerHTML = `
+          <img src="${img}" alt="Existing Image">
+          <div class="remove-image" onclick="removeExistingImage(${index})">×</div>
+        `;
+        container.appendChild(previewItem);
+      });
+    }
+
+    // إضافة منشور جديد
     document.getElementById('postForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
@@ -256,7 +442,8 @@
             desc_ar,
             title_en,
             desc_en,
-            images: imageUrls
+            images: imageUrls,
+            timestamp: firebase.database.ServerValue.TIMESTAMP
           });
         })
         .then(() => {
@@ -264,12 +451,205 @@
           document.getElementById('errorMessage').textContent = "";
           document.getElementById('postForm').reset();
           imagePreview.innerHTML = '';
+          loadPosts(); // تحديث قائمة المنشورات
         })
         .catch(error => {
           document.getElementById('errorMessage').textContent = "❌ خطأ أثناء النشر: " + error.message;
           document.getElementById('successMessage').textContent = "";
         });
     });
+
+    // تحميل المنشورات لعرضها في قسم التعديل
+    function loadPosts() {
+      const postsList = document.getElementById('postsList');
+      postsList.innerHTML = '<p>جاري تحميل المنشورات...</p>';
+
+      db.ref('works').orderByChild('timestamp').once('value', (snapshot) => {
+        postsList.innerHTML = '';
+        
+        if (!snapshot.exists()) {
+          postsList.innerHTML = '<p>لا توجد منشورات متاحة</p>';
+          return;
+        }
+
+        const posts = [];
+        snapshot.forEach((child) => {
+          posts.push({
+            id: child.key,
+            ...child.val()
+          });
+        });
+
+        // عرض المنشورات من الأحدث إلى الأقدم
+        posts.reverse().forEach(post => {
+          const postItem = document.createElement('div');
+          postItem.className = 'post-item';
+          postItem.innerHTML = `
+            <h3>${post.title_ar}</h3>
+            <p>${post.desc_ar.substring(0, 100)}...</p>
+            <div class="post-actions">
+              <button class="edit-btn" onclick="editPost('${post.id}')">تعديل</button>
+              <button class="delete-btn" onclick="deletePost('${post.id}')">حذف</button>
+            </div>
+          `;
+          postsList.appendChild(postItem);
+        });
+      });
+    }
+
+    // تعديل منشور موجود
+    function editPost(postId) {
+      currentPostId = postId;
+      
+      db.ref('works/' + postId).once('value', (snapshot) => {
+        if (snapshot.exists()) {
+          const post = snapshot.val();
+          
+          document.getElementById('editPostId').value = postId;
+          document.getElementById('edit_title_ar').value = post.title_ar || '';
+          document.getElementById('edit_desc_ar').value = post.desc_ar || '';
+          document.getElementById('edit_title_en').value = post.title_en || '';
+          document.getElementById('edit_desc_en').value = post.desc_en || '';
+          
+          existingImages = post.images || [];
+          renderExistingImages();
+          
+          // إخفاء الأقسام الأخرى وإظهار نموذج التعديل
+          document.getElementById('addTab').classList.add('hidden');
+          document.getElementById('editTab').classList.add('hidden');
+          document.getElementById('editFormContainer').classList.remove('hidden');
+          
+          // مسح رسائل الخطأ والنجاح
+          document.getElementById('editSuccessMessage').textContent = '';
+          document.getElementById('editErrorMessage').textContent = '';
+        }
+      });
+    }
+
+    // إلغاء التعديل
+    function cancelEdit() {
+      document.getElementById('addTab').classList.add('hidden');
+      document.getElementById('editTab').classList.remove('hidden');
+      document.getElementById('editFormContainer').classList.add('hidden');
+      
+      // مسح الحقول
+      document.getElementById('editPostForm').reset();
+      document.getElementById('editExistingImages').innerHTML = '';
+      document.getElementById('editImagePreview').innerHTML = '';
+      existingImages = [];
+      currentPostId = null;
+    }
+
+    // حفظ التعديلات
+    document.getElementById('editPostForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const title_ar = document.getElementById('edit_title_ar').value;
+      const desc_ar = document.getElementById('edit_desc_ar').value;
+      const title_en = document.getElementById('edit_title_en').value;
+      const desc_en = document.getElementById('edit_desc_en').value;
+      const imageFiles = document.getElementById('editImageFiles').files;
+      
+      document.getElementById('editErrorMessage').textContent = '';
+      document.getElementById('editSuccessMessage').textContent = 'جاري حفظ التعديلات...';
+      
+      // إذا لم يتم اختيار أي صور جديدة ولم تكن هناك صور موجودة
+      if (existingImages.length === 0 && (!imageFiles || imageFiles.length === 0)) {
+        document.getElementById('editErrorMessage').textContent = "يجب أن يحتوي المنشور على صورة واحدة على الأقل!";
+        return;
+      }
+      
+      // إذا كان العدد الكلي للصور أكثر من 4
+      if (existingImages.length + (imageFiles ? imageFiles.length : 0) > 4) {
+        document.getElementById('editErrorMessage').textContent = "يمكنك إضافة 4 صور كحد أقصى!";
+        return;
+      }
+      
+      const promises = [];
+      const newImageUrls = [];
+      
+      // رفع الصور الجديدة إذا وجدت
+      if (imageFiles && imageFiles.length > 0) {
+        for (let i = 0; i < imageFiles.length; i++) {
+          const file = imageFiles[i];
+          const storageRef = storage.ref('works/' + Date.now() + '_' + file.name);
+          promises.push(
+            storageRef.put(file).then(snapshot => snapshot.ref.getDownloadURL())
+            .then(url => newImageUrls.push(url))
+          );
+        }
+      }
+      
+      Promise.all(promises)
+        .then(() => {
+          // دمج الصور القديمة والجديدة
+          const allImages = [...existingImages, ...newImageUrls];
+          
+          // تحديث البيانات في قاعدة البيانات
+          return db.ref('works/' + currentPostId).update({
+            title_ar,
+            desc_ar,
+            title_en,
+            desc_en,
+            images: allImages,
+            timestamp: firebase.database.ServerValue.TIMESTAMP
+          });
+        })
+        .then(() => {
+          document.getElementById('editSuccessMessage').textContent = "✅ تم تحديث المنشور بنجاح!";
+          document.getElementById('editErrorMessage').textContent = "";
+          
+          // إعادة تحميل المنشورات بعد التحديث
+          loadPosts();
+          
+          // العودة إلى قائمة المنشورات بعد ثانيتين
+          setTimeout(() => {
+            cancelEdit();
+          }, 2000);
+        })
+        .catch(error => {
+          document.getElementById('editErrorMessage').textContent = "❌ خطأ أثناء التحديث: " + error.message;
+          document.getElementById('editSuccessMessage').textContent = "";
+        });
+    });
+
+    // حذف منشور
+    function deletePost(postId) {
+      if (confirm('هل أنت متأكد من حذف هذا المنشور؟ لا يمكن التراجع عن هذه العملية.')) {
+        db.ref('works/' + postId).remove()
+          .then(() => {
+            loadPosts(); // تحديث القائمة بعد الحذف
+          })
+          .catch(error => {
+            alert('حدث خطأ أثناء الحذف: ' + error.message);
+          });
+      }
+    }
+
+    // تبديل بين التبويبات
+    function showTab(tabId) {
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      
+      document.getElementById('addTab').classList.add('hidden');
+      document.getElementById('editTab').classList.add('hidden');
+      document.getElementById('editFormContainer').classList.add('hidden');
+      
+      if (tabId === 'addTab') {
+        document.querySelector('.tab:nth-child(1)').classList.add('active');
+        document.getElementById('addTab').classList.remove('hidden');
+      } else if (tabId === 'editTab') {
+        document.querySelector('.tab:nth-child(2)').classList.add('active');
+        document.getElementById('editTab').classList.remove('hidden');
+        loadPosts(); // تحميل المنشورات عند فتح تبويب التعديل
+      }
+    }
+
+    // تهيئة الصفحة عند التحميل
+    window.onload = function() {
+      showTab('addTab');
+    };
   </script>
 </body>
 </html>
