@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-
-
 <!-- الأيقونة الأساسية -->
 <link rel="icon" href="https://e-hr1.github.io/CV/profile2.png" type="image/png">
 
@@ -15,7 +13,6 @@
 
 <!-- ملف Manifest (للتطبيقات) -->
 <link rel="manifest" href="/site.webmanifest">
-
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -450,22 +447,90 @@
         color: var(--primary);
     }
 
-    .profile-image {
+    /* أنماط جديدة للأفاتار المتحرك */
+    .profile-image-container {
+        position: relative;
         width: 160px;
         height: 160px;
+        perspective: 1000px;
+        margin-bottom: 20px;
+    }
+
+    .profile-image {
+        width: 100%;
+        height: 100%;
         border-radius: 50%;
         object-fit: cover;
         border: 4px solid rgba(255, 255, 255, 0.3);
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-        pointer-events: none;
+        transition: transform 0.6s ease-in-out;
+        transform-style: preserve-3d;
+        cursor: pointer;
         z-index: 2;
-        margin-bottom: 20px;
-        transition: all 0.3s ease;
     }
 
     .profile-image:hover {
-        transform: scale(1.05);
+        transform: scale(1.05) rotateY(10deg);
         box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+    }
+
+    .profile-image.waving {
+        animation: wave 0.5s ease-in-out;
+    }
+
+    .profile-image.flipping {
+        animation: flipRight 0.6s ease-in-out forwards;
+    }
+
+    .profile-image.flipping-back {
+        animation: flipLeft 0.6s ease-in-out forwards;
+    }
+
+    .welcome-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(74, 108, 247, 0.9);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 30px;
+        font-size: 1rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 3;
+        white-space: nowrap;
+    }
+
+    .welcome-text.show {
+        opacity: 1;
+        visibility: visible;
+        animation: fadeInOut 2s ease-in-out;
+    }
+
+    @keyframes wave {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(10deg); }
+        50% { transform: rotate(-10deg); }
+        75% { transform: rotate(5deg); }
+    }
+
+    @keyframes flipRight {
+        0% { transform: rotateY(0); }
+        50% { transform: rotateY(90deg); }
+        100% { transform: rotateY(180deg); }
+    }
+
+    @keyframes flipLeft {
+        0% { transform: rotateY(180deg); }
+        50% { transform: rotateY(90deg); }
+        100% { transform: rotateY(0); }
+    }
+
+    @keyframes fadeInOut {
+        0%, 100% { opacity: 0; }
+        20%, 80% { opacity: 1; }
     }
 
     .profile-name {
@@ -638,7 +703,7 @@
             padding: 80px 24px;
         }
 
-        .profile-image {
+        .profile-image-container {
             width: 180px;
             height: 180px;
         }
@@ -687,7 +752,10 @@
 
     <!-- Profile Header -->
     <div class="profile-header">
-        <img src="https://via.placeholder.com/150" alt="ProfileImage" class="profile-image" id="profileImage">
+        <div class="profile-image-container">
+            <img src="https://e-hr1.github.io/CV/profile2.png" alt="ProfileImage" class="profile-image" id="profileImage">
+            <div class="welcome-text" id="welcomeText"></div>
+        </div>
         <h1 class="profile-name" id="name-title">
             الحسين عبدالرحمن محمد مطير
         </h1>
@@ -843,18 +911,47 @@
             }
         });
         
-        // Profile Image Upload
+        // Profile Image Animation
         const profileImage = document.getElementById('profileImage');
-        const defaultImageUrl = 'https://avatars.githubusercontent.com/u/121640437?v=4&size';
-
-        // حفظ الصورة في localStorage إذا لم تكن موجودة مسبقًا
-        if (!localStorage.getItem('profileImage')) {
-            localStorage.setItem('profileImage', defaultImageUrl);
-        }
-
-        // تحميل الصورة من localStorage تلقائيًا
-        profileImage.src = localStorage.getItem('profileImage'); 
+        const welcomeText = document.getElementById('welcomeText');
         
+        profileImage.addEventListener('click', function() {
+            // Disable click during animation
+            profileImage.style.pointerEvents = 'none';
+            
+            // Flip to welcome image
+            profileImage.classList.add('flipping');
+            
+            setTimeout(() => {
+                // Change image to waving version
+                profileImage.src = "https://i.suar.me/1AnZG/m";
+                
+                // Show welcome text
+                
+                
+                // Wave animation
+                profileImage.classList.add('waving');
+                
+                // After 2 seconds, flip back to original
+                setTimeout(() => {
+                    profileImage.classList.remove('waving');
+                    profileImage.classList.remove('flipping');
+                    profileImage.classList.add('flipping-back');
+                    
+                    setTimeout(() => {
+                        profileImage.src = "https://e-hr1.github.io/CV/profile2.png";
+                        profileImage.classList.remove('flipping-back');
+                        welcomeText.classList.remove('show');
+                        
+                        // Re-enable click after all animations finish
+                        setTimeout(() => {
+                            profileImage.style.pointerEvents = 'auto';
+                        }, 600);
+                    }, 300);
+                }, 1800);
+            }, 300);
+        });
+
         // Animate elements on scroll
         const animateElements = document.querySelectorAll('.animate, .animate-up');
         
