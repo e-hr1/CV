@@ -624,11 +624,25 @@
         gap: 12px;
     }
 
+    /* تحسينات قسم التواصل */
     .contact-item {
         display: flex;
         align-items: center;
         margin-bottom: 18px;
+        padding: 12px 16px;
+        border-radius: var(--radius);
+        transition: var(--transition);
+        cursor: pointer;
         justify-content: flex-end;
+    }
+
+    .contact-item:hover {
+        background-color: rgba(74, 108, 247, 0.1);
+        transform: translateX(-5px);
+    }
+
+    .dark-mode .contact-item:hover {
+        background-color: rgba(107, 138, 255, 0.1);
     }
 
     .contact-icon {
@@ -639,9 +653,16 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-left: 0px;
+        margin-left: 16px;
         color: var(--primary);
         font-size: 1.1rem;
+        transition: var(--transition);
+    }
+
+    .contact-item:hover .contact-icon {
+        background-color: var(--primary);
+        color: white;
+        transform: scale(1.1);
     }
 
     .dark-mode .contact-icon {
@@ -650,6 +671,19 @@
 
     .contact-text {
         font-size: 1rem;
+        flex-grow: 1;
+    }
+
+    .contact-item .action-icon {
+        margin-left: 10px;
+        color: var(--text-light);
+        opacity: 0;
+        transition: var(--transition);
+    }
+
+    .contact-item:hover .action-icon {
+        opacity: 1;
+        color: var(--primary);
     }
 
     .contact-direction {
@@ -662,6 +696,32 @@
 
     [dir="rtl"] .contact-direction {
         flex-direction: row-reverse;
+    }
+
+    /* تأثير النسخ عند النقر */
+    .copied-notification {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--primary);
+        color: white;
+        padding: 6px 12px;
+        border-radius: 30px;
+        box-shadow: 0 4px 15px rgba(74, 108, 247, 0.3);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 1000;
+    }
+
+    .copied-notification.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .dark-mode .copied-notification {
+        box-shadow: 0 4px 15px rgba(107, 138, 255, 0.4);
     }
 
     @keyframes fadeIn {
@@ -773,7 +833,7 @@
                 <h2 class="card-title" id="about-title">الهدف الوظيفي</h2>
             </div>
             <div class="section-content">
-                <p id="about-text">خريج بكالوريوس هندسة معدات طبية أبحث عن فرصة وظيفية أسهم من خلالها بتطبيق مهاراتي الفنية والمعرفية في صيانة ومعايرة الأجهزة الطبية، واكتساب خبرة عملية تمكنني من التطور المهني، والمشاركة الفاعلة في تحقيق أهداف المنشأة من خلال ضمان جاهزية الأجهزة وسلامة استخدامها وفقاً للمعايير الدولية.</p>
+                <p id="about-text">حاصل على درجة البكالوريوس في هندسة المعدات الطبية، وأسعى للحصول على فرصة وظيفية أُسهم من خلالها في تطبيق مهاراتي الفنية والمعرفية في صيانة ومعايرة الأجهزة الطبية، واكتساب خبرة عملية تُعزز من تطوري المهني. كما أطمح إلى المساهمة بفاعلية في تحقيق أهداف المنشأة من خلال ضمان جاهزية الأجهزة الطبية وسلامة استخدامها وفقًا للمعايير الدولية.</p>
             </div>
         </div>
 
@@ -781,7 +841,7 @@
         <div class="card animate" style="animation-delay: 0.2s;">
             <div class="card-header">
                 <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
-                <h2 class="card-title" id="education-title">التعليم</h2>
+                <h2 class="card-title" id="education-title">المؤهلات العلمية</h2>
             </div>
             <div class="section-content">
                 <div class="timeline">
@@ -868,21 +928,27 @@
                 <h2 class="card-title" id="contact-title">التواصل</h2>
             </div>
             <div class="section-content">
-                <div class="contact-item contact-direction">
-                    <span class="contact-text" id="email-text">HusseinMutair690@gmail.com</span>
+                <div class="contact-item contact-direction" onclick="copyToClipboard('HusseinMutair690@gmail.com', 'تم نسخ البريد الإلكتروني')">
+                    <span class="contact-text" id="email-text">HusseinMutair690</span>
                     <div class="contact-icon"><i class="fas fa-at"></i></div>
+                    <i class="fas fa-copy action-icon"></i>
                 </div>
-                <div class="contact-item contact-direction">
+                <div class="contact-item contact-direction" onclick="copyToClipboard('772918690', 'تم نسخ رقم الهاتف')">
                     <span class="contact-text" id="phone-text">772918690</span>
                     <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                    <i class="fas fa-copy action-icon"></i>
                 </div>
-                <div class="contact-item contact-direction">
+                <div class="contact-item contact-direction" onclick="window.open('https://maps.google.com?q=اليمن - صنعاء', '_blank')">
                     <span class="contact-text" id="address-text">اليمن - صنعاء</span>
                     <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <i class="fas fa-external-link-alt action-icon"></i>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Notification for copied text -->
+    <div class="copied-notification glass-effect" id="copiedNotification"></div>
 
     <script>
         // Dark Mode Toggle
@@ -925,7 +991,7 @@
             
             setTimeout(() => {
                 // Change image to waving version
-                profileImage.src = "https://i.suar.me/1AnZG/m";
+                profileImage.src = "https://i.suar.me/Vzjvg/l";
                 
                 // Wave animation
                 profileImage.classList.add('waving');
@@ -944,9 +1010,9 @@
                         // Re-enable click after all animations finish
                         setTimeout(() => {
                             profileImage.style.pointerEvents = 'auto';
-                        }, 600);
-                    }, 300);
-                }, 1800);
+                        }, 350);
+                    }, 600);
+                }, 3000);
             }, 300);
         });
 
@@ -978,6 +1044,21 @@
             }
         });
 
+        // Copy to Clipboard Function
+        function copyToClipboard(text, message) {
+            navigator.clipboard.writeText(text).then(() => {
+                const notification = document.getElementById('copiedNotification');
+                notification.textContent = message;
+                notification.classList.add('show');
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+
         // Language Switching
         const translations = {
             en: {
@@ -986,7 +1067,7 @@
                 "job-title": "Biomedical Equipment Engineer",
                 "works-button": "My Works",
                 "about-title": "Career Objective",
-                "about-text": "Graduate with a Bachelor's degree in Biomedical Equipment Engineering seeking a career opportunity to apply my technical and cognitive skills in maintaining and calibrating medical devices, gaining practical experience that enables professional development, and actively contributing to achieving the organization's goals by ensuring equipment readiness and safe usage according to international standards.",
+                "about-text": "I hold a Bachelor's degree in Biomedical Equipment Engineering and am seeking a job opportunity where I can apply my technical and theoretical skills in the maintenance and calibration of medical devices. I aim to gain practical experience that supports my professional growth and contribute effectively to achieving the organization's goals by ensuring the readiness and safe operation of medical equipment in accordance with international standards.",
                 "education-title": "Education",
                 "education-date-1": "2024 - 2025",
                 "degree-title": "Bachelor in Biomedical Equipment Engineering",
@@ -997,19 +1078,13 @@
                 "experience-title": "Practical Experience",
                 "exp-date-1": "Duration: 1 month",
                 "experience-org1": "National Center of Central Public Health Laboratories",
-
-"Experiences-text-1": "Training in a specialized laboratory environment, including maintenance and calibration of analytics, and access to biosafety and quality control procedures.",
-
+                "Experiences-text-1": "Training in a specialized laboratory environment, including maintenance and calibration of analytics, and access to biosafety and quality control procedures.",
                 "exp-date-2": "Duration: 3 months",
                 "experience-org2": "Al-Thawra General Hospital",
-
-"Experiences-text-2": "Clinical training that ensures the maintenance and operation of the devices in vital departments such as intensive care, and the handling of faults in coordination with the technical staff.",
-
+                "Experiences-text-2": "Clinical training that ensures the maintenance and operation of the devices in vital departments such as intensive care, and the handling of faults in coordination with the technical staff.",
                 "exp-date-3": "Duration: 6 months",
                 "experience-org3": "Maintenance Center - University of Jordan",
-                
-"Experiences-text-3": "Technical training focused on diagnosing and maintaining educational devices using testing tools and calibration software.",
-
+                "Experiences-text-3": "Technical training focused on diagnosing and maintaining educational devices using testing tools and calibration software.",
                 "skills-title": "Skills and Abilities",
                 "skill-1": "Troubleshooting",
                 "skill-3": "Medical Equipment Calibration",
@@ -1021,7 +1096,7 @@
                 "lang-1": "Arabic",
                 "lang-2": "English",
                 "contact-title": "Contact",
-                "email-text": "HusseinMutair690@gmail.com",
+                "email-text": "HusseinMutair690",
                 "phone-text": "772918690",
                 "address-text": "Yemen - Sana'a"
             },
@@ -1031,8 +1106,8 @@
                 "job-title": "مهندس معدات طبية",
                 "works-button": "أعمالي",
                 "about-title": "الهدف الوظيفي",
-                "about-text": "خريج بكالوريوس هندسة معدات طبية أبحث عن فرصة وظيفية أسهم من خلالها بتطبيق مهاراتي الفنية والمعرفية في صيانة ومعايرة الأجهزة الطبية، واكتساب خبرة عملية تمكنني من التطور المهني، والمشاركة الفاعلة في تحقيق أهداف المنشأة من خلال ضمان جاهزية الأجهزة وسلامة استخدامها وفقاً للمعايير الدولية.",
-                "education-title": "التعليم",
+                "about-text": "حاصل على درجة البكالوريوس في هندسة المعدات الطبية، وأسعى للحصول على فرصة وظيفية أُسهم من خلالها في تطبيق مهاراتي الفنية والمعرفية في صيانة ومعايرة الأجهزة الطبية، واكتساب خبرة عملية تُعزز من تطوري المهني. كما أطمح إلى المساهمة بفاعلية في تحقيق أهداف المنشأة من خلال ضمان جاهزية الأجهزة الطبية وسلامة استخدامها وفقًا للمعايير الدولية.",
+                "education-title": "المؤهلات العلمية",
                 "education-date-1": "2024 - 2025",
                 "degree-title": "بكالوريوس هندسة المعدات الطبية",
                 "university-text": "الكلية التخصصية الحديثة",
@@ -1042,17 +1117,13 @@
                 "experience-title": "الخبرات العلمية",
                 "exp-date-1": "الفترة شهر",
                 "experience-org1": "المركز الوطني لمختبرات الصحة العامة المركزية",
-
-        "Experiences-text-1": "تدريب في بيئة مخبرية متخصصة شمل صيانة ومعايرة أجهزة التحاليل، والاطلاع على إجراءات السلامة الحيوية وضبط الجودة.",
-                
+                "Experiences-text-1": "تدريب في بيئة مخبرية متخصصة شمل صيانة ومعايرة أجهزة التحاليل، والاطلاع على إجراءات السلامة الحيوية وضبط الجودة.",
                 "exp-date-2": "الفترة 3 أشهر",
                 "experience-org2": "مستشفى الثورة العام",
-        "Experiences-text-2": "تدريب سريري تضمن صيانة وتشغيل الأجهزة في أقسام حيوية كالعناية المركزة، والتعامل مع الأعطال بالتنسيق مع الكادر الفني.",
-                
+                "Experiences-text-2": "تدريب سريري تضمن صيانة وتشغيل الأجهزة في أقسام حيوية كالعناية المركزة، والتعامل مع الأعطال بالتنسيق مع الكادر الفني.",
                 "exp-date-3": "الفترة 6 أشهر",
                 "experience-org3": "مركز الصيانة - الجامعة الأردنية",
-        "Experiences-text-3": "تدريب فني ركز على تشخيص وصيانة الأجهزة التعليمية باستخدام أدوات فحص وبرمجيات معايرة.",
-                
+                "Experiences-text-3": "تدريب فني ركز على تشخيص وصيانة الأجهزة التعليمية باستخدام أدوات فحص وبرمجيات معايرة.",
                 "skills-title": "المهارات والقدرات",
                 "skill-1": "استكشاف الأخطاء وإصلاحها",
                 "skill-3": "معايرة الأجهزة الطبية",
@@ -1064,7 +1135,7 @@
                 "lang-1": "العربية",
                 "lang-2": "الإنجليزية",
                 "contact-title": "التواصل",
-                "email-text": "HusseinMutair690@gmail.com",
+                "email-text": "HusseinMutair690",
                 "phone-text": "772918690",
                 "address-text": "اليمن - صنعاء"
             }
