@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>ThinkAi Chat</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: white;
+      font-family: sans-serif;
+      padding: 20px;
+      margin: 0;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    #chatbox {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    #typing-indicator {
+      display: none;
+    }
+
+    .dot {
+      height: 5px;
+      width: 5px;
+      margin: 0 3px;
+      background-color: #4D6BFF;
+      border-radius: 50%;
+      display: inline-block;
+      animation: bounce 1.4s infinite;
+    }
+
+    .dot:nth-child(2) { animation-delay: 0.2s; }
+    .dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      0%, 80%, 100% { transform: scale(0); }
+      40% { transform: scale(1); }
+    }
+
+    .msg-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .msg-user, .msg-ai {
+      margin: 5px 0;
+      padding: 12px 15px;
+      border-radius: 15px;
+      max-width: 80%;
+      line-height: 1.5;
+      word-wrap: break-word;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .msg-user {
+      background-color: #ECF2FE;
+      color: #000;
+      align-self: flex-start;
+      border-bottom-left-radius: 5px;
+      direction: rtl;
+    }
+
+    .msg-ai {
+      background-color: #fff;
+      color: #000;
+      align-self: flex-end;
+      border-bottom-right-radius: 5px;
+      direction: rtl;
+    }
+
+    .msg-user.selected, .msg-ai.selected {
+      outline: 2px solid #00aaff;
+      box-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+    }
+
+    pre {
+      background-color: #2d2d2d;
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+      direction: ltr;
+      text-align: left;
+    }
+
+    code {
+      font-family: monospace;
+      direction: ltr;
+      display: block;
+      white-space: pre-wrap;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 10px 0;
+      direction: ltr;
+    }
+
+    th, td {
+      border: 1px solid #444;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th { background-color: #333; color: #fff; }
+
+    .long-press-effect {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: rgba(0, 170, 255, 0.2);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      animation: ripple 0.6s linear;
+      z-index: 10;
+    }
+
+    @keyframes ripple {
+      0% { width: 0; height: 0; opacity: 0.5; }
+      100% { width: 200px; height: 200px; opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div id="chatbox"></div>
+  <div id="typing-indicator" class="msg-container">
+    <div class="msg-ai">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </div>
+
+  <script>
+    let longPressTimer = null;
+    const LONG_PRESS_DURATION = 500;
+    let selectedMessage = null;
+
+    function formatText(text) {
+      text = text.replace(/</g, "&lt;").replace(/>/g, "&gt;"); // escape tags
+      text = text.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>'); // code blocks
+      text = text.replace(/\n/g, "<br>"); // line breaks
+      return text;
+    }
+
+    function appendUserMessage(text, isHistory = false) {
+      const container = document.createElement("div");
+      container.className = "msg-container";
+      if (isHistory) container.dataset.isHistory = "true";
+
+      const div = document.createElement("div");
+      div.className = "msg-user";
+      div.innerHTML = formatText(text);
+      div.dataset.messageText = text;
+
+      addMessageEvents(div);
+      container.appendChild(div);
+      document.getElementById("chatbox").appendChild(container);
+      notifyAndroidOfState();
+
+      if (!isHistory && typeof Android !== "undefined" && Android.saveUserMessage) {
+        Android.saveUserMessage(text);
+      }
+
+      return container;
+    }
+
+    function appendAIMessage(text, isHistory = false) {
+      const container = document.createElement("div");
+      container.className = "msg-container";
+      if (isHistory) container.dataset.isHistory = "true";
+
+      const div = document.createElement("div");
+      div.className = "msg-ai";
+      div.innerHTML = formatText(text);
+      div.dataset.messageText = text;
+
+      addMessageEvents(div);
+      container.appendChild(div);
+      document.getElementById("chatbox").appendChild(container);
+      notifyAndroidOfState();
+
+      if (!isHistory && typeof Android !== "undefined" && Android.saveChatReply) {
+        Android.saveChatReply(text);
+      }
+
+      return container;
+    }
+
+    function addMessageEvents(div) {
+      div.addEventListener('click', function(e) {
+        e.stopPropagation();
+        selectMessage(div);
+      });
+
+      div.addEventListener('touchstart', handleLongPressStart, {passive: false});
+      div.addEventListener('touchend', handleLongPressEnd);
+      div.addEventListener('touchcancel', handleLongPressEnd);
+      div.addEventListener('mousedown', handleLongPressStart);
+      div.addEventListener('mouseup', handleLongPressEnd);
+      div.addEventListener('mouseleave', handleLongPressEnd);
+    }
+
+    function selectMessage(messageDiv) {
+      if (selectedMessage) selectedMessage.classList.remove('selected');
+      messageDiv.classList.add('selected');
+      selectedMessage = messageDiv;
+      if (typeof Android !== "undefined" && Android.onMessageSelected) {
+        Android.onMessageSelected(messageDiv.dataset.messageText);
+      }
+    }
+
+    document.addEventListener('click', function() {
+      if (selectedMessage) {
+        selectedMessage.classList.remove('selected');
+        selectedMessage = null;
+      }
+    });
+
+    function createRippleEffect(x, y) {
+      const ripple = document.createElement("span");
+      ripple.className = "long-press-effect";
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
+      document.body.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 600);
+    }
+
+    function handleLongPressStart(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const messageDiv = e.currentTarget;
+      messageDiv.classList.add('long-press-active');
+
+      const x = e.clientX || e.touches[0].clientX;
+      const y = e.clientY || e.touches[0].clientY;
+      createRippleEffect(x, y);
+
+      longPressTimer = setTimeout(() => {
+        const messageText = messageDiv.dataset.messageText;
+        if (typeof Android !== "undefined" && Android.onMessageLongClick) {
+          Android.onMessageLongClick(messageText);
+        }
+      }, LONG_PRESS_DURATION);
+    }
+
+    function handleLongPressEnd(e) {
+      if (longPressTimer) {
+        clearTimeout(longPressTimer);
+        longPressTimer = null;
+      }
+      e.currentTarget.classList.remove('long-press-active');
+    }
+
+    function sendToGemini(userText, base64) {
+      document.getElementById("typing-indicator").style.display = "flex";
+      const parts = base64 ? [{
+        inline_data: {
+          mime_type: "image/jpeg",
+          data: base64
+        }
+      }] : [];
+
+      parts.push({ text: userText });
+
+      const payload = { contents: [{ parts }] };
+      const API_KEY = "AIzaSyDxhQ0wyQV4keqR6OwlNO4EfV7_hhT80C0";
+
+      fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+      .then(res => res.json())
+      .then(data => {
+        const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || "لم أفهم سؤالك.";
+        appendAIMessage(reply);
+      })
+      .catch(err => {
+        console.error(err);
+        appendAIMessage("حدث خطأ أثناء الاتصال.");
+      })
+      .finally(() => {
+        document.getElementById("typing-indicator").style.display = "none";
+      });
+    }
+
+    function receiveMessageFromApp(message) {
+      appendUserMessage(message);
+      sendToGemini(message, null);
+    }
+
+    function askFromBase64(base64, message) {
+      appendUserMessage(message);
+      sendToGemini(message, base64);
+    }
+
+    function loadOldMessage(role, message) {
+      if (role === "user") {
+        appendUserMessage(message, true);
+      } else if (role === "ai") {
+        appendAIMessage(message, true);
+      }
+    }
+
+    function isChatboxEmpty() {
+      return document.getElementById("chatbox").children.length === 0;
+    }
+
+    function notifyAndroidOfState() {
+      if (typeof Android !== "undefined" && Android.onChatboxChanged) {
+        Android.onChatboxChanged(isChatboxEmpty() ? "empty" : "filled");
+      }
+    }
+
+    const savedColor = localStorage.getItem("chat_background_color");
+    if (savedColor) {
+      document.body.style.backgroundColor = savedColor;
+    }
+
+    function updateBackgroundColor(newColor) {
+      document.body.style.backgroundColor = newColor;
+      localStorage.setItem("chat_background_color", newColor);
+    }
+
+    if (typeof Android !== "undefined" && Android.onPageLoaded) {
+      Android.onPageLoaded();
+    }
+  </script>
+</body>
+</html>
