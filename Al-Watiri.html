@@ -1,0 +1,1543 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>متجر الوتيري للأسلحة والبدلات العسكرية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        :root {
+            --primary-color: #e63946;
+            --secondary-color: #1d3557;
+            --accent-color: #a8dadc;
+            --dark-color: #0d1b2a;
+            --light-color: #f1faee;
+            --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Tajawal', Arial, sans-serif; /* Assumed font, needs to be imported or fallback */
+            background: var(--dark-color);
+            color: var(--light-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Import Google Font (Tajawal) for better Arabic rendering */
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
+        
+        /* التصميم الجديد للرأس */
+        header {
+            background: var(--dark-color);
+            padding: 1rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(229, 57, 70, 0.3);
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--light-color);
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            letter-spacing: 1px;
+        }
+        
+        h1 span {
+            color: var(--primary-color);
+        }
+        
+        /* شريط التنقل المطور */
+        nav {
+            background: rgba(13, 27, 42, 0.95);
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(168, 218, 220, 0.2);
+        }
+        
+        nav button {
+            background: transparent;
+            border: none;
+            color: var(--light-color);
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        nav button::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        nav button:hover, nav button.active {
+            color: var(--primary-color);
+        }
+        
+        nav button:hover::before, nav button.active::before {
+            width: 80%;
+        }
+        
+        nav button i {
+            font-size: 1.2rem;
+        }
+        
+        /* المحتوى الرئيسي */
+        .content {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* تصميم الجداول المطور */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(29, 53, 87, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        table:hover {
+            transform: translateY(-5px);
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(168, 218, 220, 0.1);
+        }
+        
+        th {
+            background: rgba(29, 53, 87, 0.7);
+            color: var(--accent-color);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        tr {
+            transition: all 0.3s ease;
+        }
+        
+        tr:hover {
+            background: rgba(168, 218, 220, 0.1);
+            cursor: pointer;
+            transform: scale(1.01);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* تصميم حقول النموذج المطور */
+        .form-field {
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+        
+        input[type=text], 
+        input[type=number], 
+        input[type=tel], 
+        input[type=email],
+        select, 
+        textarea {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(168, 218, 220, 0.3);
+            background: rgba(29, 53, 87, 0.3);
+            color: var(--light-color);
+            font-family: 'Tajawal', Arial, sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        input[type=text]:focus, 
+        input[type=number]:focus, 
+        input[type=tel]:focus, 
+        input[type=email]:focus,
+        select:focus, 
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(230, 57, 70, 0.3);
+        }
+        
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* أزرار مخصصة */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #c1121f;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(230, 57, 70, 0.3);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #14213d;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(29, 53, 87, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* أيقونة السلة المطورة */
+        #cart-icon {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            background: var(--primary-color);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(230, 57, 70, 0.5);
+            z-index: 90;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        #cart-icon:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 8px 25px rgba(230, 57, 70, 0.7);
+        }
+        
+        #cart-icon i {
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        #cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--secondary-color);
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(230, 57, 70, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0); }
+        }
+        
+        /* نافذة السلة المطورة */
+        #cart-window {
+            position: fixed;
+            bottom: 8rem;
+            left: 2rem;
+            width: 350px;
+            max-height: 500px;
+            background: rgba(13, 27, 42, 0.95);
+            border: 1px solid rgba(168, 218, 220, 0.2);
+            overflow-y: auto;
+            display: none;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            transform-origin: bottom left;
+            animation: scaleIn 0.3s ease-out;
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        #cart-window h3 {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(168, 218, 220, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(168, 218, 220, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .cart-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-name {
+            font-weight: 700;
+            color: var(--light-color);
+            margin-bottom: 0.3rem;
+        }
+        
+        .cart-item-category {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            opacity: 0.8;
+        }
+        
+        .cart-item-price {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 0.3rem;
+        }
+        
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .cart-item-controls input[type=number] {
+            width: 50px;
+            text-align: center;
+            padding: 0.5rem;
+        }
+        
+        .cart-item-controls button {
+            background: rgba(230, 57, 70, 0.2);
+            color: var(--primary-color);
+            border: none;
+            padding: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .cart-item-controls button:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .cart-total {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(168, 218, 220, 0.3);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .cart-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center; /* Center the buttons */
+        }
+        
+        /* تصميم بطاقات المنتجات */
+        .product-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .product-card {
+            background: rgba(29, 53, 87, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(168, 218, 220, 0.1);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            border-color: rgba(230, 57, 70, 0.3);
+        }
+        
+        .product-image {
+            height: 180px;
+            background: var(--dark-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .product-content {
+            padding: 1.5rem;
+        }
+        
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--light-color);
+        }
+        
+        .product-description {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .product-price {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .product-rating {
+            color: #ffc107;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        /* تصميم الصفحة الرئيسية */
+        .hero {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(rgba(13, 27, 42, 0.7), rgba(13, 27, 42, 0.9)), url('https://images.unsplash.com/photo-1584735429093-adea203e41aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature-card {
+            background: rgba(29, 53, 87, 0.3);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(168, 218, 220, 0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            border-color: rgba(230, 57, 70, 0.3);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--light-color);
+        }
+        
+        .feature-text {
+            color: var(--accent-color);
+            opacity: 0.8;
+        }
+        
+        /* التذييل المطور */
+        footer {
+            background: rgba(13, 27, 42, 0.95);
+            color: var(--accent-color);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(168, 218, 220, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: right;
+        }
+        
+        .footer-column h4 {
+            color: var(--light-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary-color);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+            transform: translateX(-5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center; /* Adjust for RTL */
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(168, 218, 220, 0.1);
+            color: var(--accent-color);
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(168, 218, 220, 0.1);
+            font-size: 0.9rem;
+        }
+        
+        /* تأثيرات إضافية */
+        .glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 5px var(--light-color), 0 0 10px var(--light-color); }
+            to { text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 30px var(--primary-color); }
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Search bar specific styles */
+        .search-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-container input[type="text"] {
+            flex-grow: 1;
+        }
+
+        .search-container .btn {
+            padding: 0.8rem 1.2rem;
+        }
+
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        .loading-spinner i {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            color: var(--primary-color);
+            background-color: rgba(230, 57, 70, 0.1);
+            border: 1px solid var(--primary-color);
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            display: none; /* Hidden by default */
+            text-align: center;
+        }
+        
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            nav { flex-wrap: wrap; }
+            nav button { padding: 0.6rem 1rem; font-size: 0.9rem; }
+            .hero h2 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            #cart-window { width: 300px; left: 1rem; bottom: 7rem; }
+            .product-cards { grid-template-columns: 1fr; }
+            .footer-content { text-align: center; }
+            .footer-column h4::after { left: 50%; transform: translateX(-50%); right: auto;}
+            .social-links { justify-content: center;}
+            .search-container { flex-direction: column; }
+            .search-container input[type="text"], .search-container .btn { width: 100%; }
+        }
+        
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            .hero { height: 400px; }
+            .hero h2 { font-size: 1.8rem; }
+            #cart-icon { width: 50px; height: 50px; bottom: 1rem; left: 1rem; }
+            #cart-icon i { font-size: 1.2rem; }
+            #cart-count { width: 20px; height: 20px; font-size: 0.7rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="animate__animated animate__fadeInDown">
+        <h1>متجر <span class="glow">الوتيري</span> للأسلحة والبدلات العسكرية</h1>
+    </header>
+
+    <nav class="animate__animated animate__fadeIn">
+        <button id="nav-intro" class="active"><i class="fas fa-home"></i> الرئيسية</button>
+        <button id="nav-weapons"><i class="fas fa-gun"></i> الأسلحة</button>
+        <button id="nav-uniforms"><i class="fas fa-vest"></i> البدلات العسكرية</button>
+        <button id="nav-customerData"><i class="fas fa-user-tie"></i> بيانات الزبون</button>
+    </nav>
+
+    <div class="content">
+        <section id="intro" class="tab-content" style="display: block;">
+            <div class="hero animate__animated animate__fadeIn">
+                <div class="hero-content">
+                    <h2>مرحباً بكم في متجر <span>الوتيري</span></h2>
+                    <p>وجهتكم الأولى للحصول على أفضل الأسلحة والبدلات العسكرية بمعايير الجودة العالمية</p>
+                    <button class="btn btn-primary" id="browse-products-btn"><i class="fas fa-eye"></i> تصفح المنتجات</button>
+                </div>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3 class="feature-title">جودة عالية</h3>
+                    <p class="feature-text">جميع منتجاتنا تخضع لأعلى معايير الجودة والفحص قبل التوصيل</p>
+                </div>
+                <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s">
+                    <div class="feature-icon"><i class="fas fa-certificate"></i></div>
+                    <h3 class="feature-title">ضمان ممتد</h3>
+                    <p class="feature-text">ضمان لمدة عام كامل على جميع المنتجات مع خدمة الصيانة</p>
+                </div>
+                <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.6s">
+                    <div class="feature-icon"><i class="fas fa-truck-fast"></i></div>
+                    <h3 class="feature-title">توصيل سريع</h3>
+                    <p class="feature-text">خدمة توصيل سريعة وآمنة لجميع أنحاء المملكة</p>
+                </div>
+            </div>
+            
+            <h2 class="animate__animated animate__fadeIn" style="animation-delay: 0.8s">لماذا تختار متجر الوتيري؟</h2>
+            <p class="animate__animated animate__fadeIn" style="animation-delay: 1s">
+                <strong>متجر الوتيري</strong> يقدم لك أفضل وأحدث الأسلحة والبدلات العسكرية التي تخضع لأعلى معايير الجودة العالمية.<br>
+                نحن هنا لنضمن لك تجربة فريدة من نوعها، حيث تأتي كل قطعة <em>بدون أي تلف أو خلل أو غش</em> مع ضمان رسمي.<br>
+                ثقتك بنا هي رأس مالنا، ولهذا نقدم ضمان استرجاع واستبدال كامل خلال السنة من تاريخ الشراء.<br>
+                كافة أسلحتنا وبدلاتنا تأتي مع توثيق رسمي وشهادات جودة معتمدة لنثبت لك أننا الاختيار الأمثل للمحترفين والعشاق على حد سواء.<br>
+                استعد للغوص في عالم القوة والأمان مع متجر الوتيري... المكان الذي فيه الحسم والتميز عنوان.
+            </p>
+        </section>
+
+        <section id="weapons" class="tab-content">
+            <h2><i class="fas fa-gun"></i> قائمة الأسلحة</h2>
+            
+            <div class="form-field animate__animated animate__fadeInRight">
+                <label for="weaponType"><i class="fas fa-filter"></i> اختر نوع السلاح (عرض البطاقات من بيانات المتجر):</label>
+                <select id="weaponType" class="animate__animated animate__fadeInRight" style="animation-delay: 0.2s">
+                    <option value="all">جميع الأسلحة</option>
+                    <option value="firearms">أسلحة نارية</option>
+                    <option value="pistols">مسدسات</option>
+                    <option value="grenades">قنابل</option>
+                    <option value="electric_shocks">صواعق كهربائية</option>
+                    <option value="rifles">رشاشات</option>
+                    <option value="knives">خناجر</option>
+                </select>
+            </div>
+
+            <div class="form-field animate__animated animate__fadeInLeft">
+                <label for="weaponSearchInput"><i class="fas fa-search"></i> ابحث عن سلاح (بحث عالمي باستخدام الذكاء الاصطناعي):</label>
+                <div class="search-container">
+                    <input type="text" id="weaponSearchInput" placeholder="اكتب اسم السلاح، النوع، أو أي استعلام..." />
+                    <button class="btn btn-primary" id="weaponSearchBtn"><i class="fas fa-magnifying-glass"></i> بحث</button>
+                </div>
+                <div class="loading-spinner" id="weaponSearchSpinner">
+                    <i class="fas fa-spinner"></i> جاري البحث العالمي...
+                </div>
+                <div class="error-message" id="weaponSearchError"></div>
+            </div>
+
+            <div class="product-cards" id="weaponCardsContainer">
+                <!-- Weapon cards will be loaded here -->
+            </div>
+            
+            <p style="font-style: italic; margin-top: 10px; color: var(--accent-color);"><i class="fas fa-info-circle"></i> اضغط على أي سلاح في القائمة لإضافته إلى سلة المشتريات.</p>
+        </section>
+
+        <section id="uniforms" class="tab-content">
+            <h2><i class="fas fa-vest"></i> البدلات العسكرية المتوفرة</h2>
+            
+            <div class="product-cards" id="uniformCardsContainer">
+                <!-- Uniform cards will be loaded here -->
+            </div>
+            
+            <p id="uniformTableInfo" style="font-style: italic; margin-top: 10px; color: var(--accent-color); display:none;"><i class="fas fa-info-circle"></i> اضغط على أي بدلة لإضافتها إلى سلة المشتريات.</p>
+        </section>
+
+        <section id="customerData" class="tab-content">
+            <h2><i class="fas fa-user-tie"></i> بيانات الزبون</h2>
+            
+            <div class="animate__animated animate__fadeIn">
+                <div class="form-field">
+                    <label for="name"><i class="fas fa-user"></i> الاسم الكامل:</label>
+                    <input type="text" id="name" placeholder="أدخل اسمك الكامل" required />
+                </div>
+                
+                <div class="form-field">
+                    <label for="age"><i class="fas fa-calendar"></i> العمر:</label>
+                    <input type="number" id="age" min="0" placeholder="أدخل عمرك" required />
+                </div>
+                
+                <div class="form-field">
+                    <label for="nationality"><i class="fas fa-globe"></i> الجنسية:</label>
+                    <input type="text" id="nationality" placeholder="أدخل جنسيتك" required />
+                </div>
+                
+                <div class="form-field">
+                    <label for="gender"><i class="fas fa-venus-mars"></i> الجنس:</label>
+                    <select id="gender" required>
+                        <option value="">-- اختر الجنس --</option>
+                        <option value="male">ذكر</option>
+                        <option value="female">أنثى</option>
+                    </select>
+                </div>
+                
+                <div class="form-field">
+                    <label for="id_number"><i class="fas fa-id-card"></i> رقم الهوية:</label>
+                    <input type="text" id="id_number" placeholder="أدخل رقم الهوية" required />
+                </div>
+                
+                <div class="form-field">
+                    <label for="reason"><i class="fas fa-question"></i> سبب الشراء:</label>
+                    <textarea id="reason" rows="3" placeholder="أدخل سبب شرائك للمنتج" required></textarea>
+                </div>
+                
+                <div class="form-field">
+                    <label for="weaponSelection"><i class="fas fa-gun"></i> اختر السلاح (إذا كان الطلب يشمل سلاحًا):</label>
+                    <select id="weaponSelection">
+                        <option value="">-- اختر السلاح --</option>
+                        </select>
+                </div>
+                
+                <div class="form-field">
+                    <label for="weaponId"><i class="fas fa-barcode"></i> رقم السلاح (إذا كان الطلب يشمل سلاحًا):</label>
+                    <input type="text" id="weaponId" placeholder="سيتم ملؤه تلقائياً إذا تم اختيار سلاح" readonly />
+                </div>
+                
+                <div class="form-field">
+                    <label><input type="checkbox" id="deliveryCheck" /> <i class="fas fa-truck"></i> توصيل الطلب</label>
+                </div>
+                
+                <div id="deliveryFields" style="display:none;">
+                    <div class="form-field">
+                        <label for="phoneNumber"><i class="fas fa-phone"></i> رقم الهاتف:</label>
+                        <input type="tel" id="phoneNumber" placeholder="أدخل رقم الهاتف" />
+                    </div>
+                    <div class="form-field">
+                        <label for="address"><i class="fas fa-map-marker-alt"></i> العنوان:</label>
+                        <input type="text" id="address" placeholder="أدخل عنوان التوصيل" />
+                    </div>
+                    <div class="form-field">
+                        <label for="city"><i class="fas fa-city"></i> المدينة:</label>
+                        <input type="text" id="city" placeholder="أدخل المدينة" />
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" id="submitCustomerDataBtn"><i class="fas fa-paper-plane"></i> إرسال البيانات</button>
+            </div>
+        </section>
+    </div>
+
+    <div id="cart-icon" class="floating">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cart-count">0</span>
+    </div>
+
+    <div id="cart-window">
+        <h3><i class="fas fa-shopping-cart"></i> سلة المشتريات</h3>
+        <div id="cart-items">
+            <p id="empty-cart-message">سلتك فارغة.</p>
+        </div>
+        <div class="cart-total">
+            <span>المجموع الكلي:</span>
+            <span id="cart-total-price">0.00 $</span>
+        </div>
+        <div class="cart-actions">
+            <button class="btn btn-secondary" id="clearCartBtn"><i class="fas fa-trash"></i> إفراغ السلة</button>
+            <button class="btn btn-primary" id="checkoutBtn"><i class="fas fa-money-check-dollar"></i> إتمام الشراء</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>عن المتجر</h4>
+                <p>متجر الوتيري يقدم أفضل الأسلحة والبدلات العسكرية بمعايير جودة عالمية وضمان ممتد.</p>
+            </div>
+            <div class="footer-column">
+                <h4>روابط سريعة</h4>
+                <ul class="footer-links">
+                    <li><a href="#" id="footer-link-intro"><i class="fas fa-home"></i> الرئيسية</a></li>
+                    <li><a href="#" id="footer-link-weapons"><i class="fas fa-gun"></i> الأسلحة</a></li>
+                    <li><a href="#" id="footer-link-uniforms"><i class="fas fa-vest"></i> البدلات العسكرية</a></li>
+                    <li><a href="#" id="footer-link-customerData"><i class="fas fa-user-tie"></i> بيانات الزبون</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>تواصل معنا</h4>
+                <p><i class="fas fa-map-marker-alt"></i> صنعاء، اليمن</p>
+                <p><i class="fas fa-phone"></i> 773744744</p>
+                <p><i class="fas fa-envelope"></i> info@alwateeri.com</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2023 متجر الوتيري. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        // Data for weapons (local archive, still used for 'select by type' and customer form dropdown)
+        const weaponsData = [
+            { name: 'AK-47', type: 'firearms', category: 'رشاش', id: 'WPN-001', year: 1947, country: 'روسيا', price: 700, image: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTPPSYxxBqUEIqNCnYSNjcWpo4qMhYvIGP4l3iPa7kdOEdX_7qqBlTDwDveV43Vu3PDun9o9ys8A0G_UkI8gYybvBYSUr1UVfCLRj4BC5FR2Q' },
+            { name: 'M4A1', type: 'firearms', category: 'رشاش', id: 'WPN-002', year: 1994, country: 'الولايات المتحدة', price: 850, image: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT9B5ey1TG_jZwgze_3X6GDeeVxj_mnC8-A-SAU3p6fJvgQiAbdhd75y9AM9SJWC_bu2iOlEk5-jWNWuaymlT5Onvm5cxClhNLqZVb3cA' },
+            { name: 'Desert Eagle', type: 'pistols', category: 'مسدس', id: 'PST-001', year: 1982, country: 'الولايات المتحدة', price: 650, image: 'https://www.magnumresearch.com/wp-content/uploads/2018/01/SVimg-DE357L5IMB.jpg' },
+            { name: 'Glock 17', type: 'pistols', category: 'مسدس', id: 'PST-002', year: 1982, country: 'النمسا', price: 400, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Glock_17_Gen4_2014.jpg/800px-Glock_17_Gen4_2014.jpg' },
+            { name: 'قنبلة يدوية F-1', type: 'grenades', category: 'قنبلة', id: 'GRN-001', year: 1939, country: 'روسيا', price: 150, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/F1_grenade.jpg/800px-F1_grenade.jpg' },
+            { name: 'قنبلة دخانية', type: 'grenades', category: 'قنبلة', id: 'GRN-002', year: 1960, country: 'متعدد', price: 120, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Smoke_grenade_M18.jpg/800px-Smoke_grenade_M18.jpg' },
+            { name: 'صاعق كهربائي صغير', type: 'electric_shocks', category: 'صاعق', id: 'ELC-001', year: 2005, country: 'الصين', price: 90, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Taser-X26.jpg/800px-Taser-X26.jpg' },
+            { name: 'صاعق كهربائي كبير', type: 'electric_shocks', category: 'صاعق', id: 'ELC-002', year: 2010, country: 'الصين', price: 180, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Taser-X26.jpg/800px-Taser-X26.jpg' }, // Reusing Taser image
+            { name: 'رشاش M16', type: 'rifles', category: 'رشاش', id: 'RFL-001', year: 1960, country: 'الولايات المتحدة', price: 900, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/M16A2_rifle.jpg/800px-M16A2_rifle.jpg' },
+            { name: 'رشاش AK-74', type: 'rifles', category: 'رشاش', id: 'RFL-002', year: 1974, country: 'روسيا', price: 750, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/AK-74-N.jpg/800px-AK-74-N.jpg' },
+            { name: 'سكين قتالية', type: 'knives', category: 'خنجر', id: 'KNV-001', year: 1980, country: 'متعدد', price: 220, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Combat_Knife.jpg/800px-Combat_Knife.jpg' },
+            { name: 'خنجر', type: 'knives', category: 'خنجر', id: 'KNV-002', year: 1990, country: 'باكستان', price: 180, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Dagger_MET_189674.jpg/800px-Dagger_MET_189674.jpg' },
+        ];
+
+        // Data for uniforms
+        const uniformsData = [
+            { name: 'بدلة قوات خاصة', manufacture: 'أمريكية', fabric: 'كومبات', features: 'مقاومة للماء، خفيفة الوزن', price: 300, id: 'UNF-001', image: 'https://images.unsplash.com/photo-1598460699049-74e79069d1f3?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+            { name: 'بدلة قناص', manufacture: 'ألمانية', fabric: 'صوف خاص', features: 'تمويه عالٍ، عازلة للحرارة', price: 450, id: 'UNF-002', image: 'https://images.unsplash.com/photo-1587570490534-118128549ac2?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+            { name: 'بدلة تدريب عسكرية', manufacture: 'صينية', fabric: 'قطن مخلوط', features: 'مرنة، جيدة التهوية', price: 150, id: 'UNF-003', image: 'https://images.unsplash.com/photo-1582772583804-03d09a06b023?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+            { name: 'بدلة حرس حدود', manufacture: 'محلية', fabric: 'بوليستر متين', features: 'مقاومة للتآكل، جيوب متعددة', price: 220, id: 'UNF-004', image: 'https://images.unsplash.com/photo-1579737192770-ce7ed55b3f2e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+            { name: 'بدلة مكافحة الشغب', manufacture: 'بريطانية', fabric: 'نايلون مقوى', features: 'حماية إضافية، دروع مدمجة', price: 500, id: 'UNF-005', image: 'https://images.unsplash.com/photo-1510414995966-5120a1f72782?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+            { name: 'بدلة طيار', manufacture: 'روسية', fabric: 'نومكس', features: 'مقاومة للحريق، مريحة', price: 600, id: 'UNF-006', image: 'https://images.unsplash.com/photo-1629864272183-162581023758?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+        ];
+
+        // Generic placeholder image for AI results not found in local data
+        const GENERIC_AI_WEAPON_IMAGE = 'https://via.placeholder.com/300x180?text=AI+Weapon+Result';
+
+        let cart = []; // Array to hold cart items
+
+        // Google Gemini API Configuration
+        // !! IMPORTANT SECURITY WARNING !!
+        // Directly exposing API keys in client-side code is NOT recommended for production environments.
+        // For a real application, proxy requests through a backend server to keep your API key secure.
+        const GEMINI_API_KEY = 'AIzaSyDxhQ0wyQV4keqR6OwlNO4EfV7_hhT80C0'; // REPLACE THIS WITH YOUR ACTUAL API KEY
+        const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+
+        // DOM Elements
+        const DOMElements = {
+            navButtons: document.querySelectorAll('nav button'),
+            tabContents: document.querySelectorAll('.tab-content'),
+            weaponTypeSelect: document.getElementById('weaponType'),
+            weaponSearchInput: document.getElementById('weaponSearchInput'),
+            weaponSearchBtn: document.getElementById('weaponSearchBtn'),
+            weaponSearchSpinner: document.getElementById('weaponSearchSpinner'),
+            weaponSearchError: document.getElementById('weaponSearchError'),
+            weaponCardsContainer: document.getElementById('weaponCardsContainer'),
+            uniformCardsContainer: document.getElementById('uniformCardsContainer'),
+            uniformTableInfo: document.getElementById('uniformTableInfo'), 
+            weaponSelectionDropdown: document.getElementById('weaponSelection'),
+            weaponIdInput: document.getElementById('weaponId'),
+            deliveryCheck: document.getElementById('deliveryCheck'),
+            deliveryFields: document.getElementById('deliveryFields'),
+            cartIcon: document.getElementById('cart-icon'),
+            cartWindow: document.getElementById('cart-window'),
+            cartItemsContainer: document.getElementById('cart-items'),
+            cartCountSpan: document.getElementById('cart-count'),
+            cartTotalPriceSpan: document.getElementById('cart-total-price'),
+            emptyCartMessage: document.getElementById('empty-cart-message'),
+            clearCartBtn: document.getElementById('clearCartBtn'),
+            checkoutBtn: document.getElementById('checkoutBtn'),
+            submitCustomerDataBtn: document.getElementById('submitCustomerDataBtn'),
+            browseProductsBtn: document.getElementById('browse-products-btn'),
+            footerLinkIntro: document.getElementById('footer-link-intro'),
+            footerLinkWeapons: document.getElementById('footer-link-weapons'),
+            footerLinkUniforms: document.getElementById('footer-link-uniforms'),
+            footerLinkCustomerData: document.getElementById('footer-link-customerData'),
+        };
+
+        document.addEventListener('DOMContentLoaded', initializePage);
+
+        function initializePage() {
+            setupEventListeners();
+            openTab('intro'); // Open the intro tab by default
+            populateUniforms(); // Populate uniforms on load
+            showWeaponCards(weaponsData, DOMElements.weaponTypeSelect.value); // Populate weapons as cards by default (from local data)
+            populateWeaponSelection(); // Populate the weapon dropdown in customer data
+            updateCartDisplay(); // Initialize cart display
+        }
+
+        function setupEventListeners() {
+            DOMElements.navButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const tabName = event.currentTarget.id.replace('nav-', '');
+                    openTab(tabName);
+                });
+            });
+
+            DOMElements.weaponTypeSelect.addEventListener('change', (event) => {
+                showWeaponCards(weaponsData, event.target.value); // Pass local data for filtering
+                DOMElements.weaponSearchInput.value = ''; // Clear search input when filtering by type
+                DOMElements.weaponSearchError.style.display = 'none'; // Hide any previous search errors
+            });
+
+            DOMElements.weaponSearchBtn.addEventListener('click', universalWeaponSearch);
+            DOMElements.weaponSearchInput.addEventListener('keyup', (event) => {
+                if (event.key === 'Enter') {
+                    universalWeaponSearch();
+                }
+            });
+
+            DOMElements.weaponSelectionDropdown.addEventListener('change', updateWeaponId);
+            DOMElements.deliveryCheck.addEventListener('change', toggleDeliveryFields);
+            DOMElements.cartIcon.addEventListener('click', toggleCartWindow);
+            DOMElements.clearCartBtn.addEventListener('click', clearCart);
+            DOMElements.checkoutBtn.addEventListener('click', checkout);
+            DOMElements.submitCustomerDataBtn.addEventListener('click', submitCustomerData);
+            DOMElements.browseProductsBtn.addEventListener('click', () => openTab('weapons'));
+
+            // Footer links
+            DOMElements.footerLinkIntro.addEventListener('click', (e) => { e.preventDefault(); openTab('intro'); });
+            DOMElements.footerLinkWeapons.addEventListener('click', (e) => { e.preventDefault(); openTab('weapons'); });
+            DOMElements.footerLinkUniforms.addEventListener('click', (e) => { e.preventDefault(); openTab('uniforms'); });
+            DOMElements.footerLinkCustomerData.addEventListener('click', (e) => { e.preventDefault(); openTab('customerData'); });
+        }
+
+        function openTab(tabName) {
+            DOMElements.tabContents.forEach(tab => {
+                tab.style.display = 'none';
+            });
+
+            DOMElements.navButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            const selectedTab = document.getElementById(tabName);
+            if (selectedTab) {
+                selectedTab.style.display = 'block';
+            }
+
+            const activeButton = document.getElementById(`nav-${tabName}`);
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+
+            // Specific logic for weapons tab
+            if (tabName === 'weapons') {
+                // When navigating to weapons tab, display local weapons filtered by current selection
+                showWeaponCards(weaponsData, DOMElements.weaponTypeSelect.value); 
+                DOMElements.weaponSearchInput.value = ''; // Clear search input
+                DOMElements.weaponSearchError.style.display = 'none'; // Hide any previous errors
+            }
+        }
+
+        // Modified function to display weapons as product cards,
+        // can take either local data (with type filter) or search results (from AI)
+        function showWeaponCards(dataArray, filterType = 'all') {
+            DOMElements.weaponCardsContainer.innerHTML = ''; // Clear previous cards
+            DOMElements.weaponCardsContainer.style.display = 'grid'; // Ensure product cards are displayed
+
+            let weaponsToDisplay = dataArray;
+
+            // Apply filter only if dataArray is the local weaponsData and filterType is not 'all'
+            if (dataArray === weaponsData && filterType !== 'all') {
+                weaponsToDisplay = weaponsData.filter(weapon => weapon.type === filterType);
+            }
+
+            if (weaponsToDisplay.length === 0) {
+                DOMElements.weaponCardsContainer.innerHTML = `<p style="text-align: center; margin-top: 2rem; color: var(--accent-color);">لا توجد أسلحة مطابقة لمعايير العرض.</p>`;
+            } else {
+                weaponsToDisplay.forEach(weapon => {
+                    const localWeaponMatch = weaponsData.find(localWpn => 
+                        localWpn.name.toLowerCase() === (weapon.name || '').toLowerCase() || 
+                        (localWpn.id && weapon.id && localWpn.id.toLowerCase() === (weapon.id || '').toLowerCase())
+                    );
+                    
+                    const imageUrl = localWeaponMatch ? localWeaponMatch.image : GENERIC_AI_WEAPON_IMAGE;
+                    const weaponName = weapon.name || 'غير متوفر';
+                    const weaponCategory = weapon.category || weapon.type || 'غير معروف';
+                    // Use 'description' from AI, or 'country' from local for description if description is absent
+                    const weaponDescription = weapon.description || (weapon.country ? `صنع في: ${weapon.country}` : 'تفاصيل غير متوفرة');
+                    
+                    let weaponPrice = parseFloat(weapon.price) || 0; 
+                    if (weapon.price_range) { // Handle price_range from Gemini
+                        const match = String(weapon.price_range).match(/(\d+\.?\d*)/); // Extract numeric part
+                        if (match) weaponPrice = parseFloat(match[1]);
+                    }
+
+                    const cardHtml = `
+                        <div class="product-card animate__animated animate__zoomIn">
+                            <div class="product-image">
+                                <img src="${imageUrl}" alt="${weaponName}" onerror="this.src='${GENERIC_AI_WEAPON_IMAGE}';">
+                                <span class="product-badge">${weaponCategory}</span>
+                            </div>
+                            <div class="product-content">
+                                <h3 class="product-title">${weaponName}</h3>
+                                <p class="product-description">${weaponDescription}</p>
+                                <div class="product-meta">
+                                    <span class="product-price">${weaponPrice.toFixed(2)} $</span>
+                                    <div class="product-rating">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn btn-primary" onclick="addToCart({name: '${weaponName}', category: '${weaponCategory}', price: ${weaponPrice}})">
+                                        <i class="fas fa-cart-plus"></i> إضافة للسلة
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    DOMElements.weaponCardsContainer.innerHTML += cardHtml;
+                });
+            }
+        }
+
+        async function universalWeaponSearch() {
+            const query = DOMElements.weaponSearchInput.value.trim();
+            DOMElements.weaponSearchError.style.display = 'none'; // Hide previous error
+
+            if (!query) {
+                DOMElements.weaponSearchError.textContent = 'الرجاء إدخال كلمة للبحث.';
+                DOMElements.weaponSearchError.style.display = 'block';
+                return;
+            }
+
+            DOMElements.weaponSearchSpinner.style.display = 'block'; // Show loading spinner
+            DOMElements.weaponCardsContainer.innerHTML = ''; // Clear previous cards
+            DOMElements.weaponCardsContainer.style.display = 'grid'; // Ensure card display is active
+
+            // Construct the prompt for Gemini
+            const prompt = `As a weapon database for an online store, provide information for the following query: "${query}". 
+            If specific weapons are found, return a JSON array of objects. Each object should represent a weapon and contain the following keys:
+            "name": (string, weapon name),
+            "category": (string, e.g., "مسدس", "رشاش", "خنجر", "قنبلة", etc.),
+            "description": (string, a brief description or key features),
+            "country": (string, country of origin or main manufacturer),
+            "price_range": (string, an approximate price range, e.g., "500-700 $", "200 $", "starts from 1000 $").
+            If no specific weapon matches, provide an empty array [].
+            Respond ONLY with the JSON array, no conversational text or markdown around it.`;
+
+            try {
+                const response = await fetch(GEMINI_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{ text: prompt }]
+                        }]
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`Gemini API Error: ${response.status} - ${errorText}`);
+                }
+
+                const data = await response.json();
+                let geminiOutputText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+                
+                if (!geminiOutputText) {
+                    DOMElements.weaponSearchError.textContent = 'لم يتم العثور على نتائج أو كانت الاستجابة فارغة.';
+                    DOMElements.weaponSearchError.style.display = 'block';
+                    showWeaponCards([], null); // Display empty state as cards
+                    return;
+                }
+
+                let searchResults = [];
+                try {
+                    // Attempt to extract and parse JSON. Gemini might add leading/trailing text or markdown.
+                    const jsonStartIndex = geminiOutputText.indexOf('[');
+                    const jsonEndIndex = geminiOutputText.lastIndexOf(']');
+                    if (jsonStartIndex !== -1 && jsonEndIndex !== -1 && jsonEndIndex > jsonStartIndex) {
+                        const jsonString = geminiOutputText.substring(jsonStartIndex, jsonEndIndex + 1);
+                        searchResults = JSON.parse(jsonString);
+                    } else {
+                        // Fallback: try direct parse, or assume empty if not a clear array
+                        searchResults = JSON.parse(geminiOutputText);
+                    }
+
+                    if (!Array.isArray(searchResults)) {
+                        searchResults = [searchResults].filter(item => typeof item === 'object' && item !== null); // Ensure it's an array of objects
+                    }
+
+                } catch (jsonError) {
+                    console.error("Failed to parse Gemini JSON:", geminiOutputText, jsonError);
+                    DOMElements.weaponSearchError.textContent = 'حدث خطأ في معالجة نتائج البحث.';
+                    DOMElements.weaponSearchError.style.display = 'block';
+                    showWeaponCards([], null); // Display empty state as cards
+                    return;
+                }
+                
+                showWeaponCards(searchResults, null); // Display AI results as cards
+
+            } catch (error) {
+                console.error('Error during universal weapon search:', error);
+                DOMElements.weaponSearchError.textContent = 'حدث خطأ أثناء البحث عن الأسلحة. يرجى التأكد من مفتاح API والاتصال بالإنترنت والمحاولة مرة أخرى لاحقًا.';
+                DOMElements.weaponSearchError.style.display = 'block';
+                showWeaponCards([], null); // Display empty state as cards
+            } finally {
+                DOMElements.weaponSearchSpinner.style.display = 'none'; // Hide loading spinner
+            }
+        }
+
+
+        function populateUniforms() {
+            DOMElements.uniformCardsContainer.innerHTML = '';
+            
+            DOMElements.uniformTableInfo.style.display = 'none'; // This info message is for the table, hide it.
+            DOMElements.uniformCardsContainer.style.display = 'grid'; // Ensure product cards are displayed
+
+            uniformsData.forEach(uniform => {
+                const cardHtml = `
+                    <div class="product-card animate__animated animate__zoomIn">
+                        <div class="product-image">
+                            <img src="${uniform.image}" alt="${uniform.name}" onerror="this.src='https://via.placeholder.com/300x180?text=Uniform+Image+Not+Found';">
+                            <span class="product-badge">${uniform.manufacture}</span>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">${uniform.name}</h3>
+                            <p class="product-description">القماش: ${uniform.fabric} | المميزات: ${uniform.features}</p>
+                            <div class="product-meta">
+                                <span class="product-price">${uniform.price} $</span>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="product-actions">
+                                <button class="btn btn-primary" onclick="addToCart({id: '${uniform.id}', name: '${uniform.name}', category: 'بدلة', price: ${uniform.price}})">
+                                    <i class="fas fa-cart-plus"></i> إضافة للسلة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                DOMElements.uniformCardsContainer.innerHTML += cardHtml;
+            });
+        }
+
+        function populateWeaponSelection() {
+            DOMElements.weaponSelectionDropdown.innerHTML = '<option value="">-- اختر السلاح --</option>'; 
+            weaponsData.forEach(weapon => {
+                const option = document.createElement('option');
+                option.value = weapon.name;
+                option.textContent = `${weapon.name} - ${weapon.price}$`;
+                option.setAttribute('data-weapon-id', weapon.id);
+                DOMElements.weaponSelectionDropdown.appendChild(option);
+            });
+        }
+
+        function updateWeaponId() {
+            const selectedOption = DOMElements.weaponSelectionDropdown.options[DOMElements.weaponSelectionDropdown.selectedIndex];
+            if (selectedOption && selectedOption.value !== "") {
+                DOMElements.weaponIdInput.value = selectedOption.getAttribute('data-weapon-id');
+            } else {
+                DOMElements.weaponIdInput.value = '';
+            }
+        }
+
+        function toggleDeliveryFields() {
+            if (DOMElements.deliveryCheck.checked) {
+                DOMElements.deliveryFields.style.display = 'block';
+            } else {
+                DOMElements.deliveryFields.style.display = 'none';
+            }
+        }
+
+        function addToCart(item) {
+            let itemPrice = parseFloat(item.price);
+            if (isNaN(itemPrice)) {
+                itemPrice = 0; 
+                console.warn(`Could not parse price for item: ${item.name}. Setting price to 0.`);
+            }
+
+            // Using item.id for uniqueness if available, otherwise fallback to name
+            const itemId = item.id || item.name; 
+            const existingItem = cart.find(cartItem => (cartItem.id || cartItem.name) === itemId);
+
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...item, price: itemPrice, quantity: 1 });
+            }
+            updateCartDisplay();
+            alert(`${item.name} تمت إضافته إلى السلة!`);
+        }
+
+        function updateCartItemQuantity(itemId, quantity) {
+            const itemIndex = cart.findIndex(cartItem => (cartItem.id || cartItem.name) === itemId);
+            if (itemIndex > -1) {
+                if (quantity > 0) {
+                    cart[itemIndex].quantity = quantity;
+                } else {
+                    cart.splice(itemIndex, 1);
+                }
+                updateCartDisplay();
+            }
+        }
+
+        function removeFromCart(itemId) {
+            cart = cart.filter(item => (item.id || item.name) !== itemId);
+            updateCartDisplay();
+        }
+
+        function calculateTotal() {
+            return cart.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2);
+        }
+
+        function updateCartDisplay() {
+            DOMElements.cartItemsContainer.innerHTML = '';
+
+            if (cart.length === 0) {
+                DOMElements.emptyCartMessage.style.display = 'block';
+            } else {
+                DOMElements.emptyCartMessage.style.display = 'none';
+                cart.forEach(item => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.classList.add('cart-item');
+                    // Use item.id for quantity controls for more robustness
+                    const itemIdForControls = item.id || item.name; 
+                    itemDiv.innerHTML = `
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-category">${item.category}</div>
+                            <div class="cart-item-price">${(item.price * item.quantity).toFixed(2)} $</div>
+                        </div>
+                        <div class="cart-item-controls">
+                            <button onclick="updateCartItemQuantity('${itemIdForControls}', ${item.quantity - 1})"><i class="fas fa-minus"></i></button>
+                            <input type="number" value="${item.quantity}" min="1" onchange="updateCartItemQuantity('${itemIdForControls}', parseInt(this.value))">
+                            <button onclick="updateCartItemQuantity('${itemIdForControls}', ${item.quantity + 1})"><i class="fas fa-plus"></i></button>
+                            <button onclick="removeFromCart('${itemIdForControls}')"><i class="fas fa-trash"></i></button>
+                        </div>
+                    `;
+                    DOMElements.cartItemsContainer.appendChild(itemDiv);
+                });
+            }
+
+            DOMElements.cartCountSpan.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+            DOMElements.cartTotalPriceSpan.textContent = `${calculateTotal()} $`;
+        }
+
+        function toggleCartWindow() {
+            if (DOMElements.cartWindow.style.display === 'block') {
+                DOMElements.cartWindow.style.display = 'none';
+            } else {
+                DOMElements.cartWindow.style.display = 'block';
+            }
+        }
+
+        function clearCart() {
+            if (confirm('هل أنت متأكد من إفراغ سلة المشتريات؟')) {
+                cart = [];
+                updateCartDisplay();
+                alert('تم إفراغ السلة.');
+            }
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('سلة المشتريات فارغة. يرجى إضافة منتجات قبل إتمام الشراء.');
+                return;
+            }
+            if (confirm(`المجموع الكلي: ${calculateTotal()} $. هل أنت متأكد من إتمام الشراء؟`)) {
+                console.log('Final Cart for Checkout:', cart);
+                alert('تم إتمام الشراء بنجاح! سيتم التواصل معك قريباً.');
+                clearCart();
+                toggleCartWindow();
+            }
+        }
+
+        function submitCustomerData() {
+            const name = document.getElementById('name').value.trim();
+            const age = document.getElementById('age').value.trim();
+            const nationality = document.getElementById('nationality').value.trim();
+            const gender = document.getElementById('gender').value;
+            const idNumber = document.getElementById('id_number').value.trim();
+            const reason = document.getElementById('reason').value.trim();
+            const weaponSelection = document.getElementById('weaponSelection').value;
+            const weaponId = document.getElementById('weaponId').value.trim();
+            const deliveryCheck = DOMElements.deliveryCheck.checked;
+            const phoneNumber = document.getElementById('phoneNumber').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const city = document.getElementById('city').value.trim();
+
+            // Simple validation
+            if (!name || !age || !nationality || !gender || !idNumber || !reason) {
+                alert('الرجاء ملء جميع الحقول المطلوبة (الاسم، العمر، الجنسية، الجنس، رقم الهوية، سبب الشراء).');
+                return;
+            }
+
+            let customerInfo = {
+                name,
+                age: parseInt(age),
+                nationality,
+                gender,
+                idNumber,
+                reasonForPurchase: reason,
+                selectedWeapon: weaponSelection || 'لا يوجد',
+                weaponSerialNumber: weaponId || 'لا يوجد',
+                deliveryRequested: deliveryCheck,
+            };
+
+            if (deliveryCheck) {
+                if (!phoneNumber || !address || !city) {
+                    alert('الرجاء ملء جميع حقول معلومات التوصيل (رقم الهاتف، العنوان، المدينة).');
+                    return;
+                }
+                customerInfo.deliveryDetails = {
+                    phoneNumber,
+                    address,
+                    city,
+                };
+            }
+
+            console.log('بيانات الزبون:', customerInfo);
+            alert('تم إرسال بيانات الزبون بنجاح!');
+            // You might clear the form here or navigate to a confirmation page
+        }
+    </script>
+</body>
+</html>
