@@ -341,7 +341,6 @@
                     0 0 15px rgba(107, 138, 255, 0.3);
     }
 
-    /* بقية الكود كما هو بدون تغيير */
     .app-title {
         font-size: 1.5rem;
         font-weight: 500;
@@ -447,7 +446,6 @@
         color: var(--primary);
     }
 
-    /* أنماط جديدة للأفاتار المتحرك */
     .profile-image-container {
         position: relative;
         width: 160px;
@@ -724,6 +722,43 @@
         box-shadow: 0 4px 15px rgba(107, 138, 255, 0.4);
     }
 
+    /* تصميم زر الرابط الخارجي (الأيقونة القطرية) */
+    .external-link-btn {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+        background-color: rgba(74, 108, 247, 0.08);
+        color: var(--text-light);
+        border-radius: 6px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: 400;
+        margin-top: 8px;
+    }
+
+    .dark-mode .external-link-btn {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .external-link-btn:hover {
+        background-color: var(--primary);
+        color: #fff;
+        transform: translateY(-2px) scale(1.1);
+        box-shadow: 0 4px 12px rgba(74, 108, 247, 0.3);
+    }
+
+    .dark-mode .external-link-btn:hover {
+        background-color: var(--primary-light);
+        box-shadow: 0 4px 15px var(--primary-glow);
+    }
+
+    .external-link-btn i {
+        font-size: 0.95rem;
+    }
+
     @keyframes fadeIn {
         from { opacity: 0; }
         to { opacity: 1; }
@@ -848,19 +883,37 @@
                     <div class="timeline-item">
                         <div class="timeline-date" id="education-date-1">2024 - 2025</div>
                         <h3 class="timeline-title" id="degree-title">بكالوريوس هندسة المعدات الطبية</h3>
-                        <p class="timeline-description" id="university-text">الكلية التخصصية الحديثة</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <p class="timeline-description" id="university-text" style="margin: 0;">الكلية التخصصية الحديثة</p>
+                            <!-- زر الكلية -->
+                            <a href="https://www.facebook.com/share/1EAdPP6qF7/" target="_blank" class="external-link-btn" aria-label="رابط الكلية">
+                                <i class="fas fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
                     </div>
                   
                   <div class="timeline-item">
                         <div class="timeline-date" id="education-date-3">2024-02-18</div>
                         <h3 class="timeline-title" id="python-title">مقدمة الى البرمجة باستخدام لغة بايثون</h3>
-                        <p class="timeline-description" id="python-text">منصة إدراك</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <p class="timeline-description" id="python-text" style="margin: 0;">منصة إدراك</p>
+                            <!-- زر إدراك -->
+                            <a href="https://programs.edraak.org/learn/verify-certificate/958bebc099444de58c41c790260322ef/?lang=en" target="_blank" class="external-link-btn" aria-label="رابط منصة إدراك">
+                                <i class="fas fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
                     </div>
                   
                     <div class="timeline-item">
                         <div class="timeline-date" id="education-date-2">2021 - 2020</div>
                         <h3 class="timeline-title" id="highschool-title">ثانوية عامة</h3>
-                        <p class="timeline-description" id="school-text">مدرسة النجاح بالحضن</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <p class="timeline-description" id="school-text" style="margin: 0;">مدرسة النجاح بالحضن</p>
+                            <!-- زر المدرسة -->
+                            <a href="https://www.facebook.com/share/g/1D2UehuWuC/" target="_blank" class="external-link-btn" aria-label="رابط المدرسة">
+                                <i class="fas fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -883,7 +936,7 @@
               
                     <div class="timeline-item">
                       <div class="timeline-date" id="exp-date-2">الفترة 3 أشهر</div>
-                        <h3 class="timeline-title" id="experience-org2">مستشفى الثورة العام</h3>
+                        <h3 class="timeline-title" id="experience-org2">مستشفى فلسطين للأمومة والطفولة</h3>
                         <p class="timeline-description" id="Experiences-text-2">تدريب سريري تضمن صيانة وتشغيل الأجهزة في أقسام حيوية كالعناية المركزة، والتعامل مع الأعطال بالتنسيق مع الكادر الفني.</p>
                     </div>
     
@@ -1093,10 +1146,9 @@
                 "education-date-1": "2024 - 2025",
                 "degree-title": "Bachelor in Biomedical Equipment Engineering",
                 "university-text": "Modern Specialized College",
-       "education-date-3": "2024-02-18",
-"python-title": "Introduction to Programming Using Python",
-"python-text": "Edraak Platform"   ,    
-              
+                "education-date-3": "2024-02-18",
+                "python-title": "Introduction to Programming Using Python",
+                "python-text": "Edraak Platform",      
                 "education-date-2": "2021 - 2020",
                 "highschool-title": "High School Diploma",
                 "school-text": "Al-Najah School in Hadhn",
@@ -1105,7 +1157,7 @@
                 "experience-org1": "National Center of Central Public Health Laboratories",
                 "Experiences-text-1": "Training in a specialized laboratory environment, including maintenance and calibration of analytics, and access to biosafety and quality control procedures.",
                 "exp-date-2": "Duration: 3 months",
-                "experience-org2": "Al-Thawra General Hospital",
+                "experience-org2": "Palestine Maternity and Childhood Hospital",
                 "Experiences-text-2": "Clinical training that ensures the maintenance and operation of the devices in vital departments such as intensive care, and the handling of faults in coordination with the technical staff.",
                 "exp-date-3": "Duration: 6 months",
                 "experience-org3": "Maintenance Center - University of Jordan",
@@ -1136,11 +1188,9 @@
                 "education-date-1": "2024 - 2025",
                 "degree-title": "بكالوريوس هندسة المعدات الطبية",
                 "university-text": "الكلية التخصصية الحديثة",
-              
-          "education-date-3": "2024-02-18",
-        "python-title": "مقدمة الى البرمجة باستخدام لغة بايثون",
-        "python-text": "منصة إدراك",      
-              
+                "education-date-3": "2024-02-18",
+                "python-title": "مقدمة الى البرمجة باستخدام لغة بايثون",
+                "python-text": "منصة إدراك",      
                 "education-date-2": "2021 - 2020",
                 "highschool-title": "ثانوية عامة",
                 "school-text": "مدرسة النجاح بالحضن",
@@ -1149,7 +1199,7 @@
                 "experience-org1": "المركز الوطني لمختبرات الصحة العامة المركزية",
                 "Experiences-text-1": "تدريب في بيئة مخبرية متخصصة شمل صيانة ومعايرة أجهزة التحاليل، والاطلاع على إجراءات السلامة الحيوية وضبط الجودة.",
                 "exp-date-2": "الفترة 3 أشهر",
-                "experience-org2": "مستشفى الثورة العام",
+                "experience-org2": "مستشفى فلسطين للأمومة والطفولة",
                 "Experiences-text-2": "تدريب سريري تضمن صيانة وتشغيل الأجهزة في أقسام حيوية كالعناية المركزة، والتعامل مع الأعطال بالتنسيق مع الكادر الفني.",
                 "exp-date-3": "الفترة 6 أشهر",
                 "experience-org3": "مركز الصيانة - الجامعة الأردنية",
@@ -1198,4 +1248,4 @@
         }
     </script>
 </body>
-</html>
+  </html>
