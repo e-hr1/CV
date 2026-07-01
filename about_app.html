@@ -606,12 +606,6 @@
             box-shadow: 0 12px 48px var(--primary-glow);
         }
 
-        .download-note {
-            margin-top: 14px;
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
         /* --- تذييل --- */
         .footer {
             text-align: center;
@@ -620,15 +614,6 @@
             margin-top: 20px;
             color: var(--text-light);
             font-size: 0.95rem;
-        }
-
-        .footer a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
         }
 
         /* --- استجابة --- */
@@ -768,6 +753,8 @@
             <div class="dept-chip"><i class="fas fa-stethoscope"></i> <span>الباطنية</span></div>
             <div class="dept-chip"><i class="fas fa-microscope"></i> <span>الأنسجة</span></div>
             <div class="dept-chip"><i class="fas fa-vial"></i> <span>التحاليل</span></div>
+            <!-- تم إضافة أيقونة العمليات -->
+            <div class="dept-chip"><i class="fas fa-procedures"></i> <span>العمليات الجراحية</span></div>
         </div>
 
         <!-- نموذج لعرض جهاز -->
@@ -804,16 +791,14 @@
                 <i class="fas fa-download"></i>
                 <span id="downloadText">تحميل تطبيق MedAtlas</span>
             </a>
-            <p class="download-note" id="downloadNote">📱 قريباً على متجر التطبيقات</p>
+            <!-- تم حذف 📱 قريباً على متجر التطبيقات -->
         </div>
     </main>
 
-    <!-- تذييل -->
+    <!-- تذييل (تم حذف "تصميم المهندس الحسين مطير | سياسة الخصوصية") -->
     <footer class="footer">
         <p>
-            <i class="fas fa-copyright"></i> 2026 MedAtlas | 
-            <span id="footerDesign">تصميم</span> <a href="index.html" id="footerName">المهندس الحسين مطير</a> | 
-            <a href="privacy.html" id="footerPrivacy">سياسة الخصوصية</a>
+            <i class="fas fa-copyright"></i> 2026 MedAtlas
         </p>
     </footer>
 
@@ -858,11 +843,7 @@
                 tag1: 'معايرة',
                 tag2: 'صيانة',
                 tag3: 'دقة عالية',
-                downloadText: 'تحميل تطبيق MedAtlas',
-                downloadNote: '📱 قريباً على متجر التطبيقات',
-                footerDesign: 'تصميم',
-                footerName: 'المهندس الحسين مطير',
-                footerPrivacy: 'سياسة الخصوصية'
+                downloadText: 'تحميل تطبيق MedAtlas'
             },
             en: {
                 appTitle: 'MedAtlas',
@@ -902,11 +883,7 @@
                 tag1: 'Calibration',
                 tag2: 'Maintenance',
                 tag3: 'High Precision',
-                downloadText: 'Download MedAtlas App',
-                downloadNote: '📱 Coming soon to the App Store',
-                footerDesign: 'Designed by',
-                footerName: 'Engineer Al Hussein Mutair',
-                footerPrivacy: 'Privacy Policy'
+                downloadText: 'Download MedAtlas App'
             }
         };
 
@@ -960,16 +937,12 @@
             document.getElementById('tag2').textContent = t.tag2;
             document.getElementById('tag3').textContent = t.tag3;
             document.getElementById('downloadText').textContent = t.downloadText;
-            document.getElementById('downloadNote').textContent = t.downloadNote;
-            document.getElementById('footerDesign').textContent = t.footerDesign;
-            document.getElementById('footerName').textContent = t.footerName;
-            document.getElementById('footerPrivacy').textContent = t.footerPrivacy;
 
-            // تحديث محتوى أقسام الطب (بما أن بعضها بالعربية فقط)
-            const deptNames = document.querySelectorAll('.dept-chip span');
+            // تحديث محتوى أقسام الطب
+            const deptNames = document.querySelectorAll('.dept-grid .dept-chip span');
             const deptTranslations = {
-                ar: ['الطوارئ', 'العناية المركزة', 'العمليات', 'المختبرات', 'الأشعة', 'القلب', 'الأعصاب', 'الأطفال', 'العيون', 'الأسنان', 'الجهاز التنفسي', 'العظام', 'الباطنية', 'الأنسجة', 'التحاليل'],
-                en: ['Emergency', 'ICU', 'Surgery', 'Laboratories', 'Radiology', 'Cardiology', 'Neurology', 'Pediatrics', 'Ophthalmology', 'Dentistry', 'Respiratory', 'Orthopedics', 'Internal Medicine', 'Histology', 'Analytics']
+                ar: ['الطوارئ', 'العناية المركزة', 'العمليات', 'المختبرات', 'الأشعة', 'القلب', 'الأعصاب', 'الأطفال', 'العيون', 'الأسنان', 'الجهاز التنفسي', 'العظام', 'الباطنية', 'الأنسجة', 'التحاليل', 'العمليات الجراحية'],
+                en: ['Emergency', 'ICU', 'Surgery', 'Laboratories', 'Radiology', 'Cardiology', 'Neurology', 'Pediatrics', 'Ophthalmology', 'Dentistry', 'Respiratory', 'Orthopedics', 'Internal Medicine', 'Histology', 'Analytics', 'Surgical Operations']
             };
             deptNames.forEach((el, index) => {
                 if (deptTranslations[lang] && index < deptTranslations[lang].length) {
@@ -1041,4 +1014,4 @@
         });
     </script>
 </body>
-                                                                                                        </html>
+                                      </html>
