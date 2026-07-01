@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>سياسة الخصوصية | Privacy Policy </title>
+    <!-- رابط الخطوط والأيقونات -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" />
+    <style>
+        /* --- المتغيرات والتصميم الأساسي (مطابق تمامًا للموقع الرئيسي) --- */
+        :root {
+            -webkit-tap-highlight-color: transparent;
+            --TextColor: #000000;
+            --primary: #4A6CF7;
+            --primary-light: #6B8AFF;
+            --primary-glow: rgba(107, 138, 255, 0.5);
+            --secondary: #FF6B6B;
+            --background: #f5f7ff;
+            --background2: #889FF9;
+            --card: #FFFFFF;
+            --text: #2D3748;
+            --text-light: #718096;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --blur: 8px;
+            --glass-opacity: 0.85;
+            --glass-border: 1px solid rgba(255, 255, 255, 0.3);
+            --glass-background: rgba(255, 255, 255, var(--glass-opacity));
+        }
+
+        .dark-mode {
+            --TextColor: #ffffff;
+            --primary: #6B8AFF;
+            --primary-light: #8BA4FF;
+            --primary-glow: rgba(107, 138, 255, 0.5);
+            --secondary: #FF8B8B;
+            --background: #0f172a;
+            --background2: #1a223f;
+            --card: #1e293b;
+            --text: #f8fafc;
+            --text-light: #cbd5e1;
+            --shadow: 0 10px 30px rgba(107, 138, 255, 0.15);
+            --blur: 0px;
+            --glass-opacity: 0.9;
+            --glass-border: 1px solid rgba(107, 138, 255, 0.1);
+            --glass-background: rgba(30, 41, 59, var(--glass-opacity));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: var(--transition);
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.8;
+            overflow-x: hidden;
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: -1;
+        }
+
+        .dark-mode body::before {
+            background-color: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(10px) brightness(0.9);
+            -webkit-backdrop-filter: blur(10px) brightness(0.9);
+        }
+
+        .glass-effect {
+            background: var(--glass-background);
+            backdrop-filter: blur(var(--blur)) saturate(180%);
+            -webkit-backdrop-filter: blur(var(--blur)) saturate(180%);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: var(--glass-border);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- App Bar (مطابق للموقع الرئيسي) --- */
+        .app-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background-color: rgba(74, 108, 247, 0.9);
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-bottom: 1px solid transparent;
+            border-radius: 0;
+            transition: all 0.4s ease;
+        }
+
+        .app-bar.scrolled {
+            background-color: rgba(74, 108, 247, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 2px;
+        }
+
+        .dark-mode .app-bar {
+            background-color: rgba(26, 34, 63, 0.9);
+            box-shadow: 0 0 0px var(--primary-glow);
+        }
+
+        .dark-mode .app-bar.scrolled {
+            background-color: rgba(26, 34, 63, 0.9);
+            border-bottom: 1px solid rgba(107, 138, 255, 0.2);
+            box-shadow: 0 0 25px var(--primary-glow);
+        }
+
+        .app-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            flex-grow: 1;
+        }
+
+        .app-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        /* --- زر تبديل اللغة (مطابق لتصميم الموقع الرئيسي) --- */
+        .spinner-menu {
+            position: relative;
+            display: inline-block;
+        }
+
+        .spinner-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .spinner-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .spinner-content {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            background: var(--glass-background);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            border: var(--glass-border);
+            min-width: 150px;
+        }
+
+        .spinner-menu:hover .spinner-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .spinner-item {
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: var(--text);
+            text-decoration: none;
+            gap: 10px;
+        }
+
+        .spinner-item:hover {
+            background-color: rgba(74, 108, 247, 0.1);
+            border-radius: var(--radius);
+        }
+
+        .spinner-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        /* --- زر الوضع الداكن (مطابق للموقع الرئيسي) --- */
+        .dark-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .dark-toggle i {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .dark-toggle .active {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        /* --- المحتوى الرئيسي --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 110px 24px 60px;
+        }
+
+        .privacy-card {
+            background: var(--glass-background);
+            backdrop-filter: blur(var(--blur)) saturate(180%);
+            -webkit-backdrop-filter: blur(var(--blur)) saturate(180%);
+            border-radius: var(--radius);
+            padding: 40px 35px;
+            box-shadow: var(--shadow);
+            border: var(--glass-border);
+            animation: slideUp 0.6s ease-out forwards;
+        }
+
+        .dark-mode .privacy-card {
+            box-shadow: 0 10px 30px rgba(107, 138, 255, 0.1), 0 0 15px rgba(107, 138, 255, 0.05);
+        }
+
+        .privacy-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(74, 108, 247, 0.15);
+            padding-bottom: 20px;
+        }
+
+        .privacy-header .icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(74, 108, 247, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .dark-mode .privacy-header .icon {
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .privacy-header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .privacy-header .update-date {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+
+        .privacy-section {
+            margin-bottom: 28px;
+        }
+
+        .privacy-section h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .privacy-section h2 i {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        .privacy-section p,
+        .privacy-section li {
+            color: var(--text-light);
+            font-size: 1.05rem;
+            line-height: 1.9;
+        }
+
+        .privacy-section ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 8px;
+        }
+
+        .privacy-section ul li {
+            padding: 6px 28px 6px 0;
+            position: relative;
+        }
+
+        .privacy-section ul li::before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.4rem;
+            position: absolute;
+            right: 0;
+            top: 2px;
+        }
+
+        [dir="ltr"] .privacy-section ul li {
+            padding: 6px 0 6px 28px;
+        }
+
+        [dir="ltr"] .privacy-section ul li::before {
+            right: auto;
+            left: 0;
+        }
+
+        .highlight-box {
+            background: rgba(74, 108, 247, 0.06);
+            border-right: 4px solid var(--primary);
+            padding: 16px 20px;
+            border-radius: 10px;
+            margin: 16px 0;
+        }
+
+        [dir="ltr"] .highlight-box {
+            border-right: none;
+            border-left: 4px solid var(--primary);
+        }
+
+        .dark-mode .highlight-box {
+            background: rgba(107, 138, 255, 0.08);
+        }
+
+        .footer-contact {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(74, 108, 247, 0.15);
+            text-align: center;
+        }
+
+        .footer-contact a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-contact a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .privacy-card {
+                padding: 24px 18px;
+            }
+            .privacy-header h1 {
+                font-size: 1.5rem;
+            }
+            .container {
+                padding: 100px 16px 40px;
+            }
+            .app-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- App Bar (مطابق تمامًا للموقع الرئيسي) -->
+    <div class="app-bar glass-effect" id="appBar">
+        <div class="app-title" id="appTitle">سياسة الخصوصية</div>
+        <div class="app-actions">
+            <!-- Language Spinner Menu (نفس تصميم الموقع الرئيسي) -->
+            <div class="spinner-menu">
+                <button class="spinner-btn">
+                    <i class="fas fa-language"></i>
+                </button>
+                <div class="spinner-content glass-effect">
+                    <div class="spinner-item" onclick="changeLanguage('ar')">
+                        <i class="fas fa-language"></i>
+                        <span>العربية</span>
+                    </div>
+                    <div class="spinner-item" onclick="changeLanguage('en')">
+                        <i class="fas fa-language"></i>
+                        <span>English</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dark Mode Toggle (نفس تصميم الموقع الرئيسي) -->
+            <div class="dark-toggle" id="darkModeToggle">
+                <i class="fas fa-sun" id="lightIcon"></i>
+                <i class="fas fa-moon active" id="darkIcon"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- المحتوى -->
+    <div class="container">
+        <div class="privacy-card">
+            <!-- رأس الصفحة -->
+            <div class="privacy-header">
+                <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                <div>
+                    <h1 id="mainTitle">🔒 سياسة الخصوصية</h1>
+                    <p class="update-date" id="updateDate">آخر تحديث: 1 يوليو 2026</p>
+                </div>
+            </div>
+
+            <!-- القسم 1 -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-info-circle"></i> <span id="s1Title">1. مقدمة</span></h2>
+                <p id="s1Text">نحن نحترم خصوصيتك ونلتزم بحماية بياناتك. يوضح هذا المستند كيفية تعامل موقع <strong>الحسين مطير</strong> (المهندس) مع المعلومات عند استخدامك له.</p>
+            </div>
+
+            <!-- القسم 2 -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-database"></i> <span id="s2Title">2. المعلومات التي نقوم بجمعها</span></h2>
+                <p id="s2Text">قد يتم جمع بعض البيانات بشكل عام لتحسين التجربة، مثل:</p>
+                <ul>
+                    <li id="s2li1">بيانات الاستخدام داخل الموقع (مثل الصفحات الأكثر زيارة).</li>
+                    <li id="s2li2">معلومات الجهاز (نوع الجهاز، نظام التشغيل).</li>
+                    <li id="s2li3">تقارير الأعطال (إن وجدت).</li>
+                </ul>
+            </div>
+
+            <!-- القسم 3 -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-ban"></i> <span id="s3Title">3. المعلومات التي لا نجمعها</span></h2>
+                <div class="highlight-box">
+                    <p id="s3Text"><strong>نحن لا نقوم بجمع:</strong> الاسم الكامل، رقم الهاتف، البريد الإلكتروني، الموقع الجغرافي الدقيق، أو أي بيانات شخصية حساسة.</p>
+                </div>
+            </div>
+
+            <!-- القسم 4 -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-chart-line"></i> <span id="s4Title">4. استخدام المعلومات</span></h2>
+                <p id="s4Text">تُستخدم البيانات فقط من أجل:</p>
+                <ul>
+                    <li id="s4li1">تحسين أداء الموقع وتجربة المستخدم.</li>
+                    <li id="s4li2">معرفة أكثر الأقسام والمحتوى استخدامًا.</li>
+                    <li id="s4li3">تطوير المحتوى بما يتناسب مع اهتمامات الزوار.</li>
+                </ul>
+            </div>
+
+            <!-- القسم 5 -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-handshake"></i> <span id="s5Title">5. مشاركة المعلومات</span></h2>
+                <p id="s5Text">نحن <strong>لا نبيع أو نشارك</strong> أي بيانات شخصية مع أي طرف ثالث. قد يتم استخدام خدمات خارجية (مثل Google Analytics) فقط لتحليل الاستخدام بشكل عام دون تحديد هوية المستخدم.</p>
+            </div>
+
+            <!-- القسم 6 -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-ad"></i> <span id="s6Title">6. الإعلانات</span></h2>
+                <p id="s6Text">إذا كان الموقع يحتوي على إعلانات (مثل Google AdMob):</p>
+                <ul>
+                    <li id="s6li1">قد تستخدم الإعلانات معرف الإعلانات لتحسين عرض الإعلانات.</li>
+                    <li id="s6li2">لا يتم جمع بيانات شخصية مباشرة.</li>
+                </ul>
+            </div>
+
+            <!-- القسم 7 -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-lock"></i> <span id="s7Title">7. الأمان</span></h2>
+                <p id="s7Text">نستخدم وسائل مناسبة لحماية الموقع والبيانات من الوصول غير المصرح به، التعديل، أو الحذف غير المسموح.</p>
+            </div>
+
+            <!-- القسم 8 -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-external-link-alt"></i> <span id="s8Title">8. روابط خارجية</span></h2>
+                <p id="s8Text">قد يحتوي الموقع على روابط لمواقع خارجية. نحن غير مسؤولين عن سياسات الخصوصية الخاصة بتلك المواقع.</p>
+            </div>
+
+            <!-- القسم 9 -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-child"></i> <span id="s9Title">9. خصوصية الأطفال</span></h2>
+                <p id="s9Text">الموقع موجه للأغراض التعليمية والمهنية، ولا يستهدف جمع بيانات من الأطفال بشكل مباشر.</p>
+            </div>
+
+            <!-- القسم 10 -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-edit"></i> <span id="s10Title">10. التعديلات على السياسة</span></h2>
+                <p id="s10Text">قد نقوم بتحديث سياسة الخصوصية من وقت لآخر. سيتم نشر أي تحديث داخل الموقع.</p>
+            </div>
+
+            <!-- القسم 11 -->
+            <div class="privacy-section footer-contact">
+                <h2><i class="fas fa-envelope"></i> <span id="s11Title">11. التواصل معنا</span></h2>
+                <p id="s11Text">إذا كان لديك أي استفسار حول سياسة الخصوصية، يمكنك التواصل معنا عبر:</p>
+                <p style="margin-top: 10px;">
+                    <i class="fas fa-at" style="color: var(--primary);"></i>
+                    <a href="mailto:HusseinMutair690@gmail.com">HusseinMutair690@gmail.com</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- الترجمات ---
+        const translations = {
+            ar: {
+                appTitle: 'سياسة الخصوصية',
+                mainTitle: '🔒 سياسة الخصوصية',
+                updateDate: 'آخر تحديث: 1 يوليو 2026',
+                s1Title: '1. مقدمة',
+                s1Text: 'نحن نحترم خصوصيتك ونلتزم بحماية بياناتك. يوضح هذا المستند كيفية تعامل موقع <strong>الحسين مطير</strong> (المهندس) مع المعلومات عند استخدامك له.',
+                s2Title: '2. المعلومات التي نقوم بجمعها',
+                s2Text: 'قد يتم جمع بعض البيانات بشكل عام لتحسين التجربة، مثل:',
+                s2li1: 'بيانات الاستخدام داخل الموقع (مثل الصفحات الأكثر زيارة).',
+                s2li2: 'معلومات الجهاز (نوع الجهاز، نظام التشغيل).',
+                s2li3: 'تقارير الأعطال (إن وجدت).',
+                s3Title: '3. المعلومات التي لا نجمعها',
+                s3Text: '<strong>نحن لا نقوم بجمع:</strong> الاسم الكامل، رقم الهاتف، البريد الإلكتروني، الموقع الجغرافي الدقيق، أو أي بيانات شخصية حساسة.',
+                s4Title: '4. استخدام المعلومات',
+                s4Text: 'تُستخدم البيانات فقط من أجل:',
+                s4li1: 'تحسين أداء الموقع وتجربة المستخدم.',
+                s4li2: 'معرفة أكثر الأقسام والمحتوى استخدامًا.',
+                s4li3: 'تطوير المحتوى بما يتناسب مع اهتمامات الزوار.',
+                s5Title: '5. مشاركة المعلومات',
+                s5Text: 'نحن <strong>لا نبيع أو نشارك</strong> أي بيانات شخصية مع أي طرف ثالث. قد يتم استخدام خدمات خارجية (مثل Google Analytics) فقط لتحليل الاستخدام بشكل عام دون تحديد هوية المستخدم.',
+                s6Title: '6. الإعلانات',
+                s6Text: 'إذا كان الموقع يحتوي على إعلانات (مثل Google AdMob):',
+                s6li1: 'قد تستخدم الإعلانات معرف الإعلانات لتحسين عرض الإعلانات.',
+                s6li2: 'لا يتم جمع بيانات شخصية مباشرة.',
+                s7Title: '7. الأمان',
+                s7Text: 'نستخدم وسائل مناسبة لحماية الموقع والبيانات من الوصول غير المصرح به، التعديل، أو الحذف غير المسموح.',
+                s8Title: '8. روابط خارجية',
+                s8Text: 'قد يحتوي الموقع على روابط لمواقع خارجية. نحن غير مسؤولين عن سياسات الخصوصية الخاصة بتلك المواقع.',
+                s9Title: '9. خصوصية الأطفال',
+                s9Text: 'الموقع موجه للأغراض التعليمية والمهنية، ولا يستهدف جمع بيانات من الأطفال بشكل مباشر.',
+                s10Title: '10. التعديلات على السياسة',
+                s10Text: 'قد نقوم بتحديث سياسة الخصوصية من وقت لآخر. سيتم نشر أي تحديث داخل الموقع.',
+                s11Title: '11. التواصل معنا',
+                s11Text: 'إذا كان لديك أي استفسار حول سياسة الخصوصية، يمكنك التواصل معنا عبر:'
+            },
+            en: {
+                appTitle: 'Privacy Policy',
+                mainTitle: '🔒 Privacy Policy',
+                updateDate: 'Last Updated: July 1, 2026',
+                s1Title: '1. Introduction',
+                s1Text: 'We respect your privacy and are committed to protecting your data. This document explains how <strong>Al Hussein Mutair</strong> (Engineer) website handles information when you use it.',
+                s2Title: '2. Information We Collect',
+                s2Text: 'Some general data may be collected to improve the experience, such as:',
+                s2li1: 'Usage data within the site (e.g., most visited pages).',
+                s2li2: 'Device information (device type, operating system).',
+                s2li3: 'Error reports (if any).',
+                s3Title: '3. Information We Do Not Collect',
+                s3Text: '<strong>We do not collect:</strong> full name, phone number, email, precise geographic location, or any sensitive personal data.',
+                s4Title: '4. Use of Information',
+                s4Text: 'Data is used only for:',
+                s4li1: 'Improving website performance and user experience.',
+                s4li2: 'Identifying the most used sections and content.',
+                s4li3: 'Developing content to match visitors\' interests.',
+                s5Title: '5. Information Sharing',
+                s5Text: 'We <strong>do not sell or share</strong> any personal data with third parties. External services (e.g., Google Analytics) may be used only to analyze usage in general without identifying users.',
+                s6Title: '6. Advertising',
+                s6Text: 'If the site contains ads (e.g., Google AdMob):',
+                s6li1: 'Ads may use advertising IDs to improve ad display.',
+                s6li2: 'No direct personal data is collected.',
+                s7Title: '7. Security',
+                s7Text: 'We use appropriate measures to protect the site and data from unauthorized access, modification, or unauthorized deletion.',
+                s8Title: '8. External Links',
+                s8Text: 'The site may contain links to external websites. We are not responsible for the privacy policies of those sites.',
+                s9Title: '9. Children\'s Privacy',
+                s9Text: 'The site is intended for educational and professional purposes and does not directly target collecting data from children.',
+                s10Title: '10. Changes to This Policy',
+                s10Text: 'We may update this privacy policy from time to time. Any updates will be posted on the site.',
+                s11Title: '11. Contact Us',
+                s11Text: 'If you have any questions about this privacy policy, you can contact us at:'
+            }
+        };
+
+        // --- الحالة الحالية للغة ---
+        let currentLang = localStorage.getItem('privacyLang') || 'ar';
+
+        // --- تطبيق اللغة ---
+        function applyLanguage(lang) {
+            const t = translations[lang];
+            if (!t) return;
+
+            // تحديث اتجاه الصفحة
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+            // تحديث النصوص
+            document.getElementById('appTitle').textContent = t.appTitle;
+            document.getElementById('mainTitle').innerHTML = t.mainTitle;
+            document.getElementById('updateDate').textContent = t.updateDate;
+            document.getElementById('s1Title').textContent = t.s1Title;
+            document.getElementById('s1Text').innerHTML = t.s1Text;
+            document.getElementById('s2Title').textContent = t.s2Title;
+            document.getElementById('s2Text').textContent = t.s2Text;
+            document.getElementById('s2li1').textContent = t.s2li1;
+            document.getElementById('s2li2').textContent = t.s2li2;
+            document.getElementById('s2li3').textContent = t.s2li3;
+            document.getElementById('s3Title').textContent = t.s3Title;
+            document.getElementById('s3Text').innerHTML = t.s3Text;
+            document.getElementById('s4Title').textContent = t.s4Title;
+            document.getElementById('s4Text').textContent = t.s4Text;
+            document.getElementById('s4li1').textContent = t.s4li1;
+            document.getElementById('s4li2').textContent = t.s4li2;
+            document.getElementById('s4li3').textContent = t.s4li3;
+            document.getElementById('s5Title').textContent = t.s5Title;
+            document.getElementById('s5Text').innerHTML = t.s5Text;
+            document.getElementById('s6Title').textContent = t.s6Title;
+            document.getElementById('s6Text').textContent = t.s6Text;
+            document.getElementById('s6li1').textContent = t.s6li1;
+            document.getElementById('s6li2').textContent = t.s6li2;
+            document.getElementById('s7Title').textContent = t.s7Title;
+            document.getElementById('s7Text').textContent = t.s7Text;
+            document.getElementById('s8Title').textContent = t.s8Title;
+            document.getElementById('s8Text').textContent = t.s8Text;
+            document.getElementById('s9Title').textContent = t.s9Title;
+            document.getElementById('s9Text').textContent = t.s9Text;
+            document.getElementById('s10Title').textContent = t.s10Title;
+            document.getElementById('s10Text').textContent = t.s10Text;
+            document.getElementById('s11Title').textContent = t.s11Title;
+            document.getElementById('s11Text').textContent = t.s11Text;
+
+            localStorage.setItem('privacyLang', lang);
+            currentLang = lang;
+        }
+
+        // --- تغيير اللغة (يتم استدعاؤها من القائمة المنسدلة) ---
+        function changeLanguage(lang) {
+            applyLanguage(lang);
+        }
+
+        // --- تحميل اللغة المحفوظة ---
+        const savedLang = localStorage.getItem('privacyLang');
+        if (savedLang && translations[savedLang]) {
+            applyLanguage(savedLang);
+        } else {
+            applyLanguage('ar');
+        }
+
+        // --- Dark Mode (مطابق تمامًا للموقع الرئيسي) ---
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const lightIcon = document.getElementById('lightIcon');
+        const darkIcon = document.getElementById('darkIcon');
+
+        function enableDarkMode() {
+            document.body.classList.add('dark-mode');
+            lightIcon.classList.add('active');
+            darkIcon.classList.remove('active');
+            localStorage.setItem('darkMode', 'enabled');
+        }
+
+        function disableDarkMode() {
+            document.body.classList.remove('dark-mode');
+            lightIcon.classList.remove('active');
+            darkIcon.classList.add('active');
+            localStorage.setItem('darkMode', 'disabled');
+        }
+
+        const savedDarkMode = localStorage.getItem('darkMode');
+        if (savedDarkMode === 'enabled') {
+            enableDarkMode();
+        } else if (savedDarkMode === 'disabled') {
+            disableDarkMode();
+        } else {
+            enableDarkMode();
+        }
+
+        darkModeToggle.addEventListener('click', function() {
+            if (document.body.classList.contains('dark-mode')) {
+                disableDarkMode();
+            } else {
+                enableDarkMode();
+            }
+        });
+
+        // --- App Bar Scroll Effect (مطابق للموقع الرئيسي) ---
+        const appBar = document.getElementById('appBar');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 20) {
+                appBar.classList.add('scrolled');
+            } else {
+                appBar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+                      </html>
