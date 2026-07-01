@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MedAtlas</title>
+    
+    <!-- SEO -->
+    <meta name="description" content="MedAtlas هو المرجع الشامل والمتكامل للأجهزة الطبية، يقدم معلومات دقيقة ومبسطة لطلاب الهندسة الطبية والفنيين." />
+    <meta name="keywords" content="أجهزة طبية, هندسة طبية, MedAtlas, مرجع طبي, صيانة أجهزة طبية" />
+    
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" />
+    
+    <style>
+        /* --- المتغيرات والتصميم الأساسي (مطابق تمامًا للموقع الرئيسي) --- */
+        :root {
+            -webkit-tap-highlight-color: transparent;
+            --TextColor: #000000;
+            --primary: #4A6CF7;
+            --primary-light: #6B8AFF;
+            --primary-glow: rgba(107, 138, 255, 0.5);
+            --secondary: #FF6B6B;
+            --background: #f5f7ff;
+            --background2: #889FF9;
+            --card: #FFFFFF;
+            --text: #2D3748;
+            --text-light: #718096;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --blur: 8px;
+            --glass-opacity: 0.85;
+            --glass-border: 1px solid rgba(255, 255, 255, 0.3);
+            --glass-background: rgba(255, 255, 255, var(--glass-opacity));
+        }
+
+        .dark-mode {
+            --TextColor: #ffffff;
+            --primary: #6B8AFF;
+            --primary-light: #8BA4FF;
+            --primary-glow: rgba(107, 138, 255, 0.5);
+            --secondary: #FF8B8B;
+            --background: #0f172a;
+            --background2: #1a223f;
+            --card: #1e293b;
+            --text: #f8fafc;
+            --text-light: #cbd5e1;
+            --shadow: 0 10px 30px rgba(107, 138, 255, 0.15);
+            --blur: 0px;
+            --glass-opacity: 0.9;
+            --glass-border: 1px solid rgba(107, 138, 255, 0.1);
+            --glass-background: rgba(30, 41, 59, var(--glass-opacity));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: var(--transition);
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: -1;
+        }
+
+        .dark-mode body::before {
+            background-color: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(10px) brightness(0.9);
+            -webkit-backdrop-filter: blur(10px) brightness(0.9);
+        }
+
+        .glass-effect {
+            background: var(--glass-background);
+            backdrop-filter: blur(var(--blur)) saturate(180%);
+            -webkit-backdrop-filter: blur(var(--blur)) saturate(180%);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: var(--glass-border);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- شريط التطبيق (مطابق للموقع الرئيسي) --- */
+        .app-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background-color: rgba(74, 108, 247, 0.9);
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-bottom: 1px solid transparent;
+            border-radius: 0;
+            transition: all 0.4s ease;
+        }
+
+        .app-bar.scrolled {
+            background-color: rgba(74, 108, 247, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 2px;
+        }
+
+        .dark-mode .app-bar {
+            background-color: rgba(26, 34, 63, 0.9);
+            box-shadow: 0 0 0px var(--primary-glow);
+        }
+
+        .dark-mode .app-bar.scrolled {
+            background-color: rgba(26, 34, 63, 0.9);
+            border-bottom: 1px solid rgba(107, 138, 255, 0.2);
+            box-shadow: 0 0 25px var(--primary-glow);
+        }
+
+        .app-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .app-title i {
+            font-size: 1.8rem;
+        }
+
+        .app-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        /* --- قائمة اللغة (مطابقة للموقع الرئيسي) --- */
+        .spinner-menu {
+            position: relative;
+            display: inline-block;
+        }
+
+        .spinner-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .spinner-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .spinner-content {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            background: var(--glass-background);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            border: var(--glass-border);
+            min-width: 150px;
+        }
+
+        .spinner-menu:hover .spinner-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .spinner-item {
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: var(--text);
+            text-decoration: none;
+            gap: 10px;
+        }
+
+        .spinner-item:hover {
+            background-color: rgba(74, 108, 247, 0.1);
+            border-radius: var(--radius);
+        }
+
+        .spinner-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        /* --- زر الوضع الداكن (مطابق للموقع الرئيسي) --- */
+        .dark-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .dark-toggle i {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .dark-toggle .active {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        /* --- الهيدر الرئيسي (مطابق لتصميم الموقع الرئيسي) --- */
+        .hero {
+            margin-top: 80px;
+            padding: 60px 24px;
+            background: var(--background2);
+            color: var(--TextColor);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        .dark-mode .hero {
+            box-shadow: 0 0 0px var(--primary-glow);
+            background: linear-gradient(160deg, #1a223f 0%, #0f172a 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 60%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-icon {
+            font-size: 4.5rem;
+            margin-bottom: 16px;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+            text-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 .highlight {
+            color: #FFD93D;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+
+        .hero .badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .hero .badge {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero .badge i {
+            font-size: 1.1rem;
+        }
+
+        /* --- الحاوية الرئيسية --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px 60px;
+        }
+
+        /* --- بطاقة الميزات (مطابقة لبطاقات الموقع الرئيسي) --- */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 50px;
+        }
+
+        .feature-card {
+            background: var(--glass-background);
+            backdrop-filter: blur(var(--blur)) saturate(180%);
+            -webkit-backdrop-filter: blur(var(--blur)) saturate(180%);
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: var(--shadow);
+            border: var(--glass-border);
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 15px 35px rgba(74, 108, 247, 0.15);
+        }
+
+        .dark-mode .feature-card:hover {
+            box-shadow: 0 15px 35px rgba(107, 138, 255, 0.2), 0 0 20px rgba(107, 138, 255, 0.1);
+        }
+
+        .feature-card .icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background-color: rgba(74, 108, 247, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+        }
+
+        .dark-mode .feature-card .icon {
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* --- محتوى الأقسام الطبية --- */
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .section-title i {
+            font-size: 1.6rem;
+            opacity: 0.8;
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            font-size: 1.05rem;
+            margin-bottom: 28px;
+        }
+
+        .dept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+
+        .dept-chip {
+            background: var(--glass-background);
+            backdrop-filter: blur(4px);
+            border: var(--glass-border);
+            border-radius: 14px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            color: var(--text);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .dept-chip:hover {
+            transform: translateY(-4px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(74, 108, 247, 0.15);
+        }
+
+        .dark-mode .dept-chip:hover {
+            box-shadow: 0 8px 24px var(--primary-glow);
+        }
+
+        .dept-chip i {
+            color: var(--primary);
+            font-size: 1.2rem;
+            width: 28px;
+            text-align: center;
+        }
+
+        /* --- تفاصيل الجهاز --- */
+        .device-demo {
+            background: var(--glass-background);
+            backdrop-filter: blur(var(--blur)) saturate(180%);
+            -webkit-backdrop-filter: blur(var(--blur)) saturate(180%);
+            border-radius: var(--radius);
+            padding: 32px 30px;
+            box-shadow: var(--shadow);
+            border: var(--glass-border);
+            margin-top: 20px;
+        }
+
+        .device-demo .demo-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid rgba(74, 108, 247, 0.1);
+        }
+
+        .device-demo .demo-header .icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(74, 108, 247, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+
+        .device-demo .demo-header h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .device-demo .demo-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .device-demo .info-item {
+            padding: 10px 0;
+            border-bottom: 1px dashed rgba(74, 108, 247, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .device-demo .info-item .label {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .device-demo .info-item .value {
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .device-demo .info-item .value i {
+            color: var(--primary);
+            margin-left: 6px;
+        }
+
+        .device-demo .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .device-demo .tags span {
+            background: rgba(74, 108, 247, 0.08);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--primary);
+            border: 1px solid rgba(74, 108, 247, 0.1);
+        }
+
+        /* --- زر التحميل --- */
+        .download-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 40px 20px;
+            background: var(--glass-background);
+            backdrop-filter: blur(var(--blur)) saturate(180%);
+            -webkit-backdrop-filter: blur(var(--blur)) saturate(180%);
+            border-radius: var(--radius);
+            border: var(--glass-border);
+            box-shadow: var(--shadow);
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 40px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(74, 108, 247, 0.35);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(74, 108, 247, 0.45);
+        }
+
+        .download-btn i {
+            font-size: 1.5rem;
+        }
+
+        .dark-mode .download-btn {
+            box-shadow: 0 8px 30px var(--primary-glow);
+        }
+
+        .dark-mode .download-btn:hover {
+            box-shadow: 0 12px 48px var(--primary-glow);
+        }
+
+        .download-note {
+            margin-top: 14px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* --- تذييل --- */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid rgba(74, 108, 247, 0.08);
+            margin-top: 20px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- استجابة --- */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero p {
+                font-size: 1.05rem;
+            }
+            .hero .badges {
+                flex-direction: column;
+                align-items: center;
+            }
+            .device-demo .demo-body {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 24px 16px 40px;
+            }
+            .app-title {
+                font-size: 1.2rem;
+            }
+            .dept-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 60px 16px 40px;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero-icon {
+                font-size: 3.5rem;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التطبيق (مطابق تمامًا للموقع الرئيسي) -->
+    <header class="app-bar glass-effect" id="appBar">
+        <div class="app-title" id="appTitle">
+            <i class="fas fa-heartbeat"></i>
+            <span>MedAtlas</span>
+        </div>
+        <div class="app-actions">
+            <!-- Language Spinner Menu (مطابق للموقع الرئيسي) -->
+            <div class="spinner-menu">
+                <button class="spinner-btn">
+                    <i class="fas fa-language"></i>
+                </button>
+                <div class="spinner-content glass-effect">
+                    <div class="spinner-item" onclick="changeLanguage('ar')">
+                        <i class="fas fa-language"></i>
+                        <span>العربية</span>
+                    </div>
+                    <div class="spinner-item" onclick="changeLanguage('en')">
+                        <i class="fas fa-language"></i>
+                        <span>English</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dark Mode Toggle (مطابق للموقع الرئيسي) -->
+            <div class="dark-toggle" id="darkModeToggle">
+                <i class="fas fa-sun" id="lightIcon"></i>
+                <i class="fas fa-moon active" id="darkIcon"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- الهيدر -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-icon">📚</div>
+            <h1 id="heroTitle">مرجع <span class="highlight">الأجهزة الطبية</span> الشامل</h1>
+            <p id="heroDesc">
+                MedAtlas هو مرجع متكامل يقدم معلومات علمية دقيقة ومبسطة عن جميع الأجهزة الطبية المستخدمة في المستشفيات والمجال الطبي والهندسة الطبية الحيوية.
+            </p>
+            <div class="badges">
+                <span class="badge"><i class="fas fa-graduation-cap"></i> <span id="badge1">للطلاب والفنيين</span></span>
+                <span class="badge"><i class="fas fa-hospital"></i> <span id="badge2">15+ قسم طبي</span></span>
+                <span class="badge"><i class="fas fa-microscope"></i> <span id="badge3">200+ جهاز</span></span>
+                <span class="badge"><i class="fas fa-user-md"></i> <span id="badge4">مرجع موثوق</span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- المحتوى -->
+    <main class="container">
+        <!-- الميزات -->
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="icon"><i class="fas fa-info-circle"></i></div>
+                <h3 id="feature1Title">شرح مفصل لكل جهاز</h3>
+                <p id="feature1Desc">تعريف الجهاز، وظيفته، مبدأ العمل، الاستخدامات الطبية، والمكونات الأساسية.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon"><i class="fas fa-th-large"></i></div>
+                <h3 id="feature2Title">تصنيف حسب الأقسام</h3>
+                <p id="feature2Desc">الطوارئ، العناية المركزة، العمليات، المختبرات، الأشعة، القلب، والمزيد.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon"><i class="fas fa-industry"></i></div>
+                <h3 id="feature3Title">الشركات والأنواع</h3>
+                <p id="feature3Desc">معلومات عن الشركات المصنعة، الأنواع المختلفة، والأجهزة المشابهة والمكملة.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon"><i class="fas fa-image"></i></div>
+                <h3 id="feature4Title">صور توضيحية</h3>
+                <p id="feature4Desc">صور عالية الجودة تساعد في التعرف على الأجهزة وفهم مكوناتها بشكل أفضل.</p>
+            </div>
+        </div>
+
+        <!-- الأقسام الطبية -->
+        <h2 class="section-title"><i class="fas fa-hospital"></i> <span id="deptTitle">الأقسام الطبية</span></h2>
+        <p class="section-subtitle" id="deptSubtitle">تصفح الأجهزة حسب التخصص الطبي</p>
+        <div class="dept-grid" id="deptGrid">
+            <div class="dept-chip"><i class="fas fa-bolt"></i> <span>الطوارئ</span></div>
+            <div class="dept-chip"><i class="fas fa-heart"></i> <span>العناية المركزة</span></div>
+            <div class="dept-chip"><i class="fas fa-scalpel"></i> <span>العمليات</span></div>
+            <div class="dept-chip"><i class="fas fa-flask"></i> <span>المختبرات</span></div>
+            <div class="dept-chip"><i class="fas fa-x-ray"></i> <span>الأشعة</span></div>
+            <div class="dept-chip"><i class="fas fa-heartbeat"></i> <span>القلب</span></div>
+            <div class="dept-chip"><i class="fas fa-brain"></i> <span>الأعصاب</span></div>
+            <div class="dept-chip"><i class="fas fa-baby"></i> <span>الأطفال</span></div>
+            <div class="dept-chip"><i class="fas fa-eye"></i> <span>العيون</span></div>
+            <div class="dept-chip"><i class="fas fa-tooth"></i> <span>الأسنان</span></div>
+            <div class="dept-chip"><i class="fas fa-lungs"></i> <span>الجهاز التنفسي</span></div>
+            <div class="dept-chip"><i class="fas fa-bone"></i> <span>العظام</span></div>
+            <div class="dept-chip"><i class="fas fa-stethoscope"></i> <span>الباطنية</span></div>
+            <div class="dept-chip"><i class="fas fa-microscope"></i> <span>الأنسجة</span></div>
+            <div class="dept-chip"><i class="fas fa-vial"></i> <span>التحاليل</span></div>
+        </div>
+
+        <!-- نموذج لعرض جهاز -->
+        <h2 class="section-title" style="margin-top: 20px;"><i class="fas fa-microscope"></i> <span id="demoTitle">نموذج: جهاز طبي</span></h2>
+        <p class="section-subtitle" id="demoSubtitle">مثال على كيفية عرض معلومات الجهاز داخل التطبيق</p>
+        <div class="device-demo">
+            <div class="demo-header">
+                <div class="icon"><i class="fas fa-microscope"></i></div>
+                <h3 id="deviceName">جهاز تحليل الدم الآلي (Hematology Analyzer)</h3>
+            </div>
+            <div class="demo-body">
+                <div>
+                    <div class="info-item"><span class="label" id="defLabel">التعريف</span><span class="value" id="defValue">جهاز يستخدم لتحليل عينات الدم</span></div>
+                    <div class="info-item"><span class="label" id="workLabel">مبدأ العمل</span><span class="value" id="workValue">العد الكهربائي والليزر</span></div>
+                    <div class="info-item"><span class="label" id="useLabel">الاستخدامات</span><span class="value" id="useValue">تعداد خلايا الدم، تشخيص الأمراض</span></div>
+                    <div class="info-item"><span class="label" id="compLabel">المكونات</span><span class="value" id="compValue">مضخة، كاشف، شاشة، برمجيات</span></div>
+                </div>
+                <div>
+                    <div class="info-item"><span class="label" id="typeLabel">الأنواع</span><span class="value" id="typeValue">3-جزئي، 5-جزئي، كامل</span></div>
+                    <div class="info-item"><span class="label" id="brandLabel">الشركات</span><span class="value" id="brandValue">Sysmex, Beckman Coulter, Abbott</span></div>
+                    <div class="info-item"><span class="label" id="similarLabel">أجهزة مشابهة</span><span class="value" id="similarValue"><i class="fas fa-arrow-left"></i> محلل الكيمياء الحيوية</span></div>
+                    <div class="tags">
+                        <span id="tag1">معايرة</span>
+                        <span id="tag2">صيانة</span>
+                        <span id="tag3">دقة عالية</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- زر التحميل -->
+        <div class="download-section">
+            <a href="#" class="download-btn" id="downloadBtn">
+                <i class="fas fa-download"></i>
+                <span id="downloadText">تحميل تطبيق MedAtlas</span>
+            </a>
+            <p class="download-note" id="downloadNote">📱 قريباً على متجر التطبيقات</p>
+        </div>
+    </main>
+
+    <!-- تذييل -->
+    <footer class="footer">
+        <p>
+            <i class="fas fa-copyright"></i> 2026 MedAtlas | 
+            <span id="footerDesign">تصميم</span> <a href="index.html" id="footerName">المهندس الحسين مطير</a> | 
+            <a href="privacy.html" id="footerPrivacy">سياسة الخصوصية</a>
+        </p>
+    </footer>
+
+    <script>
+        // --- الترجمات ---
+        const translations = {
+            ar: {
+                appTitle: 'MedAtlas',
+                heroTitle: 'مرجع <span class="highlight">الأجهزة الطبية</span> الشامل',
+                heroDesc: 'MedAtlas هو مرجع متكامل يقدم معلومات علمية دقيقة ومبسطة عن جميع الأجهزة الطبية المستخدمة في المستشفيات والمجال الطبي والهندسة الطبية الحيوية.',
+                badge1: 'للطلاب والفنيين',
+                badge2: '15+ قسم طبي',
+                badge3: '200+ جهاز',
+                badge4: 'مرجع موثوق',
+                feature1Title: 'شرح مفصل لكل جهاز',
+                feature1Desc: 'تعريف الجهاز، وظيفته، مبدأ العمل، الاستخدامات الطبية، والمكونات الأساسية.',
+                feature2Title: 'تصنيف حسب الأقسام',
+                feature2Desc: 'الطوارئ، العناية المركزة، العمليات، المختبرات، الأشعة، القلب، والمزيد.',
+                feature3Title: 'الشركات والأنواع',
+                feature3Desc: 'معلومات عن الشركات المصنعة، الأنواع المختلفة، والأجهزة المشابهة والمكملة.',
+                feature4Title: 'صور توضيحية',
+                feature4Desc: 'صور عالية الجودة تساعد في التعرف على الأجهزة وفهم مكوناتها بشكل أفضل.',
+                deptTitle: 'الأقسام الطبية',
+                deptSubtitle: 'تصفح الأجهزة حسب التخصص الطبي',
+                demoTitle: 'نموذج: جهاز طبي',
+                demoSubtitle: 'مثال على كيفية عرض معلومات الجهاز داخل التطبيق',
+                deviceName: 'جهاز تحليل الدم الآلي (Hematology Analyzer)',
+                defLabel: 'التعريف',
+                defValue: 'جهاز يستخدم لتحليل عينات الدم',
+                workLabel: 'مبدأ العمل',
+                workValue: 'العد الكهربائي والليزر',
+                useLabel: 'الاستخدامات',
+                useValue: 'تعداد خلايا الدم، تشخيص الأمراض',
+                compLabel: 'المكونات',
+                compValue: 'مضخة، كاشف، شاشة، برمجيات',
+                typeLabel: 'الأنواع',
+                typeValue: '3-جزئي، 5-جزئي، كامل',
+                brandLabel: 'الشركات',
+                brandValue: 'Sysmex, Beckman Coulter, Abbott',
+                similarLabel: 'أجهزة مشابهة',
+                similarValue: 'محلل الكيمياء الحيوية',
+                tag1: 'معايرة',
+                tag2: 'صيانة',
+                tag3: 'دقة عالية',
+                downloadText: 'تحميل تطبيق MedAtlas',
+                downloadNote: '📱 قريباً على متجر التطبيقات',
+                footerDesign: 'تصميم',
+                footerName: 'المهندس الحسين مطير',
+                footerPrivacy: 'سياسة الخصوصية'
+            },
+            en: {
+                appTitle: 'MedAtlas',
+                heroTitle: 'The Comprehensive <span class="highlight">Medical Devices</span> Reference',
+                heroDesc: 'MedAtlas is an integrated reference that provides accurate and simplified scientific information about all medical devices used in hospitals, the medical field, and biomedical engineering.',
+                badge1: 'For Students & Technicians',
+                badge2: '15+ Medical Departments',
+                badge3: '200+ Devices',
+                badge4: 'Trusted Reference',
+                feature1Title: 'Detailed Device Explanation',
+                feature1Desc: 'Device definition, function, working principle, medical uses, and basic components.',
+                feature2Title: 'Classified by Departments',
+                feature2Desc: 'Emergency, ICU, Surgery, Laboratories, Radiology, Cardiology, and more.',
+                feature3Title: 'Manufacturers & Types',
+                feature3Desc: 'Information about manufacturers, different types, and similar or complementary devices.',
+                feature4Title: 'Illustrative Images',
+                feature4Desc: 'High-quality images to help identify devices and better understand their components.',
+                deptTitle: 'Medical Departments',
+                deptSubtitle: 'Browse devices by medical specialty',
+                demoTitle: 'Sample: Medical Device',
+                demoSubtitle: 'Example of how device information is displayed in the app',
+                deviceName: 'Hematology Analyzer',
+                defLabel: 'Definition',
+                defValue: 'Device used for blood sample analysis',
+                workLabel: 'Working Principle',
+                workValue: 'Electrical impedance and laser',
+                useLabel: 'Uses',
+                useValue: 'Blood cell counting, disease diagnosis',
+                compLabel: 'Components',
+                compValue: 'Pump, Detector, Screen, Software',
+                typeLabel: 'Types',
+                typeValue: '3-part, 5-part, Full',
+                brandLabel: 'Manufacturers',
+                brandValue: 'Sysmex, Beckman Coulter, Abbott',
+                similarLabel: 'Similar Devices',
+                similarValue: 'Biochemistry Analyzer',
+                tag1: 'Calibration',
+                tag2: 'Maintenance',
+                tag3: 'High Precision',
+                downloadText: 'Download MedAtlas App',
+                downloadNote: '📱 Coming soon to the App Store',
+                footerDesign: 'Designed by',
+                footerName: 'Engineer Al Hussein Mutair',
+                footerPrivacy: 'Privacy Policy'
+            }
+        };
+
+        // --- الحالة الحالية للغة ---
+        let currentLang = localStorage.getItem('medatlasLang') || 'ar';
+
+        // --- تطبيق اللغة ---
+        function applyLanguage(lang) {
+            const t = translations[lang];
+            if (!t) return;
+
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+            // تحديث النصوص
+            document.getElementById('appTitle').innerHTML = t.appTitle;
+            document.getElementById('heroTitle').innerHTML = t.heroTitle;
+            document.getElementById('heroDesc').textContent = t.heroDesc;
+            document.getElementById('badge1').textContent = t.badge1;
+            document.getElementById('badge2').textContent = t.badge2;
+            document.getElementById('badge3').textContent = t.badge3;
+            document.getElementById('badge4').textContent = t.badge4;
+            document.getElementById('feature1Title').textContent = t.feature1Title;
+            document.getElementById('feature1Desc').textContent = t.feature1Desc;
+            document.getElementById('feature2Title').textContent = t.feature2Title;
+            document.getElementById('feature2Desc').textContent = t.feature2Desc;
+            document.getElementById('feature3Title').textContent = t.feature3Title;
+            document.getElementById('feature3Desc').textContent = t.feature3Desc;
+            document.getElementById('feature4Title').textContent = t.feature4Title;
+            document.getElementById('feature4Desc').textContent = t.feature4Desc;
+            document.getElementById('deptTitle').textContent = t.deptTitle;
+            document.getElementById('deptSubtitle').textContent = t.deptSubtitle;
+            document.getElementById('demoTitle').textContent = t.demoTitle;
+            document.getElementById('demoSubtitle').textContent = t.demoSubtitle;
+            document.getElementById('deviceName').textContent = t.deviceName;
+            document.getElementById('defLabel').textContent = t.defLabel;
+            document.getElementById('defValue').textContent = t.defValue;
+            document.getElementById('workLabel').textContent = t.workLabel;
+            document.getElementById('workValue').textContent = t.workValue;
+            document.getElementById('useLabel').textContent = t.useLabel;
+            document.getElementById('useValue').textContent = t.useValue;
+            document.getElementById('compLabel').textContent = t.compLabel;
+            document.getElementById('compValue').textContent = t.compValue;
+            document.getElementById('typeLabel').textContent = t.typeLabel;
+            document.getElementById('typeValue').textContent = t.typeValue;
+            document.getElementById('brandLabel').textContent = t.brandLabel;
+            document.getElementById('brandValue').textContent = t.brandValue;
+            document.getElementById('similarLabel').textContent = t.similarLabel;
+            document.getElementById('similarValue').innerHTML = t.similarValue;
+            document.getElementById('tag1').textContent = t.tag1;
+            document.getElementById('tag2').textContent = t.tag2;
+            document.getElementById('tag3').textContent = t.tag3;
+            document.getElementById('downloadText').textContent = t.downloadText;
+            document.getElementById('downloadNote').textContent = t.downloadNote;
+            document.getElementById('footerDesign').textContent = t.footerDesign;
+            document.getElementById('footerName').textContent = t.footerName;
+            document.getElementById('footerPrivacy').textContent = t.footerPrivacy;
+
+            // تحديث محتوى أقسام الطب (بما أن بعضها بالعربية فقط)
+            const deptNames = document.querySelectorAll('.dept-chip span');
+            const deptTranslations = {
+                ar: ['الطوارئ', 'العناية المركزة', 'العمليات', 'المختبرات', 'الأشعة', 'القلب', 'الأعصاب', 'الأطفال', 'العيون', 'الأسنان', 'الجهاز التنفسي', 'العظام', 'الباطنية', 'الأنسجة', 'التحاليل'],
+                en: ['Emergency', 'ICU', 'Surgery', 'Laboratories', 'Radiology', 'Cardiology', 'Neurology', 'Pediatrics', 'Ophthalmology', 'Dentistry', 'Respiratory', 'Orthopedics', 'Internal Medicine', 'Histology', 'Analytics']
+            };
+            deptNames.forEach((el, index) => {
+                if (deptTranslations[lang] && index < deptTranslations[lang].length) {
+                    el.textContent = deptTranslations[lang][index];
+                }
+            });
+
+            localStorage.setItem('medatlasLang', lang);
+            currentLang = lang;
+        }
+
+        // --- تغيير اللغة ---
+        function changeLanguage(lang) {
+            applyLanguage(lang);
+        }
+
+        // --- تحميل اللغة المحفوظة ---
+        const savedLang = localStorage.getItem('medatlasLang');
+        if (savedLang && translations[savedLang]) {
+            applyLanguage(savedLang);
+        } else {
+            applyLanguage('ar');
+        }
+
+        // --- Dark Mode (مطابق تمامًا للموقع الرئيسي) ---
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const lightIcon = document.getElementById('lightIcon');
+        const darkIcon = document.getElementById('darkIcon');
+
+        function enableDarkMode() {
+            document.body.classList.add('dark-mode');
+            lightIcon.classList.add('active');
+            darkIcon.classList.remove('active');
+            localStorage.setItem('darkMode', 'enabled');
+        }
+
+        function disableDarkMode() {
+            document.body.classList.remove('dark-mode');
+            lightIcon.classList.remove('active');
+            darkIcon.classList.add('active');
+            localStorage.setItem('darkMode', 'disabled');
+        }
+
+        const savedDarkMode = localStorage.getItem('darkMode');
+        if (savedDarkMode === 'enabled') {
+            enableDarkMode();
+        } else if (savedDarkMode === 'disabled') {
+            disableDarkMode();
+        } else {
+            enableDarkMode();
+        }
+
+        darkModeToggle.addEventListener('click', function() {
+            if (document.body.classList.contains('dark-mode')) {
+                disableDarkMode();
+            } else {
+                enableDarkMode();
+            }
+        });
+
+        // --- App Bar Scroll Effect (مطابق للموقع الرئيسي) ---
+        const appBar = document.getElementById('appBar');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 20) {
+                appBar.classList.add('scrolled');
+            } else {
+                appBar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+                                                                                                        </html>
