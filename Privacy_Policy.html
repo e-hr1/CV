@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>سياسة الخصوصية | Privacy Policy </title>
+    <title>سياسة الخصوصية - MedAtlas</title>
     <!-- رابط الخطوط والأيقونات -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" />
     <style>
-        /* --- المتغيرات والتصميم الأساسي (مطابق تمامًا للموقع الرئيسي) --- */
+        /* --- المتغيرات والتصميم الأساسي (مطابق تمامًا لتطبيق MedAtlas) --- */
         :root {
             -webkit-tap-highlight-color: transparent;
             --TextColor: #000000;
@@ -64,6 +64,7 @@
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
+            min-height: 100vh;
         }
 
         body::before {
@@ -94,7 +95,7 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
 
-        /* --- App Bar (مطابق للموقع الرئيسي) --- */
+        /* --- App Bar (مطابق لتطبيق MedAtlas) --- */
         .app-bar {
             position: fixed;
             top: 0;
@@ -139,6 +140,13 @@
             font-size: 1.5rem;
             font-weight: 500;
             flex-grow: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .app-title i {
+            font-size: 1.8rem;
         }
 
         .app-actions {
@@ -147,7 +155,7 @@
             align-items: center;
         }
 
-        /* --- زر تبديل اللغة (مطابق لتصميم الموقع الرئيسي) --- */
+        /* --- زر تبديل اللغة (مطابق لتطبيق MedAtlas) --- */
         .spinner-menu {
             position: relative;
             display: inline-block;
@@ -217,7 +225,7 @@
             text-align: center;
         }
 
-        /* --- زر الوضع الداكن (مطابق للموقع الرئيسي) --- */
+        /* --- زر الوضع الداكن (مطابق لتطبيق MedAtlas) --- */
         .dark-toggle {
             display: flex;
             align-items: center;
@@ -420,11 +428,14 @@
     </style>
 </head>
 <body>
-    <!-- App Bar (مطابق تمامًا للموقع الرئيسي) -->
+    <!-- App Bar (مطابق تمامًا لتطبيق MedAtlas) -->
     <div class="app-bar glass-effect" id="appBar">
-        <div class="app-title" id="appTitle">سياسة الخصوصية</div>
+        <div class="app-title" id="appTitle">
+            <i class="fas fa-heartbeat"></i>
+            <span>MedAtlas</span>
+        </div>
         <div class="app-actions">
-            <!-- Language Spinner Menu (نفس تصميم الموقع الرئيسي) -->
+            <!-- Language Spinner Menu -->
             <div class="spinner-menu">
                 <button class="spinner-btn">
                     <i class="fas fa-language"></i>
@@ -441,7 +452,7 @@
                 </div>
             </div>
             
-            <!-- Dark Mode Toggle (نفس تصميم الموقع الرئيسي) -->
+            <!-- Dark Mode Toggle -->
             <div class="dark-toggle" id="darkModeToggle">
                 <i class="fas fa-sun" id="lightIcon"></i>
                 <i class="fas fa-moon active" id="darkIcon"></i>
@@ -464,7 +475,7 @@
             <!-- القسم 1 -->
             <div class="privacy-section">
                 <h2><i class="fas fa-info-circle"></i> <span id="s1Title">1. مقدمة</span></h2>
-                <p id="s1Text">نحن نحترم خصوصيتك ونلتزم بحماية بياناتك. يوضح هذا المستند كيفية تعامل موقع <strong>الحسين مطير</strong> (المهندس) مع المعلومات عند استخدامك له.</p>
+                <p id="s1Text">نحن في <strong>MedAtlas</strong> نحترم خصوصيتك ونلتزم بحماية بياناتك. يوضح هذا المستند كيفية تعامل تطبيق MedAtlas مع المعلومات عند استخدامك له.</p>
             </div>
 
             <!-- القسم 2 -->
@@ -472,7 +483,7 @@
                 <h2><i class="fas fa-database"></i> <span id="s2Title">2. المعلومات التي نقوم بجمعها</span></h2>
                 <p id="s2Text">قد يتم جمع بعض البيانات بشكل عام لتحسين التجربة، مثل:</p>
                 <ul>
-                    <li id="s2li1">بيانات الاستخدام داخل الموقع (مثل الصفحات الأكثر زيارة).</li>
+                    <li id="s2li1">بيانات الاستخدام داخل التطبيق (مثل الأقسام والأجهزة الأكثر زيارة).</li>
                     <li id="s2li2">معلومات الجهاز (نوع الجهاز، نظام التشغيل).</li>
                     <li id="s2li3">تقارير الأعطال (إن وجدت).</li>
                 </ul>
@@ -491,9 +502,9 @@
                 <h2><i class="fas fa-chart-line"></i> <span id="s4Title">4. استخدام المعلومات</span></h2>
                 <p id="s4Text">تُستخدم البيانات فقط من أجل:</p>
                 <ul>
-                    <li id="s4li1">تحسين أداء الموقع وتجربة المستخدم.</li>
+                    <li id="s4li1">تحسين أداء التطبيق وتجربة المستخدم.</li>
                     <li id="s4li2">معرفة أكثر الأقسام والمحتوى استخدامًا.</li>
-                    <li id="s4li3">تطوير المحتوى بما يتناسب مع اهتمامات الزوار.</li>
+                    <li id="s4li3">تطوير المحتوى بما يتناسب مع اهتمامات المستخدمين.</li>
                 </ul>
             </div>
 
@@ -506,7 +517,7 @@
             <!-- القسم 6 -->
             <div class="privacy-section">
                 <h2><i class="fas fa-ad"></i> <span id="s6Title">6. الإعلانات</span></h2>
-                <p id="s6Text">إذا كان الموقع يحتوي على إعلانات (مثل Google AdMob):</p>
+                <p id="s6Text">إذا كان التطبيق يحتوي على إعلانات (مثل Google AdMob):</p>
                 <ul>
                     <li id="s6li1">قد تستخدم الإعلانات معرف الإعلانات لتحسين عرض الإعلانات.</li>
                     <li id="s6li2">لا يتم جمع بيانات شخصية مباشرة.</li>
@@ -516,25 +527,25 @@
             <!-- القسم 7 -->
             <div class="privacy-section">
                 <h2><i class="fas fa-lock"></i> <span id="s7Title">7. الأمان</span></h2>
-                <p id="s7Text">نستخدم وسائل مناسبة لحماية الموقع والبيانات من الوصول غير المصرح به، التعديل، أو الحذف غير المسموح.</p>
+                <p id="s7Text">نستخدم وسائل مناسبة لحماية التطبيق والبيانات من الوصول غير المصرح به، التعديل، أو الحذف غير المسموح.</p>
             </div>
 
             <!-- القسم 8 -->
             <div class="privacy-section">
                 <h2><i class="fas fa-external-link-alt"></i> <span id="s8Title">8. روابط خارجية</span></h2>
-                <p id="s8Text">قد يحتوي الموقع على روابط لمواقع خارجية. نحن غير مسؤولين عن سياسات الخصوصية الخاصة بتلك المواقع.</p>
+                <p id="s8Text">قد يحتوي التطبيق على روابط لمواقع خارجية. نحن غير مسؤولين عن سياسات الخصوصية الخاصة بتلك المواقع.</p>
             </div>
 
             <!-- القسم 9 -->
             <div class="privacy-section">
                 <h2><i class="fas fa-child"></i> <span id="s9Title">9. خصوصية الأطفال</span></h2>
-                <p id="s9Text">الموقع موجه للأغراض التعليمية والمهنية، ولا يستهدف جمع بيانات من الأطفال بشكل مباشر.</p>
+                <p id="s9Text">التطبيق موجه للأغراض التعليمية والمهنية، ولا يستهدف جمع بيانات من الأطفال بشكل مباشر.</p>
             </div>
 
             <!-- القسم 10 -->
             <div class="privacy-section">
                 <h2><i class="fas fa-edit"></i> <span id="s10Title">10. التعديلات على السياسة</span></h2>
-                <p id="s10Text">قد نقوم بتحديث سياسة الخصوصية من وقت لآخر. سيتم نشر أي تحديث داخل الموقع.</p>
+                <p id="s10Text">قد نقوم بتحديث سياسة الخصوصية من وقت لآخر. سيتم نشر أي تحديث داخل التطبيق.</p>
             </div>
 
             <!-- القسم 11 -->
@@ -553,79 +564,79 @@
         // --- الترجمات ---
         const translations = {
             ar: {
-                appTitle: 'سياسة الخصوصية',
+                appTitle: 'MedAtlas',
                 mainTitle: '🔒 سياسة الخصوصية',
                 updateDate: 'آخر تحديث: 1 يوليو 2026',
                 s1Title: '1. مقدمة',
-                s1Text: 'نحن نحترم خصوصيتك ونلتزم بحماية بياناتك. يوضح هذا المستند كيفية تعامل موقع <strong>الحسين مطير</strong> (المهندس) مع المعلومات عند استخدامك له.',
+                s1Text: 'نحن في <strong>MedAtlas</strong> نحترم خصوصيتك ونلتزم بحماية بياناتك. يوضح هذا المستند كيفية تعامل تطبيق MedAtlas مع المعلومات عند استخدامك له.',
                 s2Title: '2. المعلومات التي نقوم بجمعها',
                 s2Text: 'قد يتم جمع بعض البيانات بشكل عام لتحسين التجربة، مثل:',
-                s2li1: 'بيانات الاستخدام داخل الموقع (مثل الصفحات الأكثر زيارة).',
+                s2li1: 'بيانات الاستخدام داخل التطبيق (مثل الأقسام والأجهزة الأكثر زيارة).',
                 s2li2: 'معلومات الجهاز (نوع الجهاز، نظام التشغيل).',
                 s2li3: 'تقارير الأعطال (إن وجدت).',
                 s3Title: '3. المعلومات التي لا نجمعها',
                 s3Text: '<strong>نحن لا نقوم بجمع:</strong> الاسم الكامل، رقم الهاتف، البريد الإلكتروني، الموقع الجغرافي الدقيق، أو أي بيانات شخصية حساسة.',
                 s4Title: '4. استخدام المعلومات',
                 s4Text: 'تُستخدم البيانات فقط من أجل:',
-                s4li1: 'تحسين أداء الموقع وتجربة المستخدم.',
+                s4li1: 'تحسين أداء التطبيق وتجربة المستخدم.',
                 s4li2: 'معرفة أكثر الأقسام والمحتوى استخدامًا.',
-                s4li3: 'تطوير المحتوى بما يتناسب مع اهتمامات الزوار.',
+                s4li3: 'تطوير المحتوى بما يتناسب مع اهتمامات المستخدمين.',
                 s5Title: '5. مشاركة المعلومات',
                 s5Text: 'نحن <strong>لا نبيع أو نشارك</strong> أي بيانات شخصية مع أي طرف ثالث. قد يتم استخدام خدمات خارجية (مثل Google Analytics) فقط لتحليل الاستخدام بشكل عام دون تحديد هوية المستخدم.',
                 s6Title: '6. الإعلانات',
-                s6Text: 'إذا كان الموقع يحتوي على إعلانات (مثل Google AdMob):',
+                s6Text: 'إذا كان التطبيق يحتوي على إعلانات (مثل Google AdMob):',
                 s6li1: 'قد تستخدم الإعلانات معرف الإعلانات لتحسين عرض الإعلانات.',
                 s6li2: 'لا يتم جمع بيانات شخصية مباشرة.',
                 s7Title: '7. الأمان',
-                s7Text: 'نستخدم وسائل مناسبة لحماية الموقع والبيانات من الوصول غير المصرح به، التعديل، أو الحذف غير المسموح.',
+                s7Text: 'نستخدم وسائل مناسبة لحماية التطبيق والبيانات من الوصول غير المصرح به، التعديل، أو الحذف غير المسموح.',
                 s8Title: '8. روابط خارجية',
-                s8Text: 'قد يحتوي الموقع على روابط لمواقع خارجية. نحن غير مسؤولين عن سياسات الخصوصية الخاصة بتلك المواقع.',
+                s8Text: 'قد يحتوي التطبيق على روابط لمواقع خارجية. نحن غير مسؤولين عن سياسات الخصوصية الخاصة بتلك المواقع.',
                 s9Title: '9. خصوصية الأطفال',
-                s9Text: 'الموقع موجه للأغراض التعليمية والمهنية، ولا يستهدف جمع بيانات من الأطفال بشكل مباشر.',
+                s9Text: 'التطبيق موجه للأغراض التعليمية والمهنية، ولا يستهدف جمع بيانات من الأطفال بشكل مباشر.',
                 s10Title: '10. التعديلات على السياسة',
-                s10Text: 'قد نقوم بتحديث سياسة الخصوصية من وقت لآخر. سيتم نشر أي تحديث داخل الموقع.',
+                s10Text: 'قد نقوم بتحديث سياسة الخصوصية من وقت لآخر. سيتم نشر أي تحديث داخل التطبيق.',
                 s11Title: '11. التواصل معنا',
                 s11Text: 'إذا كان لديك أي استفسار حول سياسة الخصوصية، يمكنك التواصل معنا عبر:'
             },
             en: {
-                appTitle: 'Privacy Policy',
+                appTitle: 'MedAtlas',
                 mainTitle: '🔒 Privacy Policy',
                 updateDate: 'Last Updated: July 1, 2026',
                 s1Title: '1. Introduction',
-                s1Text: 'We respect your privacy and are committed to protecting your data. This document explains how <strong>Al Hussein Mutair</strong> (Engineer) website handles information when you use it.',
+                s1Text: 'We at <strong>MedAtlas</strong> respect your privacy and are committed to protecting your data. This document explains how the MedAtlas app handles information when you use it.',
                 s2Title: '2. Information We Collect',
                 s2Text: 'Some general data may be collected to improve the experience, such as:',
-                s2li1: 'Usage data within the site (e.g., most visited pages).',
+                s2li1: 'Usage data within the app (e.g., most visited sections and devices).',
                 s2li2: 'Device information (device type, operating system).',
                 s2li3: 'Error reports (if any).',
                 s3Title: '3. Information We Do Not Collect',
                 s3Text: '<strong>We do not collect:</strong> full name, phone number, email, precise geographic location, or any sensitive personal data.',
                 s4Title: '4. Use of Information',
                 s4Text: 'Data is used only for:',
-                s4li1: 'Improving website performance and user experience.',
+                s4li1: 'Improving app performance and user experience.',
                 s4li2: 'Identifying the most used sections and content.',
-                s4li3: 'Developing content to match visitors\' interests.',
+                s4li3: 'Developing content to match users\' interests.',
                 s5Title: '5. Information Sharing',
                 s5Text: 'We <strong>do not sell or share</strong> any personal data with third parties. External services (e.g., Google Analytics) may be used only to analyze usage in general without identifying users.',
                 s6Title: '6. Advertising',
-                s6Text: 'If the site contains ads (e.g., Google AdMob):',
+                s6Text: 'If the app contains ads (e.g., Google AdMob):',
                 s6li1: 'Ads may use advertising IDs to improve ad display.',
                 s6li2: 'No direct personal data is collected.',
                 s7Title: '7. Security',
-                s7Text: 'We use appropriate measures to protect the site and data from unauthorized access, modification, or unauthorized deletion.',
+                s7Text: 'We use appropriate measures to protect the app and data from unauthorized access, modification, or unauthorized deletion.',
                 s8Title: '8. External Links',
-                s8Text: 'The site may contain links to external websites. We are not responsible for the privacy policies of those sites.',
+                s8Text: 'The app may contain links to external websites. We are not responsible for the privacy policies of those sites.',
                 s9Title: '9. Children\'s Privacy',
-                s9Text: 'The site is intended for educational and professional purposes and does not directly target collecting data from children.',
+                s9Text: 'The app is intended for educational and professional purposes and does not directly target collecting data from children.',
                 s10Title: '10. Changes to This Policy',
-                s10Text: 'We may update this privacy policy from time to time. Any updates will be posted on the site.',
+                s10Text: 'We may update this privacy policy from time to time. Any updates will be posted within the app.',
                 s11Title: '11. Contact Us',
                 s11Text: 'If you have any questions about this privacy policy, you can contact us at:'
             }
         };
 
         // --- الحالة الحالية للغة ---
-        let currentLang = localStorage.getItem('privacyLang') || 'ar';
+        let currentLang = localStorage.getItem('medatlasPrivacyLang') || 'ar';
 
         // --- تطبيق اللغة ---
         function applyLanguage(lang) {
@@ -637,7 +648,7 @@
             document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
 
             // تحديث النصوص
-            document.getElementById('appTitle').textContent = t.appTitle;
+            document.getElementById('appTitle').innerHTML = `<i class="fas fa-heartbeat"></i> <span>${t.appTitle}</span>`;
             document.getElementById('mainTitle').innerHTML = t.mainTitle;
             document.getElementById('updateDate').textContent = t.updateDate;
             document.getElementById('s1Title').textContent = t.s1Title;
@@ -671,7 +682,7 @@
             document.getElementById('s11Title').textContent = t.s11Title;
             document.getElementById('s11Text').textContent = t.s11Text;
 
-            localStorage.setItem('privacyLang', lang);
+            localStorage.setItem('medatlasPrivacyLang', lang);
             currentLang = lang;
         }
 
@@ -681,14 +692,14 @@
         }
 
         // --- تحميل اللغة المحفوظة ---
-        const savedLang = localStorage.getItem('privacyLang');
+        const savedLang = localStorage.getItem('medatlasPrivacyLang');
         if (savedLang && translations[savedLang]) {
             applyLanguage(savedLang);
         } else {
             applyLanguage('ar');
         }
 
-        // --- Dark Mode (مطابق تمامًا للموقع الرئيسي) ---
+        // --- Dark Mode (مطابق تمامًا لتطبيق MedAtlas) ---
         const darkModeToggle = document.getElementById('darkModeToggle');
         const lightIcon = document.getElementById('lightIcon');
         const darkIcon = document.getElementById('darkIcon');
@@ -697,17 +708,17 @@
             document.body.classList.add('dark-mode');
             lightIcon.classList.add('active');
             darkIcon.classList.remove('active');
-            localStorage.setItem('darkMode', 'enabled');
+            localStorage.setItem('medatlasDarkMode', 'enabled');
         }
 
         function disableDarkMode() {
             document.body.classList.remove('dark-mode');
             lightIcon.classList.remove('active');
             darkIcon.classList.add('active');
-            localStorage.setItem('darkMode', 'disabled');
+            localStorage.setItem('medatlasDarkMode', 'disabled');
         }
 
-        const savedDarkMode = localStorage.getItem('darkMode');
+        const savedDarkMode = localStorage.getItem('medatlasDarkMode');
         if (savedDarkMode === 'enabled') {
             enableDarkMode();
         } else if (savedDarkMode === 'disabled') {
@@ -724,7 +735,7 @@
             }
         });
 
-        // --- App Bar Scroll Effect (مطابق للموقع الرئيسي) ---
+        // --- App Bar Scroll Effect ---
         const appBar = document.getElementById('appBar');
         window.addEventListener('scroll', function() {
             if (window.scrollY > 20) {
@@ -735,4 +746,4 @@
         });
     </script>
 </body>
-                      </html>
+</html>
