@@ -4,17 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MedAtlas</title>
-    
+
     <!-- SEO -->
     <meta name="description" content="MedAtlas هو المرجع الشامل والمتكامل للأجهزة الطبية، يقدم معلومات دقيقة ومبسطة لطلاب الهندسة الطبية والفنيين." />
     <meta name="keywords" content="أجهزة طبية, هندسة طبية, MedAtlas, مرجع طبي, صيانة أجهزة طبية" />
-    
+
     <!-- Google Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" />
-    
+
     <style>
-        /* --- المتغيرات والتصميم الأساسي (مطابق تمامًا للموقع الرئيسي) --- */
+        /* --- المتغيرات والتصميم الأساسي --- */
         :root {
             -webkit-tap-highlight-color: transparent;
             --TextColor: #000000;
@@ -101,7 +101,7 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
 
-        /* --- شريط التطبيق (مطابق للموقع الرئيسي) --- */
+        /* --- شريط التطبيق --- */
         .app-bar {
             position: fixed;
             top: 0;
@@ -161,7 +161,7 @@
             align-items: center;
         }
 
-        /* --- قائمة اللغة (مطابقة للموقع الرئيسي) --- */
+        /* --- قائمة اللغة --- */
         .spinner-menu {
             position: relative;
             display: inline-block;
@@ -231,7 +231,7 @@
             text-align: center;
         }
 
-        /* --- زر الوضع الداكن (مطابق للموقع الرئيسي) --- */
+        /* --- زر الوضع الداكن --- */
         .dark-toggle {
             display: flex;
             align-items: center;
@@ -257,7 +257,7 @@
             color: var(--primary);
         }
 
-        /* --- الهيدر الرئيسي (مطابق لتصميم الموقع الرئيسي) --- */
+        /* --- الهيدر الرئيسي --- */
         .hero {
             margin-top: 80px;
             padding: 60px 24px;
@@ -325,15 +325,24 @@
             line-height: 1.8;
         }
 
-        .hero .badges {
+        /* --- صف الشارات + زر التحميل --- */
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .badges {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 14px;
-            margin-top: 20px;
         }
 
-        .hero .badge {
+        .badge {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(8px);
             padding: 10px 24px;
@@ -343,10 +352,48 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            cursor: default;
         }
 
-        .hero .badge i {
+        .badge i {
             font-size: 1.1rem;
+        }
+
+        /* --- زر التحميل المدمج مع الهيدر --- */
+        .hero-download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 32px;
+            background: #FFD93D;
+            color: #1a223f;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 8px 30px rgba(255, 217, 61, 0.4);
+            white-space: nowrap;
+        }
+
+        .hero-download-btn:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 12px 40px rgba(255, 217, 61, 0.5);
+        }
+
+        .hero-download-btn i {
+            font-size: 1.3rem;
+        }
+
+        .dark-mode .hero-download-btn {
+            color: #0f172a;
+            box-shadow: 0 8px 30px rgba(255, 217, 61, 0.3);
+        }
+
+        .dark-mode .hero-download-btn:hover {
+            box-shadow: 0 12px 40px rgba(255, 217, 61, 0.5);
         }
 
         /* --- الحاوية الرئيسية --- */
@@ -356,7 +403,7 @@
             padding: 40px 24px 60px;
         }
 
-        /* --- بطاقة الميزات (مطابقة لبطاقات الموقع الرئيسي) --- */
+        /* --- بطاقة الميزات --- */
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -559,7 +606,7 @@
             border: 1px solid rgba(74, 108, 247, 0.1);
         }
 
-        /* --- زر التحميل --- */
+        /* --- قسم التحميل السفلي --- */
         .download-section {
             text-align: center;
             margin-top: 40px;
@@ -570,6 +617,7 @@
             border-radius: var(--radius);
             border: var(--glass-border);
             box-shadow: var(--shadow);
+            scroll-margin-top: 100px;
         }
 
         .download-btn {
@@ -624,7 +672,11 @@
             .hero p {
                 font-size: 1.05rem;
             }
-            .hero .badges {
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            .badges {
                 flex-direction: column;
                 align-items: center;
             }
@@ -655,18 +707,22 @@
             .feature-grid {
                 grid-template-columns: 1fr;
             }
+            .hero-download-btn {
+                padding: 10px 24px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- شريط التطبيق (مطابق تمامًا للموقع الرئيسي) -->
+    <!-- شريط التطبيق -->
     <header class="app-bar glass-effect" id="appBar">
         <div class="app-title" id="appTitle">
             <i class="fas fa-heartbeat"></i>
             <span>MedAtlas</span>
         </div>
         <div class="app-actions">
-            <!-- Language Spinner Menu (مطابق للموقع الرئيسي) -->
+            <!-- Language Spinner Menu -->
             <div class="spinner-menu">
                 <button class="spinner-btn">
                     <i class="fas fa-language"></i>
@@ -682,8 +738,8 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Dark Mode Toggle (مطابق للموقع الرئيسي) -->
+
+            <!-- Dark Mode Toggle -->
             <div class="dark-toggle" id="darkModeToggle">
                 <i class="fas fa-sun" id="lightIcon"></i>
                 <i class="fas fa-moon active" id="darkIcon"></i>
@@ -699,11 +755,20 @@
             <p id="heroDesc">
                 MedAtlas هو مرجع متكامل يقدم معلومات علمية دقيقة ومبسطة عن جميع الأجهزة الطبية المستخدمة في المستشفيات والمجال الطبي والهندسة الطبية الحيوية.
             </p>
-            <div class="badges">
-                <span class="badge"><i class="fas fa-graduation-cap"></i> <span id="badge1">للطلاب والفنيين</span></span>
-                <span class="badge"><i class="fas fa-hospital"></i> <span id="badge2">7 أقسام طبية</span></span>
-                <span class="badge"><i class="fas fa-microscope"></i> <span id="badge3">59 جهازاً</span></span>
-                <span class="badge"><i class="fas fa-user-md"></i> <span id="badge4">مرجع موثوق</span></span>
+
+            <!-- الشارات + زر التحميل جنباً إلى جنب -->
+            <div class="hero-actions">
+                <div class="badges">
+                    <span class="badge"><i class="fas fa-graduation-cap"></i> <span id="badge1">للطلاب والفنيين</span></span>
+                    <span class="badge"><i class="fas fa-hospital"></i> <span id="badge2">7 أقسام طبية</span></span>
+                    <span class="badge"><i class="fas fa-microscope"></i> <span id="badge3">59 جهازاً</span></span>
+                    <span class="badge"><i class="fas fa-user-md"></i> <span id="badge4">مرجع موثوق</span></span>
+                </div>
+
+                <a href="https://play.google.com/store/apps/details?id=com.my.ElectroPro2024" class="hero-download-btn" id="heroDownloadBtn">
+                    <i class="fas fa-download"></i>
+                    <span id="heroDownloadText">تحميل MedAtlas</span>
+                </a>
             </div>
         </div>
     </section>
@@ -734,7 +799,7 @@
             </div>
         </div>
 
-        <!-- الأقسام الطبية (محدثة حسب البيانات الصحيحة: 7 أقسام) -->
+        <!-- الأقسام الطبية -->
         <h2 class="section-title"><i class="fas fa-hospital"></i> <span id="deptTitle">الأقسام الطبية</span></h2>
         <p class="section-subtitle" id="deptSubtitle">تصفح الأجهزة حسب التخصص الطبي (7 أقسام رئيسية)</p>
         <div class="dept-grid" id="deptGrid">
@@ -747,7 +812,7 @@
             <div class="dept-chip"><i class="fas fa-microscope"></i> <span>المختبر</span></div>
         </div>
 
-        <!-- نموذج لعرض جهاز (معلومات محدثة) -->
+        <!-- نموذج لعرض جهاز -->
         <h2 class="section-title" style="margin-top: 20px;"><i class="fas fa-microscope"></i> <span id="demoTitle">نموذج: جهاز طبي</span></h2>
         <p class="section-subtitle" id="demoSubtitle">مثال على كيفية عرض معلومات الجهاز داخل التطبيق</p>
         <div class="device-demo">
@@ -775,11 +840,11 @@
             </div>
         </div>
 
-        <!-- زر التحميل -->
-        <div class="download-section">
+        <!-- زر التحميل السفلي -->
+        <div class="download-section" id="downloadSection">
             <a href="https://play.google.com/store/apps/details?id=com.my.ElectroPro2024" class="download-btn" id="downloadBtn">
                 <i class="fas fa-download"></i>
-                <span id="downloadText">تحميل تطبيق MedAtlas</span>
+                <span id="downloadText">تحميل MedAtlas</span>
             </a>
         </div>
     </main>
@@ -792,7 +857,7 @@
     </footer>
 
     <script>
-        // --- الترجمات (محدثة) ---
+        // --- الترجمات ---
         const translations = {
             ar: {
                 appTitle: 'MedAtlas',
@@ -802,6 +867,7 @@
                 badge2: '7 أقسام طبية',
                 badge3: '59 جهازاً',
                 badge4: 'مرجع موثوق',
+                heroDownloadText: 'تحميل MedAtlas',
                 feature1Title: 'شرح مفصل لكل جهاز',
                 feature1Desc: 'تعريف الجهاز، وظيفته، مبدأ العمل، الاستخدامات الطبية، والمكونات الأساسية.',
                 feature2Title: 'تصنيف حسب الأقسام',
@@ -832,7 +898,7 @@
                 tag1: 'طوارئ',
                 tag2: 'إنعاش',
                 tag3: 'صدمة كهربائية',
-                downloadText: 'تحميل تطبيق MedAtlas'
+                downloadText: 'تحميل MedAtlas'
             },
             en: {
                 appTitle: 'MedAtlas',
@@ -842,6 +908,7 @@
                 badge2: '7 Medical Departments',
                 badge3: '59 Devices',
                 badge4: 'Trusted Reference',
+                heroDownloadText: 'Download MedAtlas',
                 feature1Title: 'Detailed Device Explanation',
                 feature1Desc: 'Device definition, function, working principle, medical uses, and basic components.',
                 feature2Title: 'Classified by Departments',
@@ -872,7 +939,7 @@
                 tag1: 'Emergency',
                 tag2: 'Resuscitation',
                 tag3: 'Electric Shock',
-                downloadText: 'Download MedAtlas App'
+                downloadText: 'Download MedAtlas'
             }
         };
 
@@ -895,6 +962,7 @@
             document.getElementById('badge2').textContent = t.badge2;
             document.getElementById('badge3').textContent = t.badge3;
             document.getElementById('badge4').textContent = t.badge4;
+            document.getElementById('heroDownloadText').textContent = t.heroDownloadText;
             document.getElementById('feature1Title').textContent = t.feature1Title;
             document.getElementById('feature1Desc').textContent = t.feature1Desc;
             document.getElementById('feature2Title').textContent = t.feature2Title;
@@ -927,7 +995,7 @@
             document.getElementById('tag3').textContent = t.tag3;
             document.getElementById('downloadText').textContent = t.downloadText;
 
-            // تحديث محتوى أقسام الطب (7 أقسام فقط)
+            // تحديث محتوى أقسام الطب
             const deptNames = document.querySelectorAll('.dept-grid .dept-chip span');
             const deptTranslations = {
                 ar: ['الطوارئ', 'العناية المركزة', 'العمليات', 'التنفس', 'القلب', 'الأشعة', 'المختبر'],
@@ -956,7 +1024,7 @@
             applyLanguage('ar');
         }
 
-        // --- Dark Mode (مطابق تمامًا للموقع الرئيسي) ---
+        // --- Dark Mode ---
         const darkModeToggle = document.getElementById('darkModeToggle');
         const lightIcon = document.getElementById('lightIcon');
         const darkIcon = document.getElementById('darkIcon');
@@ -992,7 +1060,7 @@
             }
         });
 
-        // --- App Bar Scroll Effect (مطابق للموقع الرئيسي) ---
+        // --- App Bar Scroll Effect ---
         const appBar = document.getElementById('appBar');
         window.addEventListener('scroll', function() {
             if (window.scrollY > 20) {
@@ -1003,4 +1071,4 @@
         });
     </script>
 </body>
-</html>
+    </html>
