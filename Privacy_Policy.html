@@ -4,25 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>سياسة الخصوصية - MedAtlas</title>
-    <!-- رابط الخطوط والأيقونات -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+    <!-- SEO -->
+    <meta name="description" content="سياسة الخصوصية لتطبيق MedAtlas - المنصة التعليمية للأجهزة الطبية." />
+    <meta name="robots" content="index, follow" />
+    <link rel="icon" type="image/png" href="image/favicon.png" />
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" />
+
     <style>
-        /* --- المتغيرات والتصميم الأساسي (مطابق تمامًا لتطبيق MedAtlas) --- */
+        /* ===== المتغيرات (مطابقة للصفحة الأصلية) ===== */
         :root {
             -webkit-tap-highlight-color: transparent;
-            --TextColor: #000000;
+            --TextColor: #1A1C1E;
             --primary: #4A6CF7;
             --primary-light: #6B8AFF;
             --primary-glow: rgba(107, 138, 255, 0.5);
             --secondary: #FF6B6B;
             --background: #f5f7ff;
             --background2: #889FF9;
+            --background-top: #F0F5FF;
+            --background-bottom: #FFFFFF;
             --card: #FFFFFF;
             --text: #2D3748;
+            --text-body: #4B5563;
             --text-light: #718096;
+            --border: #E3E8F0;
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --shadow-card: 0 15px 35px rgba(120, 146, 192, 0.08);
             --radius: 16px;
+            --radius-sm: 14px;
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             --blur: 8px;
             --glass-opacity: 0.85;
@@ -31,17 +44,22 @@
         }
 
         .dark-mode {
-            --TextColor: #ffffff;
+            --TextColor: #F1F4F8;
             --primary: #6B8AFF;
             --primary-light: #8BA4FF;
             --primary-glow: rgba(107, 138, 255, 0.5);
             --secondary: #FF8B8B;
             --background: #0f172a;
             --background2: #1a223f;
+            --background-top: #131A24;
+            --background-bottom: #0B0E13;
             --card: #1e293b;
             --text: #f8fafc;
-            --text-light: #cbd5e1;
+            --text-body: #C5CCD8;
+            --text-light: #9BA3B0;
+            --border: #2C3444;
             --shadow: 0 10px 30px rgba(107, 138, 255, 0.15);
+            --shadow-card: 0 15px 35px rgba(0, 0, 0, 0.30);
             --blur: 0px;
             --glass-opacity: 0.9;
             --glass-border: 1px solid rgba(107, 138, 255, 0.1);
@@ -52,18 +70,15 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            transition: var(--transition);
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
         body {
             font-family: 'Tajawal', sans-serif;
-            background-color: var(--background);
+            background: linear-gradient(180deg, var(--background-top), var(--background-bottom));
             color: var(--text);
             line-height: 1.8;
             overflow-x: hidden;
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
             min-height: 100vh;
         }
 
@@ -73,16 +88,11 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary) 0%, transparent 60%);
+            opacity: 0.06;
             z-index: -1;
-        }
-
-        .dark-mode body::before {
-            background-color: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(10px) brightness(0.9);
-            -webkit-backdrop-filter: blur(10px) brightness(0.9);
+            pointer-events: none;
         }
 
         .glass-effect {
@@ -92,10 +102,9 @@
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             border: var(--glass-border);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
 
-        /* --- App Bar (مطابق لتطبيق MedAtlas) --- */
+        /* ============ شريط التطبيق (نفس الأول) ============ */
         .app-bar {
             position: fixed;
             top: 0;
@@ -137,16 +146,18 @@
         }
 
         .app-title {
-            font-size: 1.5rem;
-            font-weight: 500;
             flex-grow: 1;
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .app-title i {
-            font-size: 1.8rem;
+        .app-title .logo-img {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            transition: all 0.3s ease;
         }
 
         .app-actions {
@@ -155,7 +166,7 @@
             align-items: center;
         }
 
-        /* --- زر تبديل اللغة (مطابق لتطبيق MedAtlas) --- */
+        /* --- قائمة اللغة --- */
         .spinner-menu {
             position: relative;
             display: inline-block;
@@ -225,7 +236,7 @@
             text-align: center;
         }
 
-        /* --- زر الوضع الداكن (مطابق لتطبيق MedAtlas) --- */
+        /* --- زر الوضع الداكن --- */
         .dark-toggle {
             display: flex;
             align-items: center;
@@ -251,7 +262,7 @@
             color: var(--primary);
         }
 
-        /* --- المحتوى الرئيسي --- */
+        /* ============ المحتوى ============ */
         .container {
             max-width: 900px;
             margin: 0 auto;
@@ -259,18 +270,12 @@
         }
 
         .privacy-card {
-            background: var(--glass-background);
-            backdrop-filter: blur(var(--blur)) saturate(180%);
-            -webkit-backdrop-filter: blur(var(--blur)) saturate(180%);
+            background: var(--card);
             border-radius: var(--radius);
             padding: 40px 35px;
-            box-shadow: var(--shadow);
-            border: var(--glass-border);
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--border);
             animation: slideUp 0.6s ease-out forwards;
-        }
-
-        .dark-mode .privacy-card {
-            box-shadow: 0 10px 30px rgba(107, 138, 255, 0.1), 0 0 15px rgba(107, 138, 255, 0.05);
         }
 
         .privacy-header {
@@ -292,15 +297,12 @@
             justify-content: center;
             color: var(--primary);
             font-size: 1.8rem;
-        }
-
-        .dark-mode .privacy-header .icon {
-            box-shadow: 0 0 15px var(--primary-glow);
+            flex-shrink: 0;
         }
 
         .privacy-header h1 {
             font-size: 2rem;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--primary);
         }
 
@@ -331,7 +333,7 @@
 
         .privacy-section p,
         .privacy-section li {
-            color: var(--text-light);
+            color: var(--text-body);
             font-size: 1.05rem;
             line-height: 1.9;
         }
@@ -401,41 +403,38 @@
         }
 
         @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        @media (max-width: 600px) {
-            .privacy-card {
-                padding: 24px 18px;
-            }
-            .privacy-header h1 {
-                font-size: 1.5rem;
-            }
-            .container {
-                padding: 100px 16px 40px;
-            }
-            .app-title {
-                font-size: 1.2rem;
-            }
+        /* ============ استجابة ============ */
+        @media (max-width: 768px) {
+            .app-title .logo-img { height: 40px; }
+            .container { padding: 100px 16px 40px; }
+            .privacy-card { padding: 28px 20px; }
+            .privacy-header h1 { font-size: 1.6rem; }
+        }
+
+        @media (max-width: 480px) {
+            .app-title .logo-img { height: 30px; }
+            .privacy-card { padding: 24px 16px; }
+            .privacy-header h1 { font-size: 1.35rem; }
+            .privacy-header .icon { width: 48px; height: 48px; font-size: 1.4rem; }
+            .privacy-section h2 { font-size: 1.15rem; }
+            .privacy-section p, .privacy-section li { font-size: 0.98rem; }
         }
     </style>
 </head>
 <body>
-    <!-- App Bar (مطابق تمامًا لتطبيق MedAtlas) -->
-    <div class="app-bar glass-effect" id="appBar">
-        <div class="app-title" id="appTitle">
-            <i class="fas fa-heartbeat"></i>
-            <span>MedAtlas</span>
+    <!-- شريط التطبيق (الشعار فقط - مطابق للأول) -->
+    <header class="app-bar glass-effect" id="appBar">
+        <div class="app-title">
+            <img src="logo_MedAtlas.webp"
+                 alt="MedAtlas Logo"
+                 class="logo-img"
+                 onerror="this.onerror=null;this.src='logo_MedAtlas.webp';" />
         </div>
         <div class="app-actions">
-            <!-- Language Spinner Menu -->
             <div class="spinner-menu">
                 <button class="spinner-btn">
                     <i class="fas fa-language"></i>
@@ -451,14 +450,12 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Dark Mode Toggle -->
             <div class="dark-toggle" id="darkModeToggle">
                 <i class="fas fa-sun" id="lightIcon"></i>
                 <i class="fas fa-moon active" id="darkIcon"></i>
             </div>
         </div>
-    </div>
+    </header>
 
     <!-- المحتوى -->
     <div class="container">
@@ -561,10 +558,9 @@
     </div>
 
     <script>
-        // --- الترجمات ---
+        // ============ الترجمات ============
         const translations = {
             ar: {
-                appTitle: 'MedAtlas',
                 mainTitle: '🔒 سياسة الخصوصية',
                 updateDate: 'آخر تحديث: 1 يوليو 2026',
                 s1Title: '1. مقدمة',
@@ -599,7 +595,6 @@
                 s11Text: 'إذا كان لديك أي استفسار حول سياسة الخصوصية، يمكنك التواصل معنا عبر:'
             },
             en: {
-                appTitle: 'MedAtlas',
                 mainTitle: '🔒 Privacy Policy',
                 updateDate: 'Last Updated: July 1, 2026',
                 s1Title: '1. Introduction',
@@ -615,7 +610,7 @@
                 s4Text: 'Data is used only for:',
                 s4li1: 'Improving app performance and user experience.',
                 s4li2: 'Identifying the most used sections and content.',
-                s4li3: 'Developing content to match users\' interests.',
+                s4li3: "Developing content to match users' interests.",
                 s5Title: '5. Information Sharing',
                 s5Text: 'We <strong>do not sell or share</strong> any personal data with third parties. External services (e.g., Google Analytics) may be used only to analyze usage in general without identifying users.',
                 s6Title: '6. Advertising',
@@ -626,7 +621,7 @@
                 s7Text: 'We use appropriate measures to protect the app and data from unauthorized access, modification, or unauthorized deletion.',
                 s8Title: '8. External Links',
                 s8Text: 'The app may contain links to external websites. We are not responsible for the privacy policies of those sites.',
-                s9Title: '9. Children\'s Privacy',
+                s9Title: "9. Children's Privacy",
                 s9Text: 'The app is intended for educational and professional purposes and does not directly target collecting data from children.',
                 s10Title: '10. Changes to This Policy',
                 s10Text: 'We may update this privacy policy from time to time. Any updates will be posted within the app.',
@@ -635,115 +630,78 @@
             }
         };
 
-        // --- الحالة الحالية للغة ---
+        // ============ الحالة الحالية للغة ============
         let currentLang = localStorage.getItem('medatlasPrivacyLang') || 'ar';
 
-        // --- تطبيق اللغة ---
+        // ============ تطبيق اللغة ============
         function applyLanguage(lang) {
             const t = translations[lang];
             if (!t) return;
 
-            // تحديث اتجاه الصفحة
             document.documentElement.lang = lang;
             document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
 
-            // تحديث النصوص
-            document.getElementById('appTitle').innerHTML = `<i class="fas fa-heartbeat"></i> <span>${t.appTitle}</span>`;
             document.getElementById('mainTitle').innerHTML = t.mainTitle;
             document.getElementById('updateDate').textContent = t.updateDate;
-            document.getElementById('s1Title').textContent = t.s1Title;
-            document.getElementById('s1Text').innerHTML = t.s1Text;
-            document.getElementById('s2Title').textContent = t.s2Title;
-            document.getElementById('s2Text').textContent = t.s2Text;
-            document.getElementById('s2li1').textContent = t.s2li1;
-            document.getElementById('s2li2').textContent = t.s2li2;
-            document.getElementById('s2li3').textContent = t.s2li3;
-            document.getElementById('s3Title').textContent = t.s3Title;
-            document.getElementById('s3Text').innerHTML = t.s3Text;
-            document.getElementById('s4Title').textContent = t.s4Title;
-            document.getElementById('s4Text').textContent = t.s4Text;
-            document.getElementById('s4li1').textContent = t.s4li1;
-            document.getElementById('s4li2').textContent = t.s4li2;
-            document.getElementById('s4li3').textContent = t.s4li3;
-            document.getElementById('s5Title').textContent = t.s5Title;
-            document.getElementById('s5Text').innerHTML = t.s5Text;
-            document.getElementById('s6Title').textContent = t.s6Title;
-            document.getElementById('s6Text').textContent = t.s6Text;
-            document.getElementById('s6li1').textContent = t.s6li1;
-            document.getElementById('s6li2').textContent = t.s6li2;
-            document.getElementById('s7Title').textContent = t.s7Title;
-            document.getElementById('s7Text').textContent = t.s7Text;
-            document.getElementById('s8Title').textContent = t.s8Title;
-            document.getElementById('s8Text').textContent = t.s8Text;
-            document.getElementById('s9Title').textContent = t.s9Title;
-            document.getElementById('s9Text').textContent = t.s9Text;
-            document.getElementById('s10Title').textContent = t.s10Title;
-            document.getElementById('s10Text').textContent = t.s10Text;
-            document.getElementById('s11Title').textContent = t.s11Title;
-            document.getElementById('s11Text').textContent = t.s11Text;
+
+            const setText = (id, val) => { const el = document.getElementById(id); if (el) el.innerHTML = val; };
+            setText('s1Title', t.s1Title); setText('s1Text', t.s1Text);
+            setText('s2Title', t.s2Title); setText('s2Text', t.s2Text);
+            setText('s2li1', t.s2li1); setText('s2li2', t.s2li2); setText('s2li3', t.s2li3);
+            setText('s3Title', t.s3Title); setText('s3Text', t.s3Text);
+            setText('s4Title', t.s4Title); setText('s4Text', t.s4Text);
+            setText('s4li1', t.s4li1); setText('s4li2', t.s4li2); setText('s4li3', t.s4li3);
+            setText('s5Title', t.s5Title); setText('s5Text', t.s5Text);
+            setText('s6Title', t.s6Title); setText('s6Text', t.s6Text);
+            setText('s6li1', t.s6li1); setText('s6li2', t.s6li2);
+            setText('s7Title', t.s7Title); setText('s7Text', t.s7Text);
+            setText('s8Title', t.s8Title); setText('s8Text', t.s8Text);
+            setText('s9Title', t.s9Title); setText('s9Text', t.s9Text);
+            setText('s10Title', t.s10Title); setText('s10Text', t.s10Text);
+            setText('s11Title', t.s11Title); setText('s11Text', t.s11Text);
 
             localStorage.setItem('medatlasPrivacyLang', lang);
             currentLang = lang;
         }
 
-        // --- تغيير اللغة (يتم استدعاؤها من القائمة المنسدلة) ---
         function changeLanguage(lang) {
             applyLanguage(lang);
         }
 
-        // --- تحميل اللغة المحفوظة ---
-        const savedLang = localStorage.getItem('medatlasPrivacyLang');
-        if (savedLang && translations[savedLang]) {
-            applyLanguage(savedLang);
-        } else {
-            applyLanguage('ar');
-        }
+        // تحميل اللغة المحفوظة
+        applyLanguage(currentLang);
 
-        // --- Dark Mode (مطابق تمامًا لتطبيق MedAtlas) ---
-        const darkModeToggle = document.getElementById('darkModeToggle');
+        // ============ Dark Mode (مطابق للصفحة الأصلية) ============
+        const darkToggle = document.getElementById('darkModeToggle');
         const lightIcon = document.getElementById('lightIcon');
         const darkIcon = document.getElementById('darkIcon');
 
-        function enableDarkMode() {
-            document.body.classList.add('dark-mode');
-            lightIcon.classList.add('active');
-            darkIcon.classList.remove('active');
-            localStorage.setItem('medatlasDarkMode', 'enabled');
-        }
-
-        function disableDarkMode() {
-            document.body.classList.remove('dark-mode');
-            lightIcon.classList.remove('active');
-            darkIcon.classList.add('active');
-            localStorage.setItem('medatlasDarkMode', 'disabled');
-        }
-
-        const savedDarkMode = localStorage.getItem('medatlasDarkMode');
-        if (savedDarkMode === 'enabled') {
-            enableDarkMode();
-        } else if (savedDarkMode === 'disabled') {
-            disableDarkMode();
-        } else {
-            enableDarkMode();
-        }
-
-        darkModeToggle.addEventListener('click', function() {
-            if (document.body.classList.contains('dark-mode')) {
-                disableDarkMode();
+        function setDark(enabled) {
+            if (enabled) {
+                document.body.classList.add('dark-mode');
+                lightIcon.classList.add('active');
+                darkIcon.classList.remove('active');
+                localStorage.setItem('darkMode', 'enabled');
             } else {
-                enableDarkMode();
+                document.body.classList.remove('dark-mode');
+                lightIcon.classList.remove('active');
+                darkIcon.classList.add('active');
+                localStorage.setItem('darkMode', 'disabled');
             }
+        }
+
+        const savedDark = localStorage.getItem('darkMode');
+        setDark(savedDark !== 'disabled');
+
+        darkToggle.addEventListener('click', () => {
+            setDark(!document.body.classList.contains('dark-mode'));
         });
 
-        // --- App Bar Scroll Effect ---
+        // ============ App Bar Scroll Effect ============
         const appBar = document.getElementById('appBar');
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 20) {
-                appBar.classList.add('scrolled');
-            } else {
-                appBar.classList.remove('scrolled');
-            }
-        });
+        window.addEventListener('scroll', () => {
+            appBar.classList.toggle('scrolled', window.scrollY > 20);
+        }, { passive: true });
     </script>
 </body>
 </html>
