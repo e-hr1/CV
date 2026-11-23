@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>شروط الاستخدام - MedAtlas</title>
+
+    <!-- SEO -->
+    <meta name="description" content="شروط الاستخدام لتطبيق MedAtlas - المنصة التعليمية للأجهزة الطبية." />
+    <meta name="robots" content="index, follow" />
+    <link rel="icon" type="image/png" href="image/favicon.png" />
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" />
+
+    <style>
+        /* ===== المتغيرات (مطابقة للصفحة الأصلية) ===== */
+        :root {
+            -webkit-tap-highlight-color: transparent;
+            --TextColor: #1A1C1E;
+            --primary: #4A6CF7;
+            --primary-light: #6B8AFF;
+            --primary-glow: rgba(107, 138, 255, 0.5);
+            --secondary: #FF6B6B;
+            --background: #f5f7ff;
+            --background2: #889FF9;
+            --background-top: #F0F5FF;
+            --background-bottom: #FFFFFF;
+            --card: #FFFFFF;
+            --text: #2D3748;
+            --text-body: #4B5563;
+            --text-light: #718096;
+            --border: #E3E8F0;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --shadow-card: 0 15px 35px rgba(120, 146, 192, 0.08);
+            --radius: 16px;
+            --radius-sm: 14px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --blur: 8px;
+            --glass-opacity: 0.85;
+            --glass-border: 1px solid rgba(255, 255, 255, 0.3);
+            --glass-background: rgba(255, 255, 255, var(--glass-opacity));
+        }
+
+        .dark-mode {
+            --TextColor: #F1F4F8;
+            --primary: #6B8AFF;
+            --primary-light: #8BA4FF;
+            --primary-glow: rgba(107, 138, 255, 0.5);
+            --secondary: #FF8B8B;
+            --background: #0f172a;
+            --background2: #1a223f;
+            --background-top: #131A24;
+            --background-bottom: #0B0E13;
+            --card: #1e293b;
+            --text: #f8fafc;
+            --text-body: #C5CCD8;
+            --text-light: #9BA3B0;
+            --border: #2C3444;
+            --shadow: 0 10px 30px rgba(107, 138, 255, 0.15);
+            --shadow-card: 0 15px 35px rgba(0, 0, 0, 0.30);
+            --blur: 0px;
+            --glass-opacity: 0.9;
+            --glass-border: 1px solid rgba(107, 138, 255, 0.1);
+            --glass-background: rgba(30, 41, 59, var(--glass-opacity));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(180deg, var(--background-top), var(--background-bottom));
+            color: var(--text);
+            line-height: 1.8;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary) 0%, transparent 60%);
+            opacity: 0.06;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .glass-effect {
+            background: var(--glass-background);
+            backdrop-filter: blur(var(--blur)) saturate(180%);
+            -webkit-backdrop-filter: blur(var(--blur)) saturate(180%);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: var(--glass-border);
+        }
+
+        /* ============ شريط التطبيق ============ */
+        .app-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background-color: rgba(74, 108, 247, 0.9);
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-bottom: 1px solid transparent;
+            border-radius: 0;
+            transition: all 0.4s ease;
+        }
+
+        .app-bar.scrolled {
+            background-color: rgba(74, 108, 247, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 2px;
+        }
+
+        .dark-mode .app-bar {
+            background-color: rgba(26, 34, 63, 0.9);
+            box-shadow: 0 0 0px var(--primary-glow);
+        }
+
+        .dark-mode .app-bar.scrolled {
+            background-color: rgba(26, 34, 63, 0.9);
+            border-bottom: 1px solid rgba(107, 138, 255, 0.2);
+            box-shadow: 0 0 25px var(--primary-glow);
+        }
+
+        .app-title {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .app-title .logo-img {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            transition: all 0.3s ease;
+        }
+
+        .app-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        /* --- قائمة اللغة --- */
+        .spinner-menu {
+            position: relative;
+            display: inline-block;
+        }
+
+        .spinner-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .spinner-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .spinner-content {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            background: var(--glass-background);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            border: var(--glass-border);
+            min-width: 150px;
+        }
+
+        .spinner-menu:hover .spinner-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .spinner-item {
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: var(--text);
+            text-decoration: none;
+            gap: 10px;
+        }
+
+        .spinner-item:hover {
+            background-color: rgba(74, 108, 247, 0.1);
+            border-radius: var(--radius);
+        }
+
+        .spinner-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        /* --- زر الوضع الداكن --- */
+        .dark-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .dark-toggle i {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .dark-toggle .active {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        /* ============ المحتوى ============ */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 110px 24px 60px;
+        }
+
+        .privacy-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 40px 35px;
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--border);
+            animation: slideUp 0.6s ease-out forwards;
+        }
+
+        .privacy-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(74, 108, 247, 0.15);
+            padding-bottom: 20px;
+        }
+
+        .privacy-header .icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(74, 108, 247, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .privacy-header h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .privacy-header .update-date {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+
+        .privacy-section {
+            margin-bottom: 28px;
+        }
+
+        .privacy-section h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .privacy-section h2 i {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        .privacy-section p,
+        .privacy-section li {
+            color: var(--text-body);
+            font-size: 1.05rem;
+            line-height: 1.9;
+        }
+
+        .privacy-section ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 8px;
+        }
+
+        .privacy-section ul li {
+            padding: 6px 28px 6px 0;
+            position: relative;
+        }
+
+        .privacy-section ul li::before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.4rem;
+            position: absolute;
+            right: 0;
+            top: 2px;
+        }
+
+        [dir="ltr"] .privacy-section ul li {
+            padding: 6px 0 6px 28px;
+        }
+
+        [dir="ltr"] .privacy-section ul li::before {
+            right: auto;
+            left: 0;
+        }
+
+        .highlight-box {
+            background: rgba(74, 108, 247, 0.06);
+            border-right: 4px solid var(--primary);
+            padding: 16px 20px;
+            border-radius: 10px;
+            margin: 16px 0;
+        }
+
+        [dir="ltr"] .highlight-box {
+            border-right: none;
+            border-left: 4px solid var(--primary);
+        }
+
+        .dark-mode .highlight-box {
+            background: rgba(107, 138, 255, 0.08);
+        }
+
+        .footer-contact {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(74, 108, 247, 0.15);
+            text-align: center;
+        }
+
+        .footer-contact a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-contact a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============ استجابة ============ */
+        @media (max-width: 768px) {
+            .app-title .logo-img { height: 40px; }
+            .container { padding: 100px 16px 40px; }
+            .privacy-card { padding: 28px 20px; }
+            .privacy-header h1 { font-size: 1.6rem; }
+        }
+
+        @media (max-width: 480px) {
+            .app-title .logo-img { height: 30px; }
+            .privacy-card { padding: 24px 16px; }
+            .privacy-header h1 { font-size: 1.35rem; }
+            .privacy-header .icon { width: 48px; height: 48px; font-size: 1.4rem; }
+            .privacy-section h2 { font-size: 1.15rem; }
+            .privacy-section p, .privacy-section li { font-size: 0.98rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التطبيق -->
+    <header class="app-bar glass-effect" id="appBar">
+        <div class="app-title">
+            <img src="logo_MedAtlas.webp"
+                 alt="MedAtlas Logo"
+                 class="logo-img"
+                 onerror="this.onerror=null;this.src='logo_MedAtlas.webp';" />
+        </div>
+        <div class="app-actions">
+            <div class="spinner-menu">
+                <button class="spinner-btn">
+                    <i class="fas fa-language"></i>
+                </button>
+                <div class="spinner-content glass-effect">
+                    <div class="spinner-item" onclick="changeLanguage('ar')">
+                        <i class="fas fa-language"></i>
+                        <span>العربية</span>
+                    </div>
+                    <div class="spinner-item" onclick="changeLanguage('en')">
+                        <i class="fas fa-language"></i>
+                        <span>English</span>
+                    </div>
+                </div>
+            </div>
+            <div class="dark-toggle" id="darkModeToggle">
+                <i class="fas fa-sun" id="lightIcon"></i>
+                <i class="fas fa-moon active" id="darkIcon"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- المحتوى -->
+    <div class="container">
+        <div class="privacy-card">
+            <!-- رأس الصفحة -->
+            <div class="privacy-header">
+                <div class="icon"><i class="fas fa-file-contract"></i></div>
+                <div>
+                    <h1 id="mainTitle">📜 شروط الاستخدام</h1>
+                    <p class="update-date" id="updateDate">آخر تحديث: 24 نوفمبر 2026</p>
+                </div>
+            </div>
+
+            <!-- القسم 1 -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-info-circle"></i> <span id="s1Title">1. القبول بالشروط</span></h2>
+                <p id="s1Text">باستخدامك لتطبيق <strong>MedAtlas</strong>، فإنك توافق تماماً على الالتزام بشروط الاستخدام هذه. إذا كنت لا توافق على أي جزء منها، يرجى عدم استخدام التطبيق.</p>
+            </div>
+
+            <!-- القسم 2 -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-user-check"></i> <span id="s2Title">2. حساب المستخدم والبيانات الشخصية</span></h2>
+                <p id="s2Text">لتفعيل ميزات التفاعل داخل التطبيق، فإنك توافق على مشاركة بعض البيانات الأساسية وتشمل:</p>
+                <ul>
+                    <li id="s2li1"><strong>الاسم:</strong> لتعريف هويتك وحسابك للمستخدمين الآخرين.</li>
+                    <li id="s2li2"><strong>الصور:</strong> مشاركة الصور والوسائط الخاصة بك عبر التطبيق.</li>
+                    <li id="s2li3"><strong>معرف الجهاز (Device ID):</strong> لربط وتأمين حسابك بجهازك المستخدم وضمان الأمان.</li>
+                </ul>
+            </div>
+
+            <!-- القسم 3 -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-shield-alt"></i> <span id="s3Title">3. سلوك المسؤولية والاستخدام المقبول</span></h2>
+                <div class="highlight-box">
+                    <p id="s3Text"><strong>تعهد المستخدم:</strong> تلتزم بعدم استخدام اسمك أو صورك أو معرف جهازك في نشر أي محتوى يخالف القوانين، أو يتضمن إساءة، أو ينتهك حقوق الآخرين، أو يضر بالأمن العام.</p>
+                </div>
+            </div>
+
+            <!-- القسم 4 -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-copyright"></i> <span id="s4Title">4. الملكية الفكرية</span></h2>
+                <p id="s4Text">جميع المحتويات، التصاميم، الشعارات، والمواد التعليمية الخاصة بالأجهزة الطبية داخل <strong>MedAtlas</strong> هي ملكية حصرية للتطبيق ومحمية بقوانين الملكية الفكرية.</p>
+            </div>
+
+            <!-- القسم 5 -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-ban"></i> <span id="s5Title">5. حظر وإلغاء الحساب</span></h2>
+                <p id="s5Text">يحق لإدارة التطبيق تعليق أو إيقاف حسابك أو حظر معرف الجهاز الخاص بك فوراً في حال ثبوت أي انتهاك لشروط الاستخدام أو الإساءة للخدمة.</p>
+            </div>
+
+            <!-- القسم 6 -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-stethoscope"></i> <span id="s6Title">6. إخلاء المسؤولية الطبية والتعليمية</span></h2>
+                <p id="s6Text">المحتوى المعروض في التطبيق مخصص للأغراض التعليمية والمهنية للأجهزة الطبية فقط، ولا يمثل استشارة طبية رسمية أو معتمدة.</p>
+            </div>
+
+            <!-- القسم 7 -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-tools"></i> <span id="s7Title">7. التعديلات والخدمات</span></h2>
+                <p id="s7Text">نحتفظ بالحق في تعديل أو إيقاف أي ميزة في التطبيق أو تحديث هذه الشروط في أي وقت دون إشعار مسبق.</p>
+            </div>
+
+            <!-- القسم 8 -->
+            <div class="privacy-section footer-contact">
+                <h2><i class="fas fa-envelope"></i> <span id="s8Title">8. التواصل والدعم</span></h2>
+                <p id="s8Text">لأي استفسارات تتعلق بشروط الاستخدام، يمكنك مراسلتنا عبر البريد الإلكتروني:</p>
+                <p style="margin-top: 10px;">
+                    <i class="fas fa-at" style="color: var(--primary);"></i>
+                    <a href="mailto:HusseinMutair690@gmail.com">HusseinMutair690@gmail.com</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============ الترجمات ============
+        const translations = {
+            ar: {
+                mainTitle: '📜 شروط الاستخدام',
+                updateDate: 'آخر تحديث: 24 نوفمبر 2026',
+                s1Title: '1. القبول بالشروط',
+                s1Text: 'باستخدامك لتطبيق <strong>MedAtlas</strong>، فإنك توافق تماماً على الالتزام بشروط الاستخدام هذه. إذا كنت لا توافق على أي جزء منها، يرجى عدم استخدام التطبيق.',
+                s2Title: '2. حساب المستخدم والبيانات الشخصية',
+                s2Text: 'لتفعيل ميزات التفاعل داخل التطبيق، فإنك توافق على مشاركة بعض البيانات الأساسية وتشمل:',
+                s2li1: '<strong>الاسم:</strong> لتعريف هويتك وحسابك للمستخدمين الآخرين.',
+                s2li2: '<strong>الصور:</strong> مشاركة الصور والوسائط الخاصة بك عبر التطبيق.',
+                s2li3: '<strong>معرف الجهاز (Device ID):</strong> لربط وتأمين حسابك بجهازك المستخدم وضمان الأمان.',
+                s3Title: '3. سلوك المسؤولية والاستخدام المقبول',
+                s3Text: '<strong>تعهد المستخدم:</strong> تلتزم بعدم استخدام اسمك أو صورك أو معرف جهازك في نشر أي محتوى يخالف القوانين، أو يتضمن إساءة، أو ينتهك حقوق الآخرين، أو يضر بالأمن العام.',
+                s4Title: '4. الملكية الفكرية',
+                s4Text: 'جميع المحتويات، التصاميم، الشعارات، والمواد التعليمية الخاصة بالأجهزة الطبية داخل <strong>MedAtlas</strong> هي ملكية حصرية للتطبيق ومحمية بقوانين الملكية الفكرية.',
+                s5Title: '5. حظر وإلغاء الحساب',
+                s5Text: 'يحق لإدارة التطبيق تعليق أو إيقاف حسابك أو حظر معرف الجهاز الخاص بك فوراً في حال ثبوت أي انتهاك لشروط الاستخدام أو الإساءة للخدمة.',
+                s6Title: '6. إخلاء المسؤولية الطبية والتعليمية',
+                s6Text: 'المحتوى المعروض في التطبيق مخصص للأغراض التعليمية والمهنية للأجهزة الطبية فقط، ولا يمثل استشارة طبية رسمية أو معتمدة.',
+                s7Title: '7. التعديلات والخدمات',
+                s7Text: 'نحتفظ بالحق في تعديل أو إيقاف أي ميزة في التطبيق أو تحديث هذه الشروط في أي وقت دون إشعار مسبق.',
+                s8Title: '8. التواصل والدعم',
+                s8Text: 'لأي استفسارات تتعلق بشروط الاستخدام، يمكنك مراسلتنا عبر البريد الإلكتروني:'
+            },
+            en: {
+                mainTitle: '📜 Terms of Use',
+                updateDate: 'Last Updated: November 24, 2026',
+                s1Title: '1. Acceptance of Terms',
+                s1Text: 'By using the <strong>MedAtlas</strong> application, you fully agree to comply with these terms of use. If you do not agree with any part of them, please do not use the app.',
+                s2Title: '2. User Account and Personal Data',
+                s2Text: 'To enable interactive features within the app, you agree to share certain essential data, including:',
+                s2li1: '<strong>Name:</strong> To identify your identity and account to other users.',
+                s2li2: '<strong>Photos:</strong> Sharing your photos and media through the app.',
+                s2li3: '<strong>Device ID:</strong> To link and secure your account to your device and ensure safety.',
+                s3Title: '3. Responsibility and Acceptable Use',
+                s3Text: '<strong>User Undertaking:</strong> You commit not to use your name, photos, or Device ID to publish any content that violates laws, includes abuse, infringes on the rights of others, or harms public security.',
+                s4Title: '4. Intellectual Property',
+                s4Text: 'All content, designs, logos, and medical device educational materials within <strong>MedAtlas</strong> are the exclusive property of the app and protected by intellectual property laws.',
+                s5Title: '5. Account Suspension and Termination',
+                s5Text: 'The app management reserves the right to suspend or terminate your account or block your Device ID immediately if any violation of the terms of use or abuse of the service is proven.',
+                s6Title: '6. Medical and Educational Disclaimer',
+                s6Text: 'The content displayed in the app is intended for educational and professional medical device purposes only and does not constitute formal or certified medical advice.',
+                s7Title: '7. Modifications and Services',
+                s7Text: 'We reserve the right to modify or discontinue any feature in the app or update these terms at any time without prior notice.',
+                s8Title: '8. Contact and Support',
+                s8Text: 'For any inquiries regarding the terms of use, you can contact us via email:'
+            }
+        };
+
+        // ============ الحالة الحالية للغة ============
+        let currentLang = localStorage.getItem('medatlasTermsLang') || 'ar';
+
+        // ============ تطبيق اللغة ============
+        function applyLanguage(lang) {
+            const t = translations[lang];
+            if (!t) return;
+
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+            document.getElementById('mainTitle').innerHTML = t.mainTitle;
+            document.getElementById('updateDate').textContent = t.updateDate;
+
+            const setText = (id, val) => { const el = document.getElementById(id); if (el) el.innerHTML = val; };
+            setText('s1Title', t.s1Title); setText('s1Text', t.s1Text);
+            setText('s2Title', t.s2Title); setText('s2Text', t.s2Text);
+            setText('s2li1', t.s2li1); setText('s2li2', t.s2li2); setText('s2li3', t.s2li3);
+            setText('s3Title', t.s3Title); setText('s3Text', t.s3Text);
+            setText('s4Title', t.s4Title); setText('s4Text', t.s4Text);
+            setText('s5Title', t.s5Title); setText('s5Text', t.s5Text);
+            setText('s6Title', t.s6Title); setText('s6Text', t.s6Text);
+            setText('s7Title', t.s7Title); setText('s7Text', t.s7Text);
+            setText('s8Title', t.s8Title); setText('s8Text', t.s8Text);
+
+            localStorage.setItem('medatlasTermsLang', lang);
+            currentLang = lang;
+        }
+
+        function changeLanguage(lang) {
+            applyLanguage(lang);
+        }
+
+        // تحميل اللغة المحفوظة
+        applyLanguage(currentLang);
+
+        // ============ Dark Mode ============
+        const darkToggle = document.getElementById('darkModeToggle');
+        const lightIcon = document.getElementById('lightIcon');
+        const darkIcon = document.getElementById('darkIcon');
+
+        function setDark(enabled) {
+            if (enabled) {
+                document.body.classList.add('dark-mode');
+                lightIcon.classList.add('active');
+                darkIcon.classList.remove('active');
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                document.body.classList.remove('dark-mode');
+                lightIcon.classList.remove('active');
+                darkIcon.classList.add('active');
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+
+        const savedDark = localStorage.getItem('darkMode');
+        setDark(savedDark !== 'disabled');
+
+        darkToggle.addEventListener('click', () => {
+            setDark(!document.body.classList.contains('dark-mode'));
+        });
+
+        // ============ App Bar Scroll Effect ============
+        const appBar = document.getElementById('appBar');
+        window.addEventListener('scroll', () => {
+            appBar.classList.toggle('scrolled', window.scrollY > 20);
+        }, { passive: true });
+    </script>
+</body>
+</html>
