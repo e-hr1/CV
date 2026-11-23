@@ -104,7 +104,7 @@
             border: var(--glass-border);
         }
 
-        /* ============ شريط التطبيق (نفس الأول) ============ */
+        /* ============ شريط التطبيق ============ */
         .app-bar {
             position: fixed;
             top: 0;
@@ -426,7 +426,7 @@
     </style>
 </head>
 <body>
-    <!-- شريط التطبيق (الشعار فقط - مطابق للأول) -->
+    <!-- شريط التطبيق -->
     <header class="app-bar glass-effect" id="appBar">
         <div class="app-title">
             <img src="logo_MedAtlas.webp"
@@ -465,50 +465,51 @@
                 <div class="icon"><i class="fas fa-shield-alt"></i></div>
                 <div>
                     <h1 id="mainTitle">🔒 سياسة الخصوصية</h1>
-                    <p class="update-date" id="updateDate">آخر تحديث: 1 يوليو 2026</p>
+                    <p class="update-date" id="updateDate">آخر تحديث: 24 نوفمبر 2026</p>
                 </div>
             </div>
 
             <!-- القسم 1 -->
             <div class="privacy-section">
                 <h2><i class="fas fa-info-circle"></i> <span id="s1Title">1. مقدمة</span></h2>
-                <p id="s1Text">نحن في <strong>MedAtlas</strong> نحترم خصوصيتك ونلتزم بحماية بياناتك. يوضح هذا المستند كيفية تعامل تطبيق MedAtlas مع المعلومات عند استخدامك له.</p>
+                <p id="s1Text">نحن في <strong>MedAtlas</strong> نحترم خصوصيتك ونلتزم بحماية بياناتك. يوضح هذا المستند كيفية جمع واستخدام وحماية المعلومات والبيانات التي تشاركها عند استخدامك للتطبيق.</p>
             </div>
 
             <!-- القسم 2 -->
             <div class="privacy-section">
                 <h2><i class="fas fa-database"></i> <span id="s2Title">2. المعلومات التي نقوم بجمعها</span></h2>
-                <p id="s2Text">قد يتم جمع بعض البيانات بشكل عام لتحسين التجربة، مثل:</p>
+                <p id="s2Text">لكي تتمكن من الاستفادة من ميزات التطبيق، نقوم بجمع بعض البيانات الضرورية التي تقوم بمشاركتها وتشمل:</p>
                 <ul>
-                    <li id="s2li1">بيانات الاستخدام داخل التطبيق (مثل الأقسام والأجهزة الأكثر زيارة).</li>
-                    <li id="s2li2">معلومات الجهاز (نوع الجهاز، نظام التشغيل).</li>
-                    <li id="s2li3">تقارير الأعطال (إن وجدت).</li>
+                    <li id="s2li1"><strong>الاسم:</strong> لتعريف حسابك وتخصيص تجربتك داخل المنصة.</li>
+                    <li id="s2li2"><strong>الصور:</strong> الصور التي تقوم برفعها أو مشاركتها عبر التطبيق.</li>
+                    <li id="s2li3"><strong>معرف الجهاز (Device ID):</strong> لربط الحساب بجهازك وتأمين الأمان والتحقق.</li>
+                    <li id="s2li4">بيانات الاستخدام ومعلومات الجهاز العامة وتحسين التجربة.</li>
                 </ul>
             </div>
 
             <!-- القسم 3 -->
             <div class="privacy-section">
-                <h2><i class="fas fa-ban"></i> <span id="s3Title">3. المعلومات التي لا نجمعها</span></h2>
+                <h2><i class="fas fa-user-shield"></i> <span id="s3Title">3. طبيعة مشاركة البيانات</span></h2>
                 <div class="highlight-box">
-                    <p id="s3Text"><strong>نحن لا نقوم بجمع:</strong> الاسم الكامل، رقم الهاتف، البريد الإلكتروني، الموقع الجغرافي الدقيق، أو أي بيانات شخصية حساسة.</p>
+                    <p id="s3Text"><strong>توضيح هام:</strong> يتطلب استخدام بعض خصائص التطبيق مشاركة بياناتك المذكورة (مثل الاسم، الصور، ومعرف الجهاز) لتفعيل التفاعل والخدمات التعليمية والمهنية المقدمة للمستخدمين.</p>
                 </div>
             </div>
 
             <!-- القسم 4 -->
             <div class="privacy-section">
                 <h2><i class="fas fa-chart-line"></i> <span id="s4Title">4. استخدام المعلومات</span></h2>
-                <p id="s4Text">تُستخدم البيانات فقط من أجل:</p>
+                <p id="s4Text">تُستخدم البيانات التي يتم جمعها للأغراض التالية:</p>
                 <ul>
-                    <li id="s4li1">تحسين أداء التطبيق وتجربة المستخدم.</li>
-                    <li id="s4li2">معرفة أكثر الأقسام والمحتوى استخدامًا.</li>
-                    <li id="s4li3">تطوير المحتوى بما يتناسب مع اهتمامات المستخدمين.</li>
+                    <li id="s4li1">عرض اسمك وصورك بشكل صحيح داخل حسابك والمحتوى المتفاعل.</li>
+                    <li id="s4li2">استخدام معرف الجهاز (Device ID) لضمان الاستقرار الأمني ومنع سوء الاستخدام.</li>
+                    <li id="s4li3">تحسين أداء التطبيق وتطوير المحتوى بما يتناسب مع اهتمامات المستخدمين.</li>
                 </ul>
             </div>
 
             <!-- القسم 5 -->
             <div class="privacy-section">
-                <h2><i class="fas fa-handshake"></i> <span id="s5Title">5. مشاركة المعلومات</span></h2>
-                <p id="s5Text">نحن <strong>لا نبيع أو نشارك</strong> أي بيانات شخصية مع أي طرف ثالث. قد يتم استخدام خدمات خارجية (مثل Google Analytics) فقط لتحليل الاستخدام بشكل عام دون تحديد هوية المستخدم.</p>
+                <h2><i class="fas fa-handshake"></i> <span id="s5Title">5. مشاركة المعلومات مع الأطراف الثالثة</span></h2>
+                <p id="s5Text">نحن لا نبيع بياناتك الشخصية أبداً. قد يتم مشاركة البيانات فقط في نطاق تفعيل ميزات التطبيق الأساسية أو عبر خدمات تحليلية عامة (مثل Google Analytics) دون الكشف عن بيانات حساسة.</p>
             </div>
 
             <!-- القسم 6 -->
@@ -516,39 +517,39 @@
                 <h2><i class="fas fa-ad"></i> <span id="s6Title">6. الإعلانات</span></h2>
                 <p id="s6Text">إذا كان التطبيق يحتوي على إعلانات (مثل Google AdMob):</p>
                 <ul>
-                    <li id="s6li1">قد تستخدم الإعلانات معرف الإعلانات لتحسين عرض الإعلانات.</li>
-                    <li id="s6li2">لا يتم جمع بيانات شخصية مباشرة.</li>
+                    <li id="s6li1">قد تستخدم شبكات الإعلانات معرفات مخصصة لتحسين عرض الإعلانات الملائمة.</li>
+                    <li id="s6li2">لا يتم مشاركة اسمك أو صورك الخاصة مع المعلنين.</li>
                 </ul>
             </div>
 
             <!-- القسم 7 -->
             <div class="privacy-section">
-                <h2><i class="fas fa-lock"></i> <span id="s7Title">7. الأمان</span></h2>
-                <p id="s7Text">نستخدم وسائل مناسبة لحماية التطبيق والبيانات من الوصول غير المصرح به، التعديل، أو الحذف غير المسموح.</p>
+                <h2><i class="fas fa-lock"></i> <span id="s7Title">7. الأمان وحماية البيانات</span></h2>
+                <p id="s7Text">نتخذ إجراءات تقنية وأمنية مشددة لحماية اسمك، صورك، ومعرف جهازك من الوصول غير المصرح به أو التعديل أو التسريب.</p>
             </div>
 
             <!-- القسم 8 -->
             <div class="privacy-section">
                 <h2><i class="fas fa-external-link-alt"></i> <span id="s8Title">8. روابط خارجية</span></h2>
-                <p id="s8Text">قد يحتوي التطبيق على روابط لمواقع خارجية. نحن غير مسؤولين عن سياسات الخصوصية الخاصة بتلك المواقع.</p>
+                <p id="s8Text">قد يحتوي التطبيق على روابط لمواقع خارجية؛ ونحن غير مسؤولين عن ممارسات الخصوصية الخاصة بها.</p>
             </div>
 
             <!-- القسم 9 -->
             <div class="privacy-section">
                 <h2><i class="fas fa-child"></i> <span id="s9Title">9. خصوصية الأطفال</span></h2>
-                <p id="s9Text">التطبيق موجه للأغراض التعليمية والمهنية، ولا يستهدف جمع بيانات من الأطفال بشكل مباشر.</p>
+                <p id="s9Text">التطبيق مخصص للاستخدام المهني والتعليمي للأجهزة الطبية، ولا نستهدف عن عمد جمع بيانات أو صور من الأطفال.</p>
             </div>
 
             <!-- القسم 10 -->
             <div class="privacy-section">
                 <h2><i class="fas fa-edit"></i> <span id="s10Title">10. التعديلات على السياسة</span></h2>
-                <p id="s10Text">قد نقوم بتحديث سياسة الخصوصية من وقت لآخر. سيتم نشر أي تحديث داخل التطبيق.</p>
+                <p id="s10Text">قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر، وسيتم إشعارك بأي تعديلات جديدة داخل التطبيق.</p>
             </div>
 
             <!-- القسم 11 -->
             <div class="privacy-section footer-contact">
                 <h2><i class="fas fa-envelope"></i> <span id="s11Title">11. التواصل معنا</span></h2>
-                <p id="s11Text">إذا كان لديك أي استفسار حول سياسة الخصوصية، يمكنك التواصل معنا عبر:</p>
+                <p id="s11Text">إذا كان لديك أي استفسار بخصوص سياسة الخصوصية أو بياناتك، يسعدنا تواصلك معنا عبر:</p>
                 <p style="margin-top: 10px;">
                     <i class="fas fa-at" style="color: var(--primary);"></i>
                     <a href="mailto:HusseinMutair690@gmail.com">HusseinMutair690@gmail.com</a>
@@ -562,71 +563,73 @@
         const translations = {
             ar: {
                 mainTitle: '🔒 سياسة الخصوصية',
-                updateDate: 'آخر تحديث: 1 يوليو 2026',
+                updateDate: 'آخر تحديث: 24 نوفمبر 2026',
                 s1Title: '1. مقدمة',
-                s1Text: 'نحن في <strong>MedAtlas</strong> نحترم خصوصيتك ونلتزم بحماية بياناتك. يوضح هذا المستند كيفية تعامل تطبيق MedAtlas مع المعلومات عند استخدامك له.',
+                s1Text: 'نحن في <strong>MedAtlas</strong> نحترم خصوصيتك ونلتزم بحماية بياناتك. يوضح هذا المستند كيفية جمع واستخدام وحماية المعلومات والبيانات التي تشاركها عند استخدامك للتطبيق.',
                 s2Title: '2. المعلومات التي نقوم بجمعها',
-                s2Text: 'قد يتم جمع بعض البيانات بشكل عام لتحسين التجربة، مثل:',
-                s2li1: 'بيانات الاستخدام داخل التطبيق (مثل الأقسام والأجهزة الأكثر زيارة).',
-                s2li2: 'معلومات الجهاز (نوع الجهاز، نظام التشغيل).',
-                s2li3: 'تقارير الأعطال (إن وجدت).',
-                s3Title: '3. المعلومات التي لا نجمعها',
-                s3Text: '<strong>نحن لا نقوم بجمع:</strong> الاسم الكامل، رقم الهاتف، البريد الإلكتروني، الموقع الجغرافي الدقيق، أو أي بيانات شخصية حساسة.',
+                s2Text: 'لكي تتمكن من الاستفادة من ميزات التطبيق، نقوم بجمع بعض البيانات الضرورية التي تقوم بمشاركتها وتشمل:',
+                s2li1: '<strong>الاسم:</strong> لتعريف حسابك وتخصيص تجربتك داخل المنصة.',
+                s2li2: '<strong>الصور:</strong> الصور التي تقوم برفعها أو مشاركتها عبر التطبيق.',
+                s2li3: '<strong>معرف الجهاز (Device ID):</strong> لربط الحساب بجهازك وتأمين الأمان والتحقق.',
+                s2li4: 'بيانات الاستخدام ومعلومات الجهاز العامة وتحسين التجربة.',
+                s3Title: '3. طبيعة مشاركة البيانات',
+                s3Text: '<strong>توضيح هام:</strong> يتطلب استخدام بعض خصائص التطبيق مشاركة بياناتك المذكورة (مثل الاسم، الصور، ومعرف الجهاز) لتفعيل التفاعل والخدمات التعليمية والمهنية المقدمة للمستخدمين.',
                 s4Title: '4. استخدام المعلومات',
-                s4Text: 'تُستخدم البيانات فقط من أجل:',
-                s4li1: 'تحسين أداء التطبيق وتجربة المستخدم.',
-                s4li2: 'معرفة أكثر الأقسام والمحتوى استخدامًا.',
-                s4li3: 'تطوير المحتوى بما يتناسب مع اهتمامات المستخدمين.',
-                s5Title: '5. مشاركة المعلومات',
-                s5Text: 'نحن <strong>لا نبيع أو نشارك</strong> أي بيانات شخصية مع أي طرف ثالث. قد يتم استخدام خدمات خارجية (مثل Google Analytics) فقط لتحليل الاستخدام بشكل عام دون تحديد هوية المستخدم.',
+                s4Text: 'تُستخدم البيانات التي يتم جمعها للأغراض التالية:',
+                s4li1: 'عرض اسمك وصورك بشكل صحيح داخل حسابك والمحتوى المتفاعل.',
+                s4li2: 'استخدام معرف الجهاز (Device ID) لضمان الاستقرار الأمني ومنع سوء الاستخدام.',
+                s4li3: 'تحسين أداء التطبيق وتطوير المحتوى بما يتناسب مع اهتمامات المستخدمين.',
+                s5Title: '5. مشاركة المعلومات مع الأطراف الثالثة',
+                s5Text: 'نحن لا نبيع بياناتك الشخصية أبداً. قد يتم مشاركة البيانات فقط في نطاق تفعيل ميزات التطبيق الأساسية أو عبر خدمات تحليلية عامة (مثل Google Analytics) دون الكشف عن بيانات حساسة.',
                 s6Title: '6. الإعلانات',
                 s6Text: 'إذا كان التطبيق يحتوي على إعلانات (مثل Google AdMob):',
-                s6li1: 'قد تستخدم الإعلانات معرف الإعلانات لتحسين عرض الإعلانات.',
-                s6li2: 'لا يتم جمع بيانات شخصية مباشرة.',
-                s7Title: '7. الأمان',
-                s7Text: 'نستخدم وسائل مناسبة لحماية التطبيق والبيانات من الوصول غير المصرح به، التعديل، أو الحذف غير المسموح.',
+                s6li1: 'قد تستخدم شبكات الإعلانات معرفات مخصصة لتحسين عرض الإعلانات الملائمة.',
+                s6li2: 'لا يتم مشاركة اسمك أو صورك الخاصة مع المعلنين.',
+                s7Title: '7. الأمان وحماية البيانات',
+                s7Text: 'نتخذ إجراءات تقنية وأمنية مشددة لحماية اسمك، صورك، ومعرف جهازك من الوصول غير المصرح به أو التعديل أو التسريب.',
                 s8Title: '8. روابط خارجية',
-                s8Text: 'قد يحتوي التطبيق على روابط لمواقع خارجية. نحن غير مسؤولين عن سياسات الخصوصية الخاصة بتلك المواقع.',
+                s8Text: 'قد يحتوي التطبيق على روابط لمواقع خارجية؛ ونحن غير مسؤولين عن ممارسات الخصوصية الخاصة بها.',
                 s9Title: '9. خصوصية الأطفال',
-                s9Text: 'التطبيق موجه للأغراض التعليمية والمهنية، ولا يستهدف جمع بيانات من الأطفال بشكل مباشر.',
+                s9Text: 'التطبيق مخصص للاستخدام المهني والتعليمي للأجهزة الطبية، ولا نستهدف عن عمد جمع بيانات أو صور من الأطفال.',
                 s10Title: '10. التعديلات على السياسة',
-                s10Text: 'قد نقوم بتحديث سياسة الخصوصية من وقت لآخر. سيتم نشر أي تحديث داخل التطبيق.',
+                s10Text: 'قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر، وسيتم إشعارك بأي تعديلات جديدة داخل التطبيق.',
                 s11Title: '11. التواصل معنا',
-                s11Text: 'إذا كان لديك أي استفسار حول سياسة الخصوصية، يمكنك التواصل معنا عبر:'
+                s11Text: 'إذا كان لديك أي استفسار بخصوص سياسة الخصوصية أو بياناتك، يسعدنا تواصلك معنا عبر:'
             },
             en: {
                 mainTitle: '🔒 Privacy Policy',
-                updateDate: 'Last Updated: July 1, 2026',
+                updateDate: 'Last Updated: November 24, 2026',
                 s1Title: '1. Introduction',
-                s1Text: 'We at <strong>MedAtlas</strong> respect your privacy and are committed to protecting your data. This document explains how the MedAtlas app handles information when you use it.',
+                s1Text: 'We at <strong>MedAtlas</strong> respect your privacy and are committed to protecting your data. This document explains how we collect, use, and protect the information and data you share when using the app.',
                 s2Title: '2. Information We Collect',
-                s2Text: 'Some general data may be collected to improve the experience, such as:',
-                s2li1: 'Usage data within the app (e.g., most visited sections and devices).',
-                s2li2: 'Device information (device type, operating system).',
-                s2li3: 'Error reports (if any).',
-                s3Title: '3. Information We Do Not Collect',
-                s3Text: '<strong>We do not collect:</strong> full name, phone number, email, precise geographic location, or any sensitive personal data.',
+                s2Text: 'To enable app features, we collect necessary data that you share, including:',
+                s2li1: '<strong>Name:</strong> To identify your account and personalize your experience within the platform.',
+                s2li2: '<strong>Photos:</strong> Images you upload or share through the app.',
+                s2li3: '<strong>Device ID:</strong> To link the account to your device and ensure security and verification.',
+                s2li4: 'Usage data and general device information to improve the experience.',
+                s3Title: '3. Nature of Data Sharing',
+                s3Text: '<strong>Important Clarification:</strong> Using certain app features requires sharing your mentioned data (such as name, photos, and device ID) to enable interaction and professional educational services provided to users.',
                 s4Title: '4. Use of Information',
-                s4Text: 'Data is used only for:',
-                s4li1: 'Improving app performance and user experience.',
-                s4li2: 'Identifying the most used sections and content.',
-                s4li3: "Developing content to match users' interests.",
-                s5Title: '5. Information Sharing',
-                s5Text: 'We <strong>do not sell or share</strong> any personal data with third parties. External services (e.g., Google Analytics) may be used only to analyze usage in general without identifying users.',
+                s4Text: 'The collected data is used for the following purposes:',
+                s4li1: 'Properly displaying your name and photos within your account and interactive content.',
+                s4li2: 'Using the Device ID to ensure security stability and prevent misuse.',
+                s4li3: 'Improving app performance and developing content suited to user interests.',
+                s5Title: '5. Information Sharing with Third Parties',
+                s5Text: 'We never sell your personal data. Data may only be shared to activate core app features or via general analytics services (such as Google Analytics) without exposing sensitive information.',
                 s6Title: '6. Advertising',
-                s6Text: 'If the app contains ads (e.g., Google AdMob):',
-                s6li1: 'Ads may use advertising IDs to improve ad display.',
-                s6li2: 'No direct personal data is collected.',
-                s7Title: '7. Security',
-                s7Text: 'We use appropriate measures to protect the app and data from unauthorized access, modification, or unauthorized deletion.',
+                s6Text: 'If the app contains advertisements (e.g., Google AdMob):',
+                s6li1: 'Ad networks may use identifiers to improve relevant ad delivery.',
+                s6li2: 'Your name or private photos are never shared with advertisers.',
+                s7Title: '7. Security and Data Protection',
+                s7Text: 'We take strict technical and security measures to protect your name, photos, and Device ID from unauthorized access, modification, or leaks.',
                 s8Title: '8. External Links',
-                s8Text: 'The app may contain links to external websites. We are not responsible for the privacy policies of those sites.',
+                s8Text: 'The app may contain links to external websites; we are not responsible for their privacy practices.',
                 s9Title: "9. Children's Privacy",
-                s9Text: 'The app is intended for educational and professional purposes and does not directly target collecting data from children.',
+                s9Text: 'The app is intended for professional and educational use regarding medical devices, and we do not knowingly target collecting data or photos from children.',
                 s10Title: '10. Changes to This Policy',
-                s10Text: 'We may update this privacy policy from time to time. Any updates will be posted within the app.',
+                s10Text: 'We may update this privacy policy from time to time, and you will be notified of any new updates inside the app.',
                 s11Title: '11. Contact Us',
-                s11Text: 'If you have any questions about this privacy policy, you can contact us at:'
+                s11Text: 'If you have any questions regarding our privacy policy or your data, feel free to contact us at:'
             }
         };
 
@@ -647,7 +650,7 @@
             const setText = (id, val) => { const el = document.getElementById(id); if (el) el.innerHTML = val; };
             setText('s1Title', t.s1Title); setText('s1Text', t.s1Text);
             setText('s2Title', t.s2Title); setText('s2Text', t.s2Text);
-            setText('s2li1', t.s2li1); setText('s2li2', t.s2li2); setText('s2li3', t.s2li3);
+            setText('s2li1', t.s2li1); setText('s2li2', t.s2li2); setText('s2li3', t.s2li3); setText('s2li4', t.s2li4);
             setText('s3Title', t.s3Title); setText('s3Text', t.s3Text);
             setText('s4Title', t.s4Title); setText('s4Text', t.s4Text);
             setText('s4li1', t.s4li1); setText('s4li2', t.s4li2); setText('s4li3', t.s4li3);
@@ -671,7 +674,7 @@
         // تحميل اللغة المحفوظة
         applyLanguage(currentLang);
 
-        // ============ Dark Mode (مطابق للصفحة الأصلية) ============
+        // ============ Dark Mode ============
         const darkToggle = document.getElementById('darkModeToggle');
         const lightIcon = document.getElementById('lightIcon');
         const darkIcon = document.getElementById('darkIcon');
